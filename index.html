@@ -27,13 +27,18 @@
     --sans:  'DM Sans', system-ui, sans-serif;
   }
 
+  html {
+    background: #EEF4F8 !important;
+    color-scheme: light !important;
+  }
   body {
     font-family: var(--sans);
-    background: var(--pearl);
-    color: var(--ink);
+    background: #EEF4F8 !important;
+    color: #2C2420;
     font-size: 14px;
     line-height: 1.6;
     min-height: 100vh;
+    color-scheme: light !important;
   }
 
   /* ── HERO ── */
@@ -157,7 +162,7 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: var(--white);
+    background: #FFFFFF !important;
     border-bottom: 2px solid var(--blue-light);
     box-shadow: 0 2px 12px rgba(138,173,202,0.15);
   }
@@ -191,6 +196,7 @@
     max-width: 960px;
     margin: 0 auto;
     padding: 40px 20px 80px;
+    background: #EEF4F8;
   }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
@@ -452,8 +458,9 @@
     background: var(--blue-pale);
     border: 1px solid var(--blue-light);
     border-radius: 7px;
-    padding: 9px 12px;
-    font-size: 12px;
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 400;
     color: var(--ink);
     text-align: center;
     line-height: 1.4;
@@ -480,6 +487,47 @@
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
   }
 
+  /* ── COUNTDOWN ── */
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 22px 0 0;
+  }
+  .countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .countdown-num {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--white);
+    min-width: 52px;
+    text-align: center;
+    background: var(--ink);
+    border: 1px solid rgba(138,173,202,0.3);
+    border-radius: 8px;
+    padding: 8px 10px 6px;
+  }
+  .countdown-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+  .countdown-divider {
+    font-family: var(--serif);
+    font-size: 28px;
+    color: var(--blue-light);
+    line-height: 1;
+    padding-top: 12px;
+  }
+
   @media (max-width: 600px) {
     .hero { padding: 36px 16px 30px; }
     .tab-btn { padding: 12px 12px; font-size: 10.5px; letter-spacing: 0.05em; }
@@ -498,7 +546,15 @@
   <h1><span class="name-v">Venus Law</span><span class="amp">&amp;</span><span class="name-m">Matthew Morawiec</span></h1>
   <div class="hero-subtitle">joyfully invite you to celebrate with them</div>
   <div class="hero-date">Tuesday, November 10th, 2026 · at four o'clock in the evening</div>
-  <div class="hero-pill-row">
+  <div class="countdown" id="countdown">
+    <div class="countdown-unit"><div class="countdown-num" id="cd-days">--</div><div class="countdown-label">Days</div></div>
+    <div class="countdown-divider">·</div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-hours">--</div><div class="countdown-label">Hours</div></div>
+    <div class="countdown-divider">·</div>
+    <div class="countdown-unit"><div class="countdown-num" id="cd-mins">--</div><div class="countdown-label">Minutes</div></div>
+  </div>
+
+  <div class="hero-pill-row" style="margin-top:20px;">
     <div class="pill"><span class="pill-dot"></span>Bel-Air Bay Club, Pacific Palisades</div>
     <div class="pill"><span class="pill-dot"></span>Ceremony 4:30 pm</div>
     <div class="pill"><span class="pill-dot"></span>~80 Guests</div>
@@ -638,8 +694,8 @@
       <div class="person-card"><div class="person-initial">Al</div><div class="person-info"><div class="person-name">Alexandra Lisi-Eiselen</div><div class="person-role">Bridesmaid · Table 8</div><div class="person-note">★ Venus Watch Duty</div></div></div>
       <div class="person-card"><div class="person-initial">Sh</div><div class="person-info"><div class="person-name">Shoma Nath</div><div class="person-role">Bridesmaid · Table 8</div><div class="person-note">★ Wrangler Duty (with Emily)</div></div></div>
       <div class="person-card"><div class="person-initial">Wi</div><div class="person-info"><div class="person-name">Willa Smith</div><div class="person-role">Bridesmaid · Table 8</div><div class="person-note">★ Venus Eats Duty</div></div></div>
-      <div class="person-card"><div class="person-initial">Em</div><div class="person-info"><div class="person-name">Emily Arroyo</div><div class="person-role">Bridesmaid · Table 8</div><div class="person-note">★ Wrangler Duty (with Shoma)</div></div></div>
-      <div class="person-card"><div class="person-initial">Is</div><div class="person-info"><div class="person-name">Isabelle Mollicone</div><div class="person-role">Bridesmaid · Table 8</div><div class="person-note">★ Vibes Duty · Walks with Flower Girl Indigo</div></div></div>
+      <div class="person-card"><div class="person-initial">Em</div><div class="person-info"><div class="person-name">Emily Arroyo</div><div class="person-role">Bridesmaid · Table 8</div><div class="person-note">★ Wrangler Duty (with Shoma) · Ring Bearer</div></div></div>
+      <div class="person-card"><div class="person-initial">Is</div><div class="person-info"><div class="person-name">Isabelle Mollicone</div><div class="person-role">Bridesmaid · Table 8</div><div class="person-note">★ Vibes Duty · Walks with Indigo &amp; Emily</div></div></div>
     </div>
 
     <div class="divider"><span class="divider-label">Your Day</span></div>
@@ -661,19 +717,23 @@
     <div class="card">
       <div class="card-sub">Walk order — bridesmaids pair with groomsmen</div>
       <div style="margin-top:14px;">
-        <div class="proc-row"><div class="proc-cell peach" style="flex:none;width:100%">Kai McNamee<em>Officiant — walks first, stands at altar</em></div></div>
+        <div class="proc-row"><div class="proc-cell peach" style="width:100%">Kai McNamee<em>Officiant — walks first, stands at altar</em></div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell">Matt (Groom)<em>with Hope (MOG)</em></div><div class="proc-cell">Peter (FOG)<em>with Annie</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Matt (Groom) &amp; Hope (MOG)</div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell">Jonathan Rich<em>with Alexandra Lisi-Eiselen</em></div><div class="proc-cell">Xander Lee<em>with Willa Smith</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Peter (FOG) &amp; Annie Morawiec</div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell">Thomas Li<em>with Shoma Nath</em></div><div class="proc-cell">Justin Law<em>with Ruth (MOB)</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Jonathan Rich &amp; Alexandra Lisi-Eiselen</div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell" style="flex:none;width:100%">Isabelle Mollicone<em>with Flower Girl Indigo Byrne 🌸</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Xander Lee &amp; Willa Smith</div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell" style="flex:none;width:100%">Emily Arroyo<em>with Ring Bearer</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Thomas Li &amp; Shoma Nath</div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell hero-cell" style="flex:none;width:100%">Marso (FOB) escorting Venus<em>Jer &amp; Ruthie play piano &amp; cello · Everyone stand 🥹</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Justin Law &amp; Ruth (MOB)</div></div>
+        <div class="proc-arrow">↓</div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Isabelle Mollicone, Flower Girl Indigo Byrne 🌸 &amp; Emily Arroyo (Ring Bearer)</div></div>
+        <div class="proc-arrow">↓</div>
+        <div class="proc-row"><div class="proc-cell hero-cell" style="width:100%">Marso (FOB) escorting Venus<em>Jer &amp; Ruthie play piano &amp; cello · Everyone stand 🥹</em></div></div>
       </div>
     </div>
 
@@ -711,7 +771,7 @@
               <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
               <td style="padding:9px 12px;color:var(--ink);">Table 8</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--blue-pale);background:var(--pearl);">
+            <tr style="border-bottom:1px solid var(--blue-pale);background:var(--white);">
               <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Gold Stand (Short)</td>
               <td style="padding:9px 12px;text-align:center;color:var(--stone);">2</td>
               <td style="padding:9px 12px;color:var(--stone);">At ceremony</td>
@@ -723,7 +783,7 @@
               <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
               <td style="padding:9px 12px;color:var(--ink);">Tables 1, 2, 3, 5, 7</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--blue-pale);background:var(--pearl);">
+            <tr style="border-bottom:1px solid var(--blue-pale);background:var(--white);">
               <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Kate Grand Centerpiece</td>
               <td style="padding:9px 12px;text-align:center;color:var(--stone);">3 (2 flip)</td>
               <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
@@ -785,11 +845,11 @@
     </div>
 
     <div class="people-grid">
-      <div class="person-card"><div class="person-initial">Ka</div><div class="person-info"><div class="person-name">Kai McNamee</div><div class="person-role">Best Man · Officiant · Table 8</div><div class="person-note">★ Running the ceremony</div></div></div>
-      <div class="person-card"><div class="person-initial">Ju</div><div class="person-info"><div class="person-name">Justin Law</div><div class="person-role">Groomsman (Bride's Brother) · Table 8</div><div class="person-note">★ Dinner Speech 1</div></div></div>
-      <div class="person-card"><div class="person-initial">Xa</div><div class="person-info"><div class="person-name">Xander Lee</div><div class="person-role">Groomsman · Table 8</div></div></div>
-      <div class="person-card"><div class="person-initial">Jo</div><div class="person-info"><div class="person-name">Jonathan Rich</div><div class="person-role">Groomsman · Table 8</div></div></div>
-      <div class="person-card"><div class="person-initial">Th</div><div class="person-info"><div class="person-name">Thomas Li</div><div class="person-role">Groomsman · Table 8</div></div></div>
+      <div class="person-card"><div class="person-initial">Ka</div><div class="person-info"><div class="person-name">Kai McNamee</div><div class="person-role">Best Man · Officiant · Table 8</div><div class="person-note">★ Running the ceremony · Return marriage license after wedding</div></div></div>
+      <div class="person-card"><div class="person-initial">Ju</div><div class="person-info"><div class="person-name">Justin Law</div><div class="person-role">Groomsman (Bride's Brother) · Table 8</div><div class="person-note">★ Dinner Speech 1 · Family Wrangler</div></div></div>
+      <div class="person-card"><div class="person-initial">Xa</div><div class="person-info"><div class="person-name">Xander Lee</div><div class="person-role">Groomsman · Table 8</div><div class="person-note">★ Brunch setup crew</div></div></div>
+      <div class="person-card"><div class="person-initial">Jo</div><div class="person-info"><div class="person-name">Jonathan Rich</div><div class="person-role">Groomsman · Table 8</div><div class="person-note">★ Time Manager</div></div></div>
+      <div class="person-card"><div class="person-initial">Th</div><div class="person-info"><div class="person-name">Thomas Li</div><div class="person-role">Groomsman · Table 8</div><div class="person-note">★ Brunch setup crew</div></div></div>
     </div>
 
     <div class="divider"><span class="divider-label">Your Day</span></div>
@@ -811,19 +871,23 @@
     <div class="card">
       <div class="card-sub">Walk order</div>
       <div style="margin-top:14px;">
-        <div class="proc-row"><div class="proc-cell peach" style="flex:none;width:100%">Kai McNamee<em>Walk to altar first · Stand and wait for everyone</em></div></div>
+        <div class="proc-row"><div class="proc-cell peach" style="width:100%">Kai McNamee<em>Walk to altar first · Stand and wait for everyone</em></div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell">Matt (Groom)<em>with Hope (MOG)</em></div><div class="proc-cell">Peter (FOG)<em>with Annie</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Matt (Groom) &amp; Hope (MOG)</div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell">Jonathan Rich<em>with Alexandra</em></div><div class="proc-cell">Xander Lee<em>with Willa</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Peter (FOG) &amp; Annie Morawiec</div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell">Thomas Li<em>with Shoma</em></div><div class="proc-cell">Justin Law<em>with Ruth (MOB)</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Jonathan Rich &amp; Alexandra Lisi-Eiselen</div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell" style="flex:none;width:100%">Isabelle Mollicone<em>with Flower Girl Indigo Byrne 🌸</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Xander Lee &amp; Willa Smith</div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell" style="flex:none;width:100%">Emily Arroyo<em>with Ring Bearer</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Thomas Li &amp; Shoma Nath</div></div>
         <div class="proc-arrow">↓</div>
-        <div class="proc-row"><div class="proc-cell hero-cell" style="flex:none;width:100%">Marso (FOB) escorting Venus<em>Stand, everyone 🥹</em></div></div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Justin Law &amp; Ruth (MOB)</div></div>
+        <div class="proc-arrow">↓</div>
+        <div class="proc-row"><div class="proc-cell" style="width:100%">Isabelle Mollicone, Flower Girl Indigo Byrne 🌸 &amp; Emily Arroyo (Ring Bearer)</div></div>
+        <div class="proc-arrow">↓</div>
+        <div class="proc-row"><div class="proc-cell hero-cell" style="width:100%">Marso (FOB) escorting Venus<em>Everyone stand 🥹</em></div></div>
       </div>
     </div>
 
@@ -848,7 +912,7 @@
               <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
               <td style="padding:9px 12px;color:var(--ink);">Table 8</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--blue-pale);background:var(--pearl);">
+            <tr style="border-bottom:1px solid var(--blue-pale);background:var(--white);">
               <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Gold Stand (Short)</td>
               <td style="padding:9px 12px;text-align:center;color:var(--stone);">2</td>
               <td style="padding:9px 12px;color:var(--stone);">At ceremony</td>
@@ -860,7 +924,7 @@
               <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
               <td style="padding:9px 12px;color:var(--ink);">Tables 1, 2, 3, 5, 7</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--blue-pale);background:var(--pearl);">
+            <tr style="border-bottom:1px solid var(--blue-pale);background:var(--white);">
               <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Kate Grand Centerpiece</td>
               <td style="padding:9px 12px;text-align:center;color:var(--stone);">3 (2 flip)</td>
               <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
@@ -880,6 +944,71 @@
     <div class="card"><div class="card-sub">Attire</div><p>Matching ties &amp; pocket squares for all groomsmen — Venus is selecting options. Confirm final details with Matthew once locked in. Dress code for guests: Formal.</p></div>
     <div class="card"><div class="card-sub">DJ — Jordan Bernard (Endless Summer DJs)</div><p>Jordan is experienced at BABC and will MC key moments — Grand Entrance, First Dance, toasts, etc. He uses his own mic and sound system. A day-of timeline walkthrough is available. Contact: <a href="mailto:jordanbernardoevents@gmail.com">jordanbernardoevents@gmail.com</a> · (312) 550-9190</p></div>
     <div class="card"><div class="card-sub">Justin's Speech</div><p>Justin is up first at 7:15 pm, followed by Annie Morawiec. Keep it warm, keep it fun — this is a party first and foremost.</p></div>
+
+    <div class="card" style="border-left:3px solid var(--peach);">
+      <div class="card-sub">Kai McNamee · Marriage License — Action Required After the Wedding</div>
+      <div class="card-title" style="font-size:15px;margin-bottom:8px;">📋 Don't forget to return the signed license!</div>
+      <p style="margin-bottom:12px;">As the officiant, Kai is legally responsible for signing and returning the marriage license to the county after the ceremony. Venus and Matthew will obtain their license from <strong>Beverly Hills Courthouse</strong> before the wedding. Here's exactly what Kai needs to do:</p>
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px;">
+
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="min-width:22px;height:22px;border-radius:50%;background:var(--blue-pale);border:1px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue);flex-shrink:0;">1</div>
+          <div><div style="font-size:12.5px;font-weight:500;color:var(--ink);margin-bottom:2px;">Sign the license at the ceremony</div><div style="font-size:12px;color:var(--stone);">After Venus and Matthew exchange vows, Kai signs the marriage license as officiant. The two witnesses also sign (confirm who your witnesses are with Venus and Matthew in advance). All signatures must be completed on the day of the wedding.</div></div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="min-width:22px;height:22px;border-radius:50%;background:var(--blue-pale);border:1px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue);flex-shrink:0;">2</div>
+          <div><div style="font-size:12.5px;font-weight:500;color:var(--ink);margin-bottom:2px;">Return within 10 days</div><div style="font-size:12px;color:var(--stone);">California law requires the signed license to be returned to the county clerk's office within <strong style="color:var(--ink);">10 days</strong> of the ceremony. The wedding is Nov 10 — so the deadline is <strong style="color:var(--peach);">November 20, 2026</strong>.</div></div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="min-width:22px;height:22px;border-radius:50%;background:var(--blue-pale);border:1px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue);flex-shrink:0;">3</div>
+          <div><div style="font-size:12.5px;font-weight:500;color:var(--ink);margin-bottom:2px;">Option A — Return in person</div><div style="font-size:12px;color:var(--stone);">Drop off the signed license at the <strong style="color:var(--ink);">Beverly Hills Courthouse</strong>, 9355 Burton Way, Beverly Hills, CA 90210. Hours: Mon–Fri 8:30 am – 4:30 pm. No appointment needed for drop-off. This is the fastest way to confirm receipt.</div></div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div style="min-width:22px;height:22px;border-radius:50%;background:var(--blue-pale);border:1px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue);flex-shrink:0;">4</div>
+          <div><div style="font-size:12.5px;font-weight:500;color:var(--ink);margin-bottom:2px;">Option B — Mail it</div><div style="font-size:12px;color:var(--stone);">Mail the signed license to:<br><strong style="color:var(--ink);">Los Angeles County Registrar-Recorder/County Clerk<br>Marriage Licenses, P.O. Box 1208<br>Norwalk, CA 90651-1208</strong><br><br>If mailing, use a <strong style="color:var(--ink);">trackable service</strong> (USPS Certified Mail or Priority Mail) and mail <strong style="color:var(--ink);">immediately after the wedding</strong> — no later than Nov 12 — to ensure it arrives within the 10-day window. Keep your tracking receipt as proof.</div></div>
+        </div>
+
+      </div>
+      <div style="background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:7px;padding:10px 14px;">
+        <p style="font-size:12px;color:#7A4A30;"><strong style="color:#5A2E10;">⚠️ Important:</strong> Do not alter, white-out, or use correction fluid anywhere on the license — any errors must be corrected by the county. Keep the license flat and dry until it is returned. The signed license is what legally makes Venus and Matthew married, so guard it carefully on the night!</p>
+      </div>
+    </div>
+
+
+    <div class="divider"><span class="divider-label">Your Role on the Day</span></div>
+
+    <div class="notice" style="background:var(--blue-pale);border-color:var(--blue-light);">
+      <div class="notice-icon">💌</div>
+      <p style="color:var(--ink);">Every groomsman has a specific role on the day. These keep Matthew and Venus free to be fully present while the people around them handle the details. Own it!</p>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--blue);">
+      <div class="card-sub">Kai McNamee · Officiant</div>
+      <div class="card-title" style="font-size:15px;margin-bottom:8px;">💍 "I now pronounce you..."</div>
+      <p>Kai is running the ceremony — the most important 30 minutes of the day. Walk to the altar first, get positioned, and hold the space while everyone else processes in. After the ceremony, Kai signs the marriage license as officiant (see the Marriage License card above) and makes sure it's returned to the county within 10 days. The whole thing is in Kai's hands — no pressure 😄</p>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--peach);">
+      <div class="card-sub">Justin Law · Family Wrangler</div>
+      <div class="card-title" style="font-size:15px;margin-bottom:8px;">📸 "Everyone needs to be over here, now."</div>
+      <p>Justin is the human coordinator for all family and wedding party moments. This means: making sure everyone is in the right spot for photos when the photographer is ready, giving people a heads-up before speeches so they're not mid-conversation when the mic goes live, ensuring parents and key family members are on the floor for the Father-Daughter and Mother-Son dances, and generally keeping the family side moving smoothly so Desiree doesn't have to chase people down.</p>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--gold);">
+      <div class="card-sub">Jonathan Rich · Time Manager</div>
+      <div class="card-title" style="font-size:15px;margin-bottom:8px;">⏱ "We need to leave in 10 minutes."</div>
+      <p>Jon is the group's clock. Getting ready: making sure the groomsmen are actually ready on time and not dragging their feet. Getting to the venue: keeping everyone on schedule so no one's rushing at the last minute. Throughout the day: aware of what's coming next on the timeline and giving the crew a quiet heads-up before each key moment so nothing catches anyone off guard. Jon is the reason everyone arrives looking calm and put-together.</p>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--blue);">
+      <div class="card-sub">Xander Lee &amp; Thomas Li · Brunch Setup Crew</div>
+      <div class="card-title" style="font-size:15px;margin-bottom:8px;">🌮 "Let's get this park ready."</div>
+      <p>Xander and Thomas are joining Hope, Peter, and Annie at Clover Park on Wednesday morning to get everything set up before guests arrive. Three tasks: set up the tent and tables, lay out the picnic blankets, and pick up the catering order (coffee &amp; breakfast tacos) from Homestate Santa Monica and bring it to the park. Coordinate with Hope, Peter, and Annie on timing and task split — you're all one crew. Dress code: Sweatpants Encouraged 🥂</p>
+    </div>
   </div>
 
   <!-- ═══ FAMILY ═══ -->
@@ -921,7 +1050,7 @@
       <div class="card-sub">Family Tables</div>
       <p><strong>Table 1</strong> — Ruth Law, Marso Law, Clara Lai, Harry Tsang, Mike Cheuk-Biu Yeung, Jennie Yeung, Edward Lau, Rebecca Lau, Barbara Lisi, Danielle Huck<br><br>
       <strong>Table 2</strong> — Doug McNamee, Jessica Chuang, Hope Morawiec, Peter Morawiec, Barry Rich, Rhonda Rich, Adam Morawiec, Risa Morawiec, Alla Morawiec, Agatha Morawiec<br><br>
-      <strong>Table 8 (Wedding Party)</strong> — Justin Law, Elizabeth Nichols, Alexandra Lisi-Eiselen, Dieter Eiselen, Shoma Nath, Jonathan Rich, Kai McNamee, Kaycee Beardeaux, Annie Morawiec, Xander Lee, Willa Smith, Jack Marshall, Emily Arroyo, Isabelle Mollicone, Nate Osgood, Thomas Xu, Hannah Li</p>
+      <strong>Table 8 (Wedding Party)</strong> — Justin Law, Elizabeth Nichols, Alexandra Lisi-Eiselen, Dieter Eiselen, Shoma Nath, Jonathan Rich, Kai McNamee, Kaycee Beardeaux, Annie Morawiec, Xander Lee, Willa Smith, Jack Marshall, Emily Arroyo, Isabelle Mollicone, Thomas Xu, Hannah Li</p>
     </div>
     <div class="card"><div class="card-sub">Accessibility</div><p>BABC offers stair-free access to the Lawn via the secondary parking lot (concrete ramp). The Upper Clubhouse is stair-free via the Courtyard Patio. A golf cart is available to drive any guests who need assistance to the lawn. Let Desiree know in advance.</p></div>
     <div class="card"><div class="card-sub">Overnight at BABC</div><p>9 guest rooms with ocean views · Check-in 3:00 pm · Checkout 11:00 am · Complimentary continental breakfast. Note: rooms are only accessible by stairs (no elevator). Book directly: <a href="tel:3102304700">(310) 230-4700</a> · <a href="mailto:ucfrontdesk@belairbayclub.com">ucfrontdesk@belairbayclub.com</a></p></div>
@@ -1026,6 +1155,24 @@ function switchTab(id, btn) {
   document.getElementById('panel-' + id).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+function updateCountdown() {
+  const wedding = new Date('2026-11-10T16:00:00-08:00'); // 4pm PT
+  const now = new Date();
+  const diff = wedding - now;
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = '<div style="font-family:var(--serif);font-size:22px;font-style:italic;color:var(--white);opacity:0.8;">Today is the day! 🥂</div>';
+    return;
+  }
+  const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 30000);
 </script>
 </body>
 </html>
