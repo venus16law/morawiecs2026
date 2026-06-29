@@ -1790,6 +1790,180 @@
     </div>
 
 
+    <div class="divider"><span class="divider-label">Event Cost Estimator</span></div>
+
+    <div class="card" style="padding:22px 24px 28px;">
+      <div class="card-sub">For Venus &amp; Matthew — Full Event Cost Breakdown</div>
+      <p style="font-size:12px;color:var(--stone);margin-bottom:20px;">All figures below are estimates. Bar costs assume 80 adult guests for the full 6-hour reception package. BABC charges include 22% service charge and 9.75% sales tax on top of all F&amp;B. Venue/site fee and F&amp;B minimum sourced from your Detailed Budget. Use this as a planning tool — final BABC total confirmed at BEO sign-off.</p>
+
+      <!-- Toggle buttons -->
+      <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;">
+        <button onclick="setExt(0)" id="btn0" style="padding:8px 18px;border-radius:100px;border:1.5px solid var(--blue);background:var(--blue);color:white;font-size:12px;font-weight:500;cursor:pointer;font-family:var(--sans);">Base (10 pm)</button>
+        <button onclick="setExt(1)" id="btn1" style="padding:8px 18px;border-radius:100px;border:1.5px solid var(--blue-light);background:transparent;color:var(--blue);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--sans);">+1 Hour Extension</button>
+        <button onclick="setExt(2)" id="btn2" style="padding:8px 18px;border-radius:100px;border:1.5px solid var(--blue-light);background:transparent;color:var(--blue);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--sans);">+2 Hour Extension</button>
+      </div>
+
+      <!-- Bar tier selector -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Select Bar Tier</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button onclick="setBar('well')" id="barWell" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue);background:var(--blue);color:white;font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">Well — $89/pp</button>
+          <button onclick="setBar('premium')" id="barPremium" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue-light);background:transparent;color:var(--blue);font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">Premium — $101/pp</button>
+          <button onclick="setBar('super')" id="barSuper" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue-light);background:transparent;color:var(--blue);font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">Super Premium — $113/pp</button>
+        </div>
+      </div>
+
+      <!-- Cost breakdown table -->
+      <div style="border:1px solid var(--blue-light);border-radius:8px;overflow:hidden;margin-bottom:20px;">
+        <div style="background:var(--blue-pale);padding:10px 16px;display:flex;gap:8px;">
+          <div style="flex:1;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);">Line Item</div>
+          <div style="width:90px;text-align:right;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);">Subtotal</div>
+          <div style="width:90px;text-align:right;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);">w/ 22% SC + Tax</div>
+        </div>
+
+        <!-- BABC rows -->
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">BABC Venue / Site Fee</div><div style="font-size:11px;color:var(--stone);">Ceremony, reception, all included items</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$27,500</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Flat fee</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Open Bar — <span id="barLabel">Well (6 hrs)</span></div><div style="font-size:11px;color:var(--stone);">80 guests × <span id="barPPLabel">$89</span>/person</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);" id="barBase">$7,120</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);" id="barWithTax">$9,688</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">BABC Venue Overtime</div><div style="font-size:11px;color:var(--stone);" id="extLabel">No extension (base 10 pm end)</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);" id="extBase">$0</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Flat fee</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">DJ — Jordan Bernardo Overtime</div><div style="font-size:11px;color:var(--stone);" id="djExtLabel">No overtime (base 6 hrs)</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);" id="djExtCost">$0</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">$300/hr</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Desiree Overtime</div><div style="font-size:11px;color:var(--stone);" id="desExtLabel">No overtime (covered through 11:59 pm)</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);" id="desExtCost">$0</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">$160/hr</div>
+        </div>
+
+        <!-- Separator -->
+        <div style="background:var(--blue-pale);padding:6px 16px;"><div style="font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--stone);">Confirmed Vendor Contracts (Fixed)</div></div>
+
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Lulan Studios — Photography &amp; Videography</div><div style="font-size:11px;color:var(--stone);">Contracted total (photo); videography package TBC</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$2,057</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Incl. tax</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Endless Summer DJs (Jordan Bernardo)</div><div style="font-size:11px;color:var(--stone);">6-hour VIP package, lighting, all gear</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$2,070</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">No tax</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Serenity Weddings — Desiree</div><div style="font-size:11px;color:var(--stone);">Day-of coordinating, 10 am–11:59 pm</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$1,800</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">No tax</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Pixster Photo Booth</div><div style="font-size:11px;color:var(--stone);">4-hour open-air booth, all inclusions</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$795</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">No tax</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Something Borrowed Blooms × Mostest</div><div style="font-size:11px;color:var(--stone);">Florals rental + white glove service</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$2,597</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Incl. deposits</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Cake (Sheet + Dummy)</div><div style="font-size:11px;color:var(--stone);">Est. 80 slices</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$325</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Est.</div>
+        </div>
+
+        <!-- Grand total row -->
+        <div style="background:var(--ink);padding:14px 16px;display:flex;gap:8px;border-radius:0 0 7px 7px;">
+          <div style="flex:1;font-size:14px;font-weight:600;color:white;">Estimated Grand Total</div>
+          <div style="width:90px;text-align:right;" id="grandTotal"><span style="font-size:16px;font-weight:700;color:var(--gold);">$46,764</span></div>
+          <div style="width:90px;"></div>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div style="background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:8px;padding:12px 16px;margin-bottom:12px;">
+        <p style="font-size:12px;color:#7A4A30;"><strong style="color:#5A2E10;">BABC service charge note:</strong> All BABC F&amp;B items (bar, food, extras) are subject to 22% service charge + 9.75% sales tax. The venue/site fee is a flat figure. Bar estimates above show both the pre-tax subtotal and the estimated total after charges, so you can see both what you're committing to and what you'll actually pay.</p>
+      </div>
+      <div style="background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:12px 16px;">
+        <p style="font-size:12px;color:var(--stone);"><strong style="color:var(--ink);">Not included in estimates:</strong> Rehearsal dinner (~$2,000) · Welcome drinks at SMBW (~$1,000) · Send-off brunch supplies (~$500) · Rings ($2,000) · Valet (TBD with Quality Parking) · Lulan videography package (TBC) · Any BABC food/menu items beyond the bar (entrées, hors d'oeuvres, etc. — these are significant and selected at your Details Meeting)</p>
+      </div>
+    </div>
+
+    <script>
+      var ext = 0;
+      var bar = 'well';
+      var barRates = {well: 89, premium: 101, super: 113};
+      var barLabels = {well: 'Well (6 hrs)', premium: 'Premium (6 hrs)', super: 'Super Premium (6 hrs)'};
+
+      function fmtUSD(n) { return '$' + n.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}); }
+
+      function applyTax(n) { return Math.round(n * 1.22 * 1.0975); }
+
+      function update() {
+        var guests = 80;
+        var rate = barRates[bar];
+        var barSub = guests * rate;
+        var barTaxed = applyTax(barSub);
+
+        document.getElementById('barLabel').textContent = barLabels[bar];
+        document.getElementById('barPPLabel').textContent = '$' + rate;
+        document.getElementById('barBase').textContent = fmtUSD(barSub);
+        document.getElementById('barWithTax').textContent = fmtUSD(barTaxed);
+
+        var extCostBABC = ext === 0 ? 0 : ext === 1 ? 1000 : 3000;
+        var djExt = ext === 0 ? 0 : ext === 1 ? 300 : 600;
+        var desExt = ext === 0 ? 0 : ext === 1 ? 160 : 320;
+
+        document.getElementById('extBase').textContent = fmtUSD(extCostBABC);
+        document.getElementById('extLabel').textContent = ext === 0 ? 'No extension (base 10 pm end)' : ext === 1 ? '+1 hour (ends 11 pm) — flat fee' : '+2 hours (ends midnight) — flat fee';
+
+        document.getElementById('djExtCost').textContent = fmtUSD(djExt);
+        document.getElementById('djExtLabel').textContent = ext === 0 ? 'No overtime (base 6 hrs)' : ext === 1 ? '+1 hr overtime @ $300/hr' : '+2 hrs overtime @ $300/hr';
+
+        document.getElementById('desExtCost').textContent = fmtUSD(desExt);
+        document.getElementById('desExtLabel').textContent = ext === 0 ? 'No overtime (covered through 11:59 pm)' : ext === 1 ? '+1 hr @ $160/hr (past midnight)' : '+2 hrs @ $160/hr (past midnight)';
+
+        var fixed = 27500 + 2057 + 2070 + 1800 + 795 + 2597 + 325;
+        var total = fixed + barTaxed + extCostBABC + djExt + desExt;
+        document.getElementById('grandTotal').innerHTML = '<span style="font-size:16px;font-weight:700;color:var(--gold);">' + fmtUSD(total) + '</span>';
+      }
+
+      function setExt(n) {
+        ext = n;
+        ['btn0','btn1','btn2'].forEach(function(id, i) {
+          var el = document.getElementById(id);
+          el.style.background = i === n ? 'var(--blue)' : 'transparent';
+          el.style.color = i === n ? 'white' : 'var(--blue)';
+          el.style.borderColor = i === n ? 'var(--blue)' : 'var(--blue-light)';
+        });
+        update();
+      }
+
+      function setBar(t) {
+        bar = t;
+        ['barWell','barPremium','barSuper'].forEach(function(id, i) {
+          var el = document.getElementById(id);
+          var active = (i === 0 && t === 'well') || (i === 1 && t === 'premium') || (i === 2 && t === 'super');
+          el.style.background = active ? 'var(--blue)' : 'transparent';
+          el.style.color = active ? 'white' : 'var(--blue)';
+          el.style.borderColor = active ? 'var(--blue)' : 'var(--blue-light)';
+        });
+        update();
+      }
+
+      update();
+    </script>
+
     <div class="divider"><span class="divider-label">Upcoming Payment Schedule</span></div>
 
     <div class="card">
