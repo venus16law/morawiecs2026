@@ -170,6 +170,9 @@
     display: flex;
     justify-content: center;
     max-width: 960px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     margin: 0 auto;
   }
   .tab-btn {
@@ -187,6 +190,7 @@
     cursor: pointer;
     transition: color 0.15s, border-color 0.15s;
     white-space: nowrap;
+    flex-shrink: 0;
   }
   .tab-btn:hover { color: var(--blue); }
   .tab-btn.active { color: var(--blue); border-bottom-color: var(--blue); }
@@ -528,12 +532,79 @@
     padding-top: 12px;
   }
 
-  @media (max-width: 600px) {
-    .hero { padding: 36px 16px 30px; }
-    .tab-btn { padding: 12px 12px; font-size: 10.5px; letter-spacing: 0.05em; }
-    .timeline::before { left: 46px; }
-    .tl-time { width: 60px; font-size: 10px; }
+  /* ── GLOBAL MOBILE SAFETY ── */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { overflow-x: hidden; max-width: 100vw; }
+
+  @media (max-width: 640px) {
+    /* Hero */
+    .hero { padding: 28px 14px 24px; }
+    .hero h1 { font-size: clamp(28px, 8vw, 44px); }
+    .hero-pill-row { gap: 6px; }
+    .pill { font-size: 10px; padding: 4px 10px; }
+    .countdown { gap: 10px; }
+    .countdown-num { font-size: 28px; min-width: 42px; padding: 6px 8px 4px; }
+
+    /* Tabs */
+    .tab-btn { padding: 10px 8px; font-size: 10px; letter-spacing: 0.03em; }
+
+    /* Content */
+    .content { padding: 24px 12px 60px; }
+
+    /* Cards */
+    .card { padding: 14px 14px; }
+    .card-title { font-size: 14px; }
+
+    /* Grids */
     .events-grid, .people-grid { grid-template-columns: 1fr; }
+
+    /* Timeline */
+    .timeline::before { left: 40px; }
+    .tl-time { width: 52px; font-size: 10px; }
+    .tl-dot { margin: 0 8px; }
+
+    /* Person cards */
+    .person-card { padding: 12px 12px; }
+
+    /* Proc chart */
+    .proc-cell { font-size: 12px; padding: 8px 10px; }
+
+    /* Floral table — scroll on mobile */
+    .card table { font-size: 11px; }
+
+    /* Contact rows */
+    .contact-row { flex-wrap: wrap; gap: 8px; }
+    .contact-link { font-size: 11px; margin-left: 0; margin-top: 4px; }
+
+    /* Notice boxes */
+    .notice { padding: 12px 12px; }
+
+    /* Section titles */
+    .section-title { font-size: 20px; }
+
+    /* Divider labels */
+    .divider-label { font-size: 9px; letter-spacing: 0.1em; }
+
+    /* ── Cost estimator table ── */
+    #estimatorTable .est-col-right,
+    .est-hide-mobile { display: none !important; }
+
+    /* Payment schedule rows */
+    .pay-row { flex-direction: column; gap: 4px; align-items: flex-start !important; }
+    .pay-date { min-width: unset !important; }
+    .pay-amount { align-self: flex-end; }
+
+    /* SVG diagrams — let them scroll if needed */
+    .diagram-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* Vendor timeline badge wrapping */
+    .tl-label { font-size: 11.5px; line-height: 1.5; }
+
+    /* Inline style overrides for cost estimator amount columns */
+    [id="barBase"], [id="barWithTax"], [id="extBase"],
+    [id="djExtCost"], [id="desExtCost"], [id="grandTotal"] {
+      font-size: 11px;
+    }
   }
 </style>
 </head>
@@ -569,6 +640,7 @@
     <button class="tab-btn" onclick="switchTab('bridesmaids', this)">Bridesmaids</button>
     <button class="tab-btn" onclick="switchTab('groomsmen', this)">Groomsmen</button>
     <button class="tab-btn" onclick="switchTab('family', this)">Family</button>
+    <button class="tab-btn" onclick="switchTab('reception', this)">Reception</button>
     <button class="tab-btn" onclick="switchTab('vendors', this)">Vendors &amp; Contacts</button>
   </div>
 </div>
@@ -741,7 +813,7 @@
     <div class="card" style="padding:20px 20px 24px;">
       <div class="card-sub">Aerial View — Who Stands Where</div>
       <p style="font-size:12px;color:var(--stone);margin-bottom:16px;">Looking from the guests toward the ocean. Groom’s side left, Bride’s side right.</p>
-      <svg viewBox="0 0 520 410" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto;">
+      <div class="diagram-scroll"><svg viewBox="0 0 520 410" xmlns="http://www.w3.org/2000/svg" style="min-width:320px;width:100%;max-width:520px;display:block;margin:0 auto;">
         <rect width="520" height="410" fill="#EEF4F8" rx="10"/>
         <rect x="0" y="0" width="520" height="36" fill="#C8DDE9" rx="10"/>
         <rect x="0" y="26" width="520" height="10" fill="#C8DDE9"/>
@@ -946,6 +1018,8 @@
     </div>
   </div>
 
+  </div>
+
   <!-- ═══ GROOMSMEN ═══ -->
   <div id="panel-groomsmen" class="tab-panel">
     <div class="section-label">Groomsmen</div>
@@ -1007,7 +1081,7 @@
     <div class="card" style="padding:20px 20px 24px;">
       <div class="card-sub">Aerial View — Who Stands Where</div>
       <p style="font-size:12px;color:var(--stone);margin-bottom:16px;">Looking from the guests toward the ocean. Groom's side left, Bride's side right.</p>
-      <svg viewBox="0 0 520 410" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto;">
+      <div class="diagram-scroll"><svg viewBox="0 0 520 410" xmlns="http://www.w3.org/2000/svg" style="min-width:320px;width:100%;max-width:520px;display:block;margin:0 auto;">
         <rect width="520" height="410" fill="#EEF4F8" rx="10"/>
         <rect x="0" y="0" width="520" height="36" fill="#C8DDE9" rx="10"/>
         <rect x="0" y="26" width="520" height="10" fill="#C8DDE9"/>
@@ -1245,6 +1319,8 @@
     </div>
   </div>
 
+  </div>
+
   <!-- ═══ FAMILY ═══ -->
   <div id="panel-family" class="tab-panel">
     <div class="section-label">Family</div>
@@ -1283,7 +1359,7 @@
     <div class="card" style="padding:20px 20px 24px;">
       <div class="card-sub">Aerial View — Who Stands Where</div>
       <p style="font-size:12px;color:var(--stone);margin-bottom:16px;">Looking from the guests toward the ocean. Groom's side left, Bride's side right.</p>
-      <svg viewBox="0 0 520 410" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto;">
+      <div class="diagram-scroll"><svg viewBox="0 0 520 410" xmlns="http://www.w3.org/2000/svg" style="min-width:320px;width:100%;max-width:520px;display:block;margin:0 auto;">
         <rect width="520" height="410" fill="#EEF4F8" rx="10"/>
         <rect x="0" y="0" width="520" height="36" fill="#C8DDE9" rx="10"/>
         <rect x="0" y="26" width="520" height="10" fill="#C8DDE9"/>
@@ -1422,6 +1498,524 @@
       </div>
     </div>
   </div>
+
+  </div>
+
+  <!-- ═══ RECEPTION ═══ -->
+  <div id="panel-reception" class="tab-panel">
+    <div class="section-label">Dinner &amp; Reception</div>
+    <div class="section-title">Seating chart &amp; table assignments</div>
+
+    <div class="notice" style="background:var(--blue-pale);border-color:var(--blue-light);">
+      <div class="notice-icon">🥂</div>
+      <p style="color:var(--ink);">Doors open at <strong>6:00 pm</strong>. Placecards are in the living room — guests grab their card before entering the Dining Room. 80 guests total across 8 tables. Table 8 is the Wedding Party table.</p>
+    </div>
+
+    <div class="divider"><span class="divider-label">Table Assignments</span></div>
+    <div class="notice" style="background:#FBF5E6;border-color:#E8D09A;">
+      <div class="notice-icon">📋</div>
+      <p style="color:#5A3A00;">Placecards are organized alphabetically at the escort card station in the living room. Each card shows the guest name and table number. Desiree and the wedding party are responsible for directing guests if needed.</p>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--peach);background:var(--peach-pale);">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
+        <div style="font-size:22px;font-weight:700;font-family:var(--serif);color:#C8622A;line-height:1;">Table 1</div>
+        <div style="font-size:11px;color:var(--stone);font-style:italic;">Law Family · Close Friends &nbsp;·&nbsp; 10 guests</div>
+      </div>
+      <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;margin:0 auto;font-family:DM Sans,sans-serif;">
+  <rect width="320" height="320" fill="#EEF4F8" rx="10"/>
+  <text x="12" y="24" font-size="11" font-weight="700" fill="#C8622A" font-family="DM Sans,sans-serif">Table 1</text>
+  <text x="12" y="37" font-size="7.5" fill="#7A8A98" font-family="DM Sans,sans-serif">10 guests</text>
+  <line x1="160.0" y1="122.0" x2="160.0" y2="98.0" stroke="#E8A07A" stroke-width="1.2" opacity="0.5"/>
+  <line x1="182.3" y1="129.3" x2="196.4" y2="109.8" stroke="#E8A07A" stroke-width="1.2" opacity="0.5"/>
+  <line x1="196.1" y1="148.3" x2="219.0" y2="140.8" stroke="#E8A07A" stroke-width="1.2" opacity="0.5"/>
+  <line x1="196.1" y1="171.7" x2="219.0" y2="179.2" stroke="#E8A07A" stroke-width="1.2" opacity="0.5"/>
+  <line x1="182.3" y1="190.7" x2="196.4" y2="210.2" stroke="#E8A07A" stroke-width="1.2" opacity="0.5"/>
+  <line x1="160.0" y1="198.0" x2="160.0" y2="222.0" stroke="#E8A07A" stroke-width="1.2" opacity="0.5"/>
+  <line x1="137.7" y1="190.7" x2="123.6" y2="210.2" stroke="#E8A07A" stroke-width="1.2" opacity="0.5"/>
+  <line x1="123.9" y1="171.7" x2="101.0" y2="179.2" stroke="#E8A07A" stroke-width="1.2" opacity="0.5"/>
+  <line x1="123.9" y1="148.3" x2="101.0" y2="140.8" stroke="#E8A07A" stroke-width="1.2" opacity="0.5"/>
+  <line x1="137.7" y1="129.3" x2="123.6" y2="109.8" stroke="#E8A07A" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="160.0" cy="160.0" r="38" fill="#E8A07A" stroke="#C8622A" stroke-width="2.5"/>
+  <text x="160.0" y="155.0" font-size="18" font-weight="700" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif">1</text>
+  <text x="160.0" y="170.0" font-size="7" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif" opacity="0.9">Table</text>
+  <circle cx="160.0" cy="72.0" r="26" fill="white" stroke="#C8622A" stroke-width="1.5"/>
+  <text x="160.0" y="69.0" font-size="6.5" fill="#7A3010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Ruth</text>
+  <text x="160.0" y="79.0" font-size="6.5" fill="#7A3010" text-anchor="middle" font-family="DM Sans,sans-serif">Law</text>
+  <circle cx="211.7" cy="88.8" r="26" fill="white" stroke="#C8622A" stroke-width="1.5"/>
+  <text x="211.7" y="85.8" font-size="6.5" fill="#7A3010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Marso</text>
+  <text x="211.7" y="95.8" font-size="6.5" fill="#7A3010" text-anchor="middle" font-family="DM Sans,sans-serif">Law</text>
+  <circle cx="243.7" cy="132.8" r="26" fill="white" stroke="#C8622A" stroke-width="1.5"/>
+  <text x="243.7" y="129.8" font-size="6.5" fill="#7A3010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Clara</text>
+  <text x="243.7" y="139.8" font-size="6.5" fill="#7A3010" text-anchor="middle" font-family="DM Sans,sans-serif">Lai</text>
+  <circle cx="243.7" cy="187.2" r="26" fill="white" stroke="#C8622A" stroke-width="1.5"/>
+  <text x="243.7" y="184.2" font-size="6.5" fill="#7A3010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Harry</text>
+  <text x="243.7" y="194.2" font-size="6.5" fill="#7A3010" text-anchor="middle" font-family="DM Sans,sans-serif">Tsang</text>
+  <circle cx="211.7" cy="231.2" r="26" fill="white" stroke="#C8622A" stroke-width="1.5"/>
+  <text x="211.7" y="228.2" font-size="6.5" fill="#7A3010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Mike</text>
+  <text x="211.7" y="238.2" font-size="6.5" fill="#7A3010" text-anchor="middle" font-family="DM Sans,sans-serif">Yeung</text>
+  <circle cx="160.0" cy="248.0" r="26" fill="white" stroke="#C8622A" stroke-width="1.5"/>
+  <text x="160.0" y="245.0" font-size="6.5" fill="#7A3010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Jennie</text>
+  <text x="160.0" y="255.0" font-size="6.5" fill="#7A3010" text-anchor="middle" font-family="DM Sans,sans-serif">Yeung</text>
+  <circle cx="108.3" cy="231.2" r="26" fill="white" stroke="#C8622A" stroke-width="1.5"/>
+  <text x="108.3" y="228.2" font-size="6.5" fill="#7A3010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Edward</text>
+  <text x="108.3" y="238.2" font-size="6.5" fill="#7A3010" text-anchor="middle" font-family="DM Sans,sans-serif">Lau</text>
+  <circle cx="76.3" cy="187.2" r="26" fill="white" stroke="#C8622A" stroke-width="1.5"/>
+  <text x="76.3" y="184.2" font-size="6.5" fill="#7A3010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Rebecca</text>
+  <text x="76.3" y="194.2" font-size="6.5" fill="#7A3010" text-anchor="middle" font-family="DM Sans,sans-serif">Lau</text>
+  <circle cx="76.3" cy="132.8" r="26" fill="white" stroke="#C8622A" stroke-width="1.5"/>
+  <text x="76.3" y="129.8" font-size="6.5" fill="#7A3010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Barbara</text>
+  <text x="76.3" y="139.8" font-size="6.5" fill="#7A3010" text-anchor="middle" font-family="DM Sans,sans-serif">Lisi</text>
+  <circle cx="108.3" cy="88.8" r="26" fill="white" stroke="#C8622A" stroke-width="1.5"/>
+  <text x="108.3" y="85.8" font-size="6.5" fill="#7A3010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Danielle</text>
+  <text x="108.3" y="95.8" font-size="6.5" fill="#7A3010" text-anchor="middle" font-family="DM Sans,sans-serif">Huck</text>
+</svg>
+      <div style="margin-top:14px;border-top:1px solid rgba(0,0,0,0.06);padding-top:12px;">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">Guests</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0;"><span style="display:inline-block;background:white;border:1px solid #C8622A;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Ruth Law</span><span style="display:inline-block;background:white;border:1px solid #C8622A;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Marso Law</span><span style="display:inline-block;background:white;border:1px solid #C8622A;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Clara Lai</span><span style="display:inline-block;background:white;border:1px solid #C8622A;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Harry Tsang</span><span style="display:inline-block;background:white;border:1px solid #C8622A;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Mike Yeung</span><span style="display:inline-block;background:white;border:1px solid #C8622A;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Jennie Yeung</span><span style="display:inline-block;background:white;border:1px solid #C8622A;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Edward Lau</span><span style="display:inline-block;background:white;border:1px solid #C8622A;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Rebecca Lau</span><span style="display:inline-block;background:white;border:1px solid #C8622A;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Barbara Lisi</span><span style="display:inline-block;background:white;border:1px solid #C8622A;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Danielle Huck</span></div>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--blue);background:var(--blue-pale);">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
+        <div style="font-size:22px;font-weight:700;font-family:var(--serif);color:#5A8CAA;line-height:1;">Table 2</div>
+        <div style="font-size:11px;color:var(--stone);font-style:italic;">Morawiec Family · Close Friends &nbsp;·&nbsp; 10 guests</div>
+      </div>
+      <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;margin:0 auto;font-family:DM Sans,sans-serif;">
+  <rect width="320" height="320" fill="#EEF4F8" rx="10"/>
+  <text x="12" y="24" font-size="11" font-weight="700" fill="#5A8CAA" font-family="DM Sans,sans-serif">Table 2</text>
+  <text x="12" y="37" font-size="7.5" fill="#7A8A98" font-family="DM Sans,sans-serif">10 guests</text>
+  <line x1="160.0" y1="122.0" x2="160.0" y2="98.0" stroke="#8AADCA" stroke-width="1.2" opacity="0.5"/>
+  <line x1="182.3" y1="129.3" x2="196.4" y2="109.8" stroke="#8AADCA" stroke-width="1.2" opacity="0.5"/>
+  <line x1="196.1" y1="148.3" x2="219.0" y2="140.8" stroke="#8AADCA" stroke-width="1.2" opacity="0.5"/>
+  <line x1="196.1" y1="171.7" x2="219.0" y2="179.2" stroke="#8AADCA" stroke-width="1.2" opacity="0.5"/>
+  <line x1="182.3" y1="190.7" x2="196.4" y2="210.2" stroke="#8AADCA" stroke-width="1.2" opacity="0.5"/>
+  <line x1="160.0" y1="198.0" x2="160.0" y2="222.0" stroke="#8AADCA" stroke-width="1.2" opacity="0.5"/>
+  <line x1="137.7" y1="190.7" x2="123.6" y2="210.2" stroke="#8AADCA" stroke-width="1.2" opacity="0.5"/>
+  <line x1="123.9" y1="171.7" x2="101.0" y2="179.2" stroke="#8AADCA" stroke-width="1.2" opacity="0.5"/>
+  <line x1="123.9" y1="148.3" x2="101.0" y2="140.8" stroke="#8AADCA" stroke-width="1.2" opacity="0.5"/>
+  <line x1="137.7" y1="129.3" x2="123.6" y2="109.8" stroke="#8AADCA" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="160.0" cy="160.0" r="38" fill="#8AADCA" stroke="#5A8CAA" stroke-width="2.5"/>
+  <text x="160.0" y="155.0" font-size="18" font-weight="700" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif">2</text>
+  <text x="160.0" y="170.0" font-size="7" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif" opacity="0.9">Table</text>
+  <circle cx="160.0" cy="72.0" r="26" fill="white" stroke="#5A8CAA" stroke-width="1.5"/>
+  <text x="160.0" y="69.0" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Doug</text>
+  <text x="160.0" y="79.0" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-family="DM Sans,sans-serif">McNamee</text>
+  <circle cx="211.7" cy="88.8" r="26" fill="white" stroke="#5A8CAA" stroke-width="1.5"/>
+  <text x="211.7" y="85.8" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Jessica</text>
+  <text x="211.7" y="95.8" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-family="DM Sans,sans-serif">Chuang</text>
+  <circle cx="243.7" cy="132.8" r="26" fill="white" stroke="#5A8CAA" stroke-width="1.5"/>
+  <text x="243.7" y="129.8" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Hope</text>
+  <text x="243.7" y="139.8" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-family="DM Sans,sans-serif">Morawiec</text>
+  <circle cx="243.7" cy="187.2" r="26" fill="white" stroke="#5A8CAA" stroke-width="1.5"/>
+  <text x="243.7" y="184.2" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Peter</text>
+  <text x="243.7" y="194.2" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-family="DM Sans,sans-serif">Morawiec</text>
+  <circle cx="211.7" cy="231.2" r="26" fill="white" stroke="#5A8CAA" stroke-width="1.5"/>
+  <text x="211.7" y="228.2" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Barry</text>
+  <text x="211.7" y="238.2" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-family="DM Sans,sans-serif">Rich</text>
+  <circle cx="160.0" cy="248.0" r="26" fill="white" stroke="#5A8CAA" stroke-width="1.5"/>
+  <text x="160.0" y="245.0" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Rhonda</text>
+  <text x="160.0" y="255.0" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-family="DM Sans,sans-serif">Rich</text>
+  <circle cx="108.3" cy="231.2" r="26" fill="white" stroke="#5A8CAA" stroke-width="1.5"/>
+  <text x="108.3" y="228.2" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Adam</text>
+  <text x="108.3" y="238.2" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-family="DM Sans,sans-serif">Morawiec</text>
+  <circle cx="76.3" cy="187.2" r="26" fill="white" stroke="#5A8CAA" stroke-width="1.5"/>
+  <text x="76.3" y="184.2" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Risa</text>
+  <text x="76.3" y="194.2" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-family="DM Sans,sans-serif">Morawiec</text>
+  <circle cx="76.3" cy="132.8" r="26" fill="white" stroke="#5A8CAA" stroke-width="1.5"/>
+  <text x="76.3" y="129.8" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Alla</text>
+  <text x="76.3" y="139.8" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-family="DM Sans,sans-serif">Morawiec</text>
+  <circle cx="108.3" cy="88.8" r="26" fill="white" stroke="#5A8CAA" stroke-width="1.5"/>
+  <text x="108.3" y="85.8" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Agatha</text>
+  <text x="108.3" y="95.8" font-size="6.5" fill="#2C5A7A" text-anchor="middle" font-family="DM Sans,sans-serif">M.</text>
+</svg>
+      <div style="margin-top:14px;border-top:1px solid rgba(0,0,0,0.06);padding-top:12px;">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">Guests</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0;"><span style="display:inline-block;background:white;border:1px solid #5A8CAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Doug McNamee</span><span style="display:inline-block;background:white;border:1px solid #5A8CAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Jessica Chuang</span><span style="display:inline-block;background:white;border:1px solid #5A8CAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Hope Morawiec</span><span style="display:inline-block;background:white;border:1px solid #5A8CAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Peter Morawiec</span><span style="display:inline-block;background:white;border:1px solid #5A8CAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Barry Rich</span><span style="display:inline-block;background:white;border:1px solid #5A8CAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Rhonda Rich</span><span style="display:inline-block;background:white;border:1px solid #5A8CAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Adam Morawiec</span><span style="display:inline-block;background:white;border:1px solid #5A8CAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Risa Morawiec</span><span style="display:inline-block;background:white;border:1px solid #5A8CAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Alla Morawiec</span><span style="display:inline-block;background:white;border:1px solid #5A8CAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Agatha Morawiec</span></div>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--blue-light);background:white;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
+        <div style="font-size:22px;font-weight:700;font-family:var(--serif);color:#7A9BAA;line-height:1;">Table 3</div>
+        <div style="font-size:11px;color:var(--stone);font-style:italic;">Friends &nbsp;·&nbsp; 9 guests</div>
+      </div>
+      <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;margin:0 auto;font-family:DM Sans,sans-serif;">
+  <rect width="320" height="320" fill="#EEF4F8" rx="10"/>
+  <text x="12" y="24" font-size="11" font-weight="700" fill="#7A9BAA" font-family="DM Sans,sans-serif">Table 3</text>
+  <text x="12" y="37" font-size="7.5" fill="#7A8A98" font-family="DM Sans,sans-serif">9 guests</text>
+  <line x1="160.0" y1="122.0" x2="160.0" y2="98.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="184.4" y1="130.9" x2="199.9" y2="112.5" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="197.4" y1="153.4" x2="221.1" y2="149.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="192.9" y1="179.0" x2="213.7" y2="191.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="173.0" y1="195.7" x2="181.2" y2="218.3" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="147.0" y1="195.7" x2="138.8" y2="218.3" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="127.1" y1="179.0" x2="106.3" y2="191.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="122.6" y1="153.4" x2="98.9" y2="149.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="135.6" y1="130.9" x2="120.1" y2="112.5" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="160.0" cy="160.0" r="38" fill="#A8BCC8" stroke="#7A9BAA" stroke-width="2.5"/>
+  <text x="160.0" y="155.0" font-size="18" font-weight="700" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif">3</text>
+  <text x="160.0" y="170.0" font-size="7" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif" opacity="0.9">Table</text>
+  <circle cx="160.0" cy="72.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="160.0" y="69.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Blaze</text>
+  <text x="160.0" y="79.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Li</text>
+  <circle cx="216.6" cy="92.6" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="216.6" y="89.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Emma</text>
+  <text x="216.6" y="99.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Salesin</text>
+  <circle cx="246.7" cy="144.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="246.7" y="141.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Rachelle</text>
+  <text x="246.7" y="151.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Ngo</text>
+  <circle cx="236.2" cy="204.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="236.2" y="201.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Daniel</text>
+  <text x="236.2" y="211.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">R.</text>
+  <circle cx="190.1" cy="242.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="190.1" y="239.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Casey</text>
+  <text x="190.1" y="249.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Hsieh</text>
+  <circle cx="129.9" cy="242.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="129.9" y="239.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Tim</text>
+  <text x="129.9" y="249.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Wang</text>
+  <circle cx="83.8" cy="204.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="83.8" y="201.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Brett</text>
+  <text x="83.8" y="211.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">S.</text>
+  <circle cx="73.3" cy="144.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="73.3" y="141.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Karen</text>
+  <text x="73.3" y="151.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Kline</text>
+  <circle cx="103.4" cy="92.6" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="103.4" y="89.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Ryan</text>
+  <text x="103.4" y="99.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Tran</text>
+</svg>
+      <div style="margin-top:14px;border-top:1px solid rgba(0,0,0,0.06);padding-top:12px;">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">Guests</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0;"><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Blaze Li</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Emma Salesin</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Rachelle Ngo</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Daniel Rodriguez-Katakura</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Casey Hsieh</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Tim Wang</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Brett Silverstein</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Karen Kline</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Ryan Tran</span></div>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--blue-light);background:white;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
+        <div style="font-size:22px;font-weight:700;font-family:var(--serif);color:#7A9BAA;line-height:1;">Table 4</div>
+        <div style="font-size:11px;color:var(--stone);font-style:italic;">Friends &nbsp;·&nbsp; 10 guests</div>
+      </div>
+      <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;margin:0 auto;font-family:DM Sans,sans-serif;">
+  <rect width="320" height="320" fill="#EEF4F8" rx="10"/>
+  <text x="12" y="24" font-size="11" font-weight="700" fill="#7A9BAA" font-family="DM Sans,sans-serif">Table 4</text>
+  <text x="12" y="37" font-size="7.5" fill="#7A8A98" font-family="DM Sans,sans-serif">10 guests</text>
+  <line x1="160.0" y1="122.0" x2="160.0" y2="98.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="182.3" y1="129.3" x2="196.4" y2="109.8" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="196.1" y1="148.3" x2="219.0" y2="140.8" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="196.1" y1="171.7" x2="219.0" y2="179.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="182.3" y1="190.7" x2="196.4" y2="210.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="160.0" y1="198.0" x2="160.0" y2="222.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="137.7" y1="190.7" x2="123.6" y2="210.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="123.9" y1="171.7" x2="101.0" y2="179.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="123.9" y1="148.3" x2="101.0" y2="140.8" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="137.7" y1="129.3" x2="123.6" y2="109.8" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="160.0" cy="160.0" r="38" fill="#A8BCC8" stroke="#7A9BAA" stroke-width="2.5"/>
+  <text x="160.0" y="155.0" font-size="18" font-weight="700" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif">4</text>
+  <text x="160.0" y="170.0" font-size="7" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif" opacity="0.9">Table</text>
+  <circle cx="160.0" cy="72.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="160.0" y="69.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Ivy</text>
+  <text x="160.0" y="79.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Zhang</text>
+  <circle cx="211.7" cy="88.8" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="211.7" y="85.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Ty</text>
+  <text x="211.7" y="95.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Martin</text>
+  <circle cx="243.7" cy="132.8" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="243.7" y="129.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Vicky</text>
+  <text x="243.7" y="139.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Fong</text>
+  <circle cx="243.7" cy="187.2" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="243.7" y="184.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Nathan</text>
+  <text x="243.7" y="194.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Wenger</text>
+  <circle cx="211.7" cy="231.2" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="211.7" y="228.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Emery</text>
+  <text x="211.7" y="238.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Kerekes</text>
+  <circle cx="160.0" cy="248.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="160.0" y="245.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Sean</text>
+  <text x="160.0" y="255.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Won</text>
+  <circle cx="108.3" cy="231.2" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="108.3" y="228.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">David</text>
+  <text x="108.3" y="238.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Yang</text>
+  <circle cx="76.3" cy="187.2" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="76.3" y="184.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Megan</text>
+  <text x="76.3" y="194.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Vo</text>
+  <circle cx="76.3" cy="132.8" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="76.3" y="129.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Sam</text>
+  <text x="76.3" y="139.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Kim</text>
+  <circle cx="108.3" cy="88.8" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="108.3" y="85.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Radina</text>
+  <text x="108.3" y="95.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Y.</text>
+</svg>
+      <div style="margin-top:14px;border-top:1px solid rgba(0,0,0,0.06);padding-top:12px;">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">Guests</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0;"><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Ivy Zhang</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Ty Martin</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Vicky Fong</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Nathan Wenger</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Emery Kerekes</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Sean Won</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">David Yang</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Megan Vo</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Sam Kim</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Radina Yanakieva</span></div>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--blue-light);background:white;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
+        <div style="font-size:22px;font-weight:700;font-family:var(--serif);color:#7A9BAA;line-height:1;">Table 5</div>
+        <div style="font-size:11px;color:var(--stone);font-style:italic;">Friends &nbsp;·&nbsp; 10 guests</div>
+      </div>
+      <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;margin:0 auto;font-family:DM Sans,sans-serif;">
+  <rect width="320" height="320" fill="#EEF4F8" rx="10"/>
+  <text x="12" y="24" font-size="11" font-weight="700" fill="#7A9BAA" font-family="DM Sans,sans-serif">Table 5</text>
+  <text x="12" y="37" font-size="7.5" fill="#7A8A98" font-family="DM Sans,sans-serif">10 guests</text>
+  <line x1="160.0" y1="122.0" x2="160.0" y2="98.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="182.3" y1="129.3" x2="196.4" y2="109.8" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="196.1" y1="148.3" x2="219.0" y2="140.8" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="196.1" y1="171.7" x2="219.0" y2="179.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="182.3" y1="190.7" x2="196.4" y2="210.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="160.0" y1="198.0" x2="160.0" y2="222.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="137.7" y1="190.7" x2="123.6" y2="210.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="123.9" y1="171.7" x2="101.0" y2="179.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="123.9" y1="148.3" x2="101.0" y2="140.8" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="137.7" y1="129.3" x2="123.6" y2="109.8" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="160.0" cy="160.0" r="38" fill="#A8BCC8" stroke="#7A9BAA" stroke-width="2.5"/>
+  <text x="160.0" y="155.0" font-size="18" font-weight="700" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif">5</text>
+  <text x="160.0" y="170.0" font-size="7" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif" opacity="0.9">Table</text>
+  <circle cx="160.0" cy="72.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="160.0" y="69.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Jonny</text>
+  <text x="160.0" y="79.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Aizik</text>
+  <circle cx="211.7" cy="88.8" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="211.7" y="85.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Eva</text>
+  <text x="211.7" y="95.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Crouse</text>
+  <circle cx="243.7" cy="132.8" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="243.7" y="129.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">David</text>
+  <text x="243.7" y="139.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Labonte</text>
+  <circle cx="243.7" cy="187.2" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="243.7" y="184.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Emma</text>
+  <text x="243.7" y="194.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Labonte</text>
+  <circle cx="211.7" cy="231.2" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="211.7" y="228.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Jason</text>
+  <text x="211.7" y="238.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Thomas</text>
+  <circle cx="160.0" cy="248.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="160.0" y="245.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Vikram</text>
+  <text x="160.0" y="255.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Sundar</text>
+  <circle cx="108.3" cy="231.2" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="108.3" y="228.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Luke</text>
+  <text x="108.3" y="238.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Reicher</text>
+  <circle cx="76.3" cy="187.2" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="76.3" y="184.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Colin</text>
+  <text x="76.3" y="194.2" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Brown</text>
+  <circle cx="76.3" cy="132.8" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="76.3" y="129.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Amy</text>
+  <text x="76.3" y="139.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Gaubatz</text>
+  <circle cx="108.3" cy="88.8" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="108.3" y="85.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Quinn</text>
+  <text x="108.3" y="95.8" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Gaubatz</text>
+</svg>
+      <div style="margin-top:14px;border-top:1px solid rgba(0,0,0,0.06);padding-top:12px;">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">Guests</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0;"><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Jonny Aizik</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Eva Crouse</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">David Labonte</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Emma Labonte</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Jason Thomas</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Vikram Sundar</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Luke Reicher</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Colin Brown</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Amy Gaubatz</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Quinn Gaubatz</span></div>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--blue-light);background:white;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
+        <div style="font-size:22px;font-weight:700;font-family:var(--serif);color:#7A9BAA;line-height:1;">Table 6</div>
+        <div style="font-size:11px;color:var(--stone);font-style:italic;">Friends &nbsp;·&nbsp; 9 guests</div>
+      </div>
+      <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;margin:0 auto;font-family:DM Sans,sans-serif;">
+  <rect width="320" height="320" fill="#EEF4F8" rx="10"/>
+  <text x="12" y="24" font-size="11" font-weight="700" fill="#7A9BAA" font-family="DM Sans,sans-serif">Table 6</text>
+  <text x="12" y="37" font-size="7.5" fill="#7A8A98" font-family="DM Sans,sans-serif">9 guests</text>
+  <line x1="160.0" y1="122.0" x2="160.0" y2="98.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="184.4" y1="130.9" x2="199.9" y2="112.5" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="197.4" y1="153.4" x2="221.1" y2="149.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="192.9" y1="179.0" x2="213.7" y2="191.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="173.0" y1="195.7" x2="181.2" y2="218.3" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="147.0" y1="195.7" x2="138.8" y2="218.3" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="127.1" y1="179.0" x2="106.3" y2="191.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="122.6" y1="153.4" x2="98.9" y2="149.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="135.6" y1="130.9" x2="120.1" y2="112.5" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="160.0" cy="160.0" r="38" fill="#A8BCC8" stroke="#7A9BAA" stroke-width="2.5"/>
+  <text x="160.0" y="155.0" font-size="18" font-weight="700" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif">6</text>
+  <text x="160.0" y="170.0" font-size="7" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif" opacity="0.9">Table</text>
+  <circle cx="160.0" cy="72.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="160.0" y="69.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Jack</text>
+  <text x="160.0" y="79.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Huang</text>
+  <circle cx="216.6" cy="92.6" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="216.6" y="89.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Izzy</text>
+  <text x="216.6" y="99.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Mollicone</text>
+  <circle cx="246.7" cy="144.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="246.7" y="141.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Patrick</text>
+  <text x="246.7" y="151.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">O.</text>
+  <circle cx="236.2" cy="204.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="236.2" y="201.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Jeremy</text>
+  <text x="236.2" y="211.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Grill</text>
+  <circle cx="190.1" cy="242.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="190.1" y="239.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Ruthie</text>
+  <text x="190.1" y="249.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">K.</text>
+  <circle cx="129.9" cy="242.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="129.9" y="239.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Amy</text>
+  <text x="129.9" y="249.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Gong Liu</text>
+  <circle cx="83.8" cy="204.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="83.8" y="201.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Mina</text>
+  <text x="83.8" y="211.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Sung</text>
+  <circle cx="73.3" cy="144.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="73.3" y="141.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Michael</text>
+  <text x="73.3" y="151.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Boyd</text>
+  <circle cx="103.4" cy="92.6" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="103.4" y="89.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Max</text>
+  <text x="103.4" y="99.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Kolhof</text>
+</svg>
+      <div style="margin-top:14px;border-top:1px solid rgba(0,0,0,0.06);padding-top:12px;">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">Guests</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0;"><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Jack Huang</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Izzy Mollicone</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Patrick O'Leary</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Jeremy Grill</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Ruthie Kornblatt-Stier</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Amy Gong Liu</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Mina Sung</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Michael Boyd</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Max Kolhof</span></div>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--blue-light);background:white;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
+        <div style="font-size:22px;font-weight:700;font-family:var(--serif);color:#7A9BAA;line-height:1;">Table 7</div>
+        <div style="font-size:11px;color:var(--stone);font-style:italic;">Friends &nbsp;·&nbsp; 9 guests</div>
+      </div>
+      <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;margin:0 auto;font-family:DM Sans,sans-serif;">
+  <rect width="320" height="320" fill="#EEF4F8" rx="10"/>
+  <text x="12" y="24" font-size="11" font-weight="700" fill="#7A9BAA" font-family="DM Sans,sans-serif">Table 7</text>
+  <text x="12" y="37" font-size="7.5" fill="#7A8A98" font-family="DM Sans,sans-serif">9 guests</text>
+  <line x1="160.0" y1="122.0" x2="160.0" y2="98.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="184.4" y1="130.9" x2="199.9" y2="112.5" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="197.4" y1="153.4" x2="221.1" y2="149.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="192.9" y1="179.0" x2="213.7" y2="191.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="173.0" y1="195.7" x2="181.2" y2="218.3" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="147.0" y1="195.7" x2="138.8" y2="218.3" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="127.1" y1="179.0" x2="106.3" y2="191.0" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="122.6" y1="153.4" x2="98.9" y2="149.2" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <line x1="135.6" y1="130.9" x2="120.1" y2="112.5" stroke="#A8BCC8" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="160.0" cy="160.0" r="38" fill="#A8BCC8" stroke="#7A9BAA" stroke-width="2.5"/>
+  <text x="160.0" y="155.0" font-size="18" font-weight="700" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif">7</text>
+  <text x="160.0" y="170.0" font-size="7" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif" opacity="0.9">Table</text>
+  <circle cx="160.0" cy="72.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="160.0" y="69.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Ben</text>
+  <text x="160.0" y="79.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Byrne</text>
+  <circle cx="216.6" cy="92.6" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="216.6" y="89.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Pearl</text>
+  <text x="216.6" y="99.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Ho</text>
+  <circle cx="246.7" cy="144.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="246.7" y="141.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Indigo</text>
+  <text x="246.7" y="151.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Byrne</text>
+  <circle cx="236.2" cy="204.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="236.2" y="201.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Thomas</text>
+  <text x="236.2" y="211.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">D.</text>
+  <circle cx="190.1" cy="242.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="190.1" y="239.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Ana</text>
+  <text x="190.1" y="249.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">D'Agostino</text>
+  <circle cx="129.9" cy="242.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="129.9" y="239.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Jennifer</text>
+  <text x="129.9" y="249.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">F.</text>
+  <circle cx="83.8" cy="204.0" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="83.8" y="201.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Richard</text>
+  <text x="83.8" y="211.0" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">F.</text>
+  <circle cx="73.3" cy="144.7" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="73.3" y="141.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Kyle</text>
+  <text x="73.3" y="151.7" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">Zolkin</text>
+  <circle cx="103.4" cy="92.6" r="26" fill="white" stroke="#7A9BAA" stroke-width="1.5"/>
+  <text x="103.4" y="89.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Mitchell</text>
+  <text x="103.4" y="99.6" font-size="6.5" fill="#344A55" text-anchor="middle" font-family="DM Sans,sans-serif">K.</text>
+</svg>
+      <div style="margin-top:14px;border-top:1px solid rgba(0,0,0,0.06);padding-top:12px;">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">Guests</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0;"><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Ben Byrne</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Pearl Ho</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Indigo Byrne</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Thomas D'Agostino</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Ana D'Agostino</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Jennifer Flemings</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Richard Flemings</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Kyle Zolkin</span><span style="display:inline-block;background:white;border:1px solid #7A9BAA;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Mitchell Keller</span></div>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--gold);background:#FBF5E6;">
+      <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
+        <div style="font-size:22px;font-weight:700;font-family:var(--serif);color:#8A6010;line-height:1;">Table 8</div>
+        <div style="font-size:11px;color:var(--stone);font-style:italic;">Wedding Party &nbsp;·&nbsp; 18 guests</div>
+      </div>
+      <svg viewBox="0 0 320 580" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;margin:0 auto;font-family:DM Sans,sans-serif;">
+  <rect width="320" height="580" fill="#EEF4F8" rx="10"/>
+  <text x="12" y="22" font-size="10" font-weight="700" fill="#8A6010" font-family="DM Sans,sans-serif">Table 8 — Head Table</text>
+  <text x="12" y="34" font-size="7" fill="#7A8A98" font-family="DM Sans,sans-serif">18 guests · Rectangular long table</text>
+  <text x="160.0" y="82" font-size="7" fill="#9A8A6A" text-anchor="middle" font-family="DM Sans,sans-serif">← facing dance floor</text>
+  <line x1="98.0" y1="88.0" x2="110" y2="88.0" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="76.0" cy="88.0" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="76.0" y="91.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Alex Cohen</text>
+  <line x1="98.0" y1="138.5" x2="110" y2="138.5" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="76.0" cy="138.5" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="76.0" y="141.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Emily Arroyo</text>
+  <line x1="98.0" y1="189.0" x2="110" y2="189.0" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="76.0" cy="189.0" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="76.0" y="192.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Willa Smith</text>
+  <line x1="98.0" y1="239.5" x2="110" y2="239.5" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="76.0" cy="239.5" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="76.0" y="236.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Jack</text>
+  <text x="76.0" y="245.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-family="DM Sans,sans-serif">Marshall</text>
+  <line x1="98.0" y1="290.0" x2="110" y2="290.0" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="76.0" cy="290.0" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="76.0" y="293.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Shoma Nath</text>
+  <line x1="98.0" y1="340.5" x2="110" y2="340.5" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="76.0" cy="340.5" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="76.0" y="337.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Jonathan</text>
+  <text x="76.0" y="346.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-family="DM Sans,sans-serif">Rich</text>
+  <line x1="98.0" y1="391.0" x2="110" y2="391.0" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="76.0" cy="391.0" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="76.0" y="394.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Hannah Li</text>
+  <line x1="98.0" y1="441.5" x2="110" y2="441.5" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="76.0" cy="441.5" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="76.0" y="444.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Thomas Xu</text>
+  <line x1="98.0" y1="492.0" x2="110" y2="492.0" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="76.0" cy="492.0" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="76.0" y="495.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Xander Lee</text>
+  <line x1="210" y1="88.0" x2="222.0" y2="88.0" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="244.0" cy="88.0" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="244.0" y="85.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Dieter</text>
+  <text x="244.0" y="94.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-family="DM Sans,sans-serif">Eiselen</text>
+  <line x1="210" y1="138.5" x2="222.0" y2="138.5" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="244.0" cy="138.5" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="244.0" y="135.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Alexandra</text>
+  <text x="244.0" y="144.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-family="DM Sans,sans-serif">L-E</text>
+  <line x1="210" y1="189.0" x2="222.0" y2="189.0" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="244.0" cy="189.0" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="244.0" y="186.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Elizabeth</text>
+  <text x="244.0" y="195.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-family="DM Sans,sans-serif">Nichols</text>
+  <line x1="210" y1="239.5" x2="222.0" y2="239.5" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="244.0" cy="239.5" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="244.0" y="242.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Justin Law</text>
+  <line x1="210" y1="290.0" x2="222.0" y2="290.0" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="244.0" cy="290.0" r="22" fill="#FBF5E6" stroke="#B8882A" stroke-width="2"/>
+  <text x="244.0" y="293.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Venus Law</text>
+  <line x1="210" y1="340.5" x2="222.0" y2="340.5" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="244.0" cy="340.5" r="22" fill="#FBF5E6" stroke="#B8882A" stroke-width="2"/>
+  <text x="244.0" y="337.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Matthew</text>
+  <text x="244.0" y="346.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-family="DM Sans,sans-serif">Morawiec</text>
+  <line x1="210" y1="391.0" x2="222.0" y2="391.0" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="244.0" cy="391.0" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="244.0" y="388.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Annie</text>
+  <text x="244.0" y="397.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-family="DM Sans,sans-serif">Morawiec</text>
+  <line x1="210" y1="441.5" x2="222.0" y2="441.5" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="244.0" cy="441.5" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="244.0" y="444.5" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Kai McNamee</text>
+  <line x1="210" y1="492.0" x2="222.0" y2="492.0" stroke="#B8882A" stroke-width="0.8" opacity="0.35"/>
+  <circle cx="244.0" cy="492.0" r="22" fill="white" stroke="#B8882A" stroke-width="1.5"/>
+  <text x="244.0" y="489.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-weight="500" font-family="DM Sans,sans-serif">Kaycee</text>
+  <text x="244.0" y="498.0" font-size="5.8" fill="#8A6010" text-anchor="middle" font-family="DM Sans,sans-serif">Beardeaux</text>
+  <rect x="110" y="88" width="100" height="404" rx="6" fill="#B8882A" stroke="#8A6010" stroke-width="2.5"/>
+  <text x="160.0" y="282.0" font-size="12" font-weight="700" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif">Table</text>
+  <text x="160.0" y="302.0" font-size="24" font-weight="700" fill="white" text-anchor="middle" font-family="DM Sans,sans-serif">8</text>
+  <text x="160.0" y="318.0" font-size="7" fill="rgba(255,255,255,0.8)" text-anchor="middle" font-family="DM Sans,sans-serif">Head Table</text>
+</svg>
+      <div style="margin-top:14px;border-top:1px solid rgba(0,0,0,0.06);padding-top:12px;">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">Guests</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0;"><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Alex Cohen</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Emily Arroyo</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Willa Smith</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Jack Marshall</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Shoma Nath</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Jonathan Rich</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Hannah Li</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Thomas Xu</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Xander Lee</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Dieter Eiselen</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Alexandra Lisi-Eiselen</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Elizabeth Nichols</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Justin Law</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Venus Law</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Matthew Morawiec</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Annie Morawiec</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Kai McNamee</span><span style="display:inline-block;background:white;border:1px solid #8A6010;border-radius:4px;padding:2px 8px;font-size:11px;color:var(--ink);margin:2px 2px;">Kaycee Beardeaux</span></div>
+      </div>
+    </div>
+
+        <div class="divider"><span class="divider-label">Evening Timeline</span></div>
+    <div class="card">
+      <div class="card-sub">Reception Order of Events</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-time">6:00p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Dining Room doors open · Guests get seated</div><div class="tl-note">Placecards at escort card station in the living room. Photo booth opens.</div></div></div>
+        <div class="tl-item"><div class="tl-time">6:15p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Grand Entrance</div><div class="tl-note">Jordan (DJ/MC) announces the wedding party, then Venus &amp; Matthew. Justin Law — be ready to wrangle the party.</div></div></div>
+        <div class="tl-item"><div class="tl-time">6:20p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">First Dance</div></div></div>
+        <div class="tl-item"><div class="tl-time">6:25p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Welcome Toast</div></div></div>
+        <div class="tl-item"><div class="tl-time">6:30p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Appetizers / Salad · Vendor Meals</div></div></div>
+        <div class="tl-item"><div class="tl-time">6:55p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Dinner Service</div></div></div>
+        <div class="tl-item"><div class="tl-time">7:15p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Toasts — Justin Law, then Annie Morawiec</div><div class="tl-note">Justin — Dinner Speech 1 · Annie — Dinner Speech 2. Jordan cues the mic.</div></div></div>
+        <div class="tl-item"><div class="tl-time">7:30p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Father–Daughter &amp; Mother–Son Dances</div><div class="tl-note">Marso &amp; Venus · Hope &amp; Matthew. Justin — make sure both parents are on the floor and ready.</div></div></div>
+        <div class="tl-item"><div class="tl-time">8:00p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Cake Cutting · Dessert</div></div></div>
+        <div class="tl-item"><div class="tl-time">8:30p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Bouquet Toss · Late Night Snacks · Dancing</div></div></div>
+        <div class="tl-item"><div class="tl-time">8:30p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Lulan Studios coverage ends</div><div class="tl-note">Photography &amp; videography wrap at 8:30 pm sharp. Make sure all key shots are captured before this.</div></div></div>
+        <div class="tl-item"><div class="tl-time">10:00p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Reception concludes (base) <span class="badge badge-gold">Extension TBC</span></div><div class="tl-note">Photo booth closes · Mostest returns for floral breakdown · DJ overtime begins if extended.</div></div></div>
+        <div class="tl-item"><div class="tl-time">10:30p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">After Party — Tiny's Hi-Dive, Santa Monica</div><div class="tl-note">Walk-in, 2am close.</div></div></div>
+      </div>
+    </div>
+
+  </div>
+
 
   <!-- ═══ VENDORS ═══ -->
   <div id="panel-vendors" class="tab-panel">
@@ -1814,38 +2408,39 @@
       </div>
 
       <!-- Cost breakdown table -->
-      <div style="border:1px solid var(--blue-light);border-radius:8px;overflow:hidden;margin-bottom:20px;">
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;" id="estimatorTable">
+      <div style="border:1px solid var(--blue-light);border-radius:8px;overflow:hidden;margin-bottom:20px;min-width:280px;">
         <div style="background:var(--blue-pale);padding:10px 16px;display:flex;gap:8px;">
           <div style="flex:1;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);">Line Item</div>
           <div style="width:90px;text-align:right;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);">Subtotal</div>
-          <div style="width:90px;text-align:right;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);">w/ 22% SC + Tax</div>
+          <div style="width:90px;text-align:right;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);" class="est-hide-mobile">w/ 22% SC + Tax</div>
         </div>
 
         <!-- BABC rows -->
         <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">BABC Venue / Site Fee</div><div style="font-size:11px;color:var(--stone);">Ceremony, reception, all included items</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$27,500</div>
-          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Flat fee</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Flat fee</div>
         </div>
         <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Open Bar — <span id="barLabel">Well (6 hrs)</span></div><div style="font-size:11px;color:var(--stone);">80 guests × <span id="barPPLabel">$89</span>/person</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);" id="barBase">$7,120</div>
-          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);" id="barWithTax">$9,688</div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);" id="barWithTax" class="est-hide-mobile">$9,688</div>
         </div>
         <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">BABC Venue Overtime</div><div style="font-size:11px;color:var(--stone);" id="extLabel">No extension (base 10 pm end)</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);" id="extBase">$0</div>
-          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Flat fee</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Flat fee</div>
         </div>
         <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">DJ — Jordan Bernardo Overtime</div><div style="font-size:11px;color:var(--stone);" id="djExtLabel">No overtime (base 6 hrs)</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);" id="djExtCost">$0</div>
-          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">$300/hr</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">$300/hr</div>
         </div>
         <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Desiree Overtime</div><div style="font-size:11px;color:var(--stone);" id="desExtLabel">No overtime (covered through 11:59 pm)</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);" id="desExtCost">$0</div>
-          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">$160/hr</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">$160/hr</div>
         </div>
 
         <!-- Separator -->
@@ -1854,42 +2449,43 @@
         <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Lulan Studios — Photography &amp; Videography</div><div style="font-size:11px;color:var(--stone);">Contracted total (photo); videography package TBC</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$2,057</div>
-          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Incl. tax</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Incl. tax</div>
         </div>
         <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Endless Summer DJs (Jordan Bernardo)</div><div style="font-size:11px;color:var(--stone);">6-hour VIP package, lighting, all gear</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$2,070</div>
-          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">No tax</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">No tax</div>
         </div>
         <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Serenity Weddings — Desiree</div><div style="font-size:11px;color:var(--stone);">Day-of coordinating, 10 am–11:59 pm</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$1,800</div>
-          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">No tax</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">No tax</div>
         </div>
         <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Pixster Photo Booth</div><div style="font-size:11px;color:var(--stone);">4-hour open-air booth, all inclusions</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$795</div>
-          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">No tax</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">No tax</div>
         </div>
         <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Something Borrowed Blooms × Mostest</div><div style="font-size:11px;color:var(--stone);">Florals rental + white glove service</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$2,597</div>
-          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Incl. deposits</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Incl. deposits</div>
         </div>
         <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Cake (Sheet + Dummy)</div><div style="font-size:11px;color:var(--stone);">Est. 80 slices</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);">$325</div>
-          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Est.</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Est.</div>
         </div>
 
         <!-- Grand total row -->
         <div style="background:var(--ink);padding:14px 16px;display:flex;gap:8px;border-radius:0 0 7px 7px;">
           <div style="flex:1;font-size:14px;font-weight:600;color:white;">Estimated Grand Total</div>
           <div style="width:90px;text-align:right;" id="grandTotal"><span style="font-size:16px;font-weight:700;color:var(--gold);">$46,764</span></div>
-          <div style="width:90px;"></div>
+          <div style="width:90px;" class="est-hide-mobile"></div>
         </div>
       </div>
 
+      </div><!-- /estimatorTable scroll -->
       <!-- Notes -->
       <div style="background:var(--peach-pale);border:1px solid var(--peach-light);border-radius:8px;padding:12px 16px;margin-bottom:12px;">
         <p style="font-size:12px;color:#7A4A30;"><strong style="color:#5A2E10;">BABC service charge note:</strong> All BABC F&amp;B items (bar, food, extras) are subject to 22% service charge + 9.75% sales tax. The venue/site fee is a flat figure. Bar estimates above show both the pre-tax subtotal and the estimated total after charges, so you can see both what you're committing to and what you'll actually pay.</p>
@@ -1899,7 +2495,136 @@
       </div>
     </div>
 
-    <script>
+
+    <div class="divider"><span class="divider-label">Upcoming Payment Schedule</span></div>
+
+    <div class="card">
+      <div class="card-sub">For Venus &amp; Matthew — Key Dates &amp; Amounts</div>
+      <p style="font-size:12px;color:var(--stone);margin-bottom:16px;">All outstanding payments and deadlines between now and the wedding. Sorted chronologically.</p>
+
+      <div style="display:flex;flex-direction:column;gap:0;">
+
+        <div class="pay-row" style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
+          <div class="pay-date" style="min-width:80px;flex-shrink:0;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Oct 10, 2026</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">Pixster Photo Booth — Remaining Balance</div>
+            <div style="font-size:12px;color:var(--stone);">Remaining 50% charged automatically to card on file. No action needed — confirm card is current with Trevor.</div>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">$397.50</div>
+        </div>
+
+        <div class="pay-row" style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
+          <div class="pay-date" style="min-width:80px;flex-shrink:0;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Oct 11, 2026</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">Endless Summer DJs (Jordan Bernardo) — Remaining Balance</div>
+            <div style="font-size:12px;color:var(--stone);">Final payment due. Pay via Venmo, Zelle, or PayPal as agreed. Invoice #230717444.</div>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">$1,035.00</div>
+        </div>
+
+        <div class="pay-row" style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
+          <div class="pay-date" style="min-width:80px;flex-shrink:0;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Oct 20, 2026</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC Deadline — Valet Contract &amp; Vendor Info</div>
+            <div style="font-size:12px;color:var(--stone);">Signed valet contract (Quality Parking) and/or signed No Valet/Shuttle Forms due to BABC. Also: completed Vendor List and all vendor COIs and Vendor Agreements due 3 Wednesdays before wedding.</div>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--blue);flex-shrink:0;">Action</div>
+        </div>
+
+        <div class="pay-row" style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
+          <div class="pay-date" style="min-width:80px;flex-shrink:0;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Oct 27, 2026</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC Deadline — Final Menu Due</div>
+            <div style="font-size:12px;color:var(--stone);">All food &amp; beverage selections finalized. Once submitted, items cannot be removed. Special menu requests must be submitted and priced before this date. 3 Wednesdays before the wedding.</div>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--blue);flex-shrink:0;">Action</div>
+        </div>
+
+        <div class="pay-row" style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
+          <div class="pay-date" style="min-width:80px;flex-shrink:0;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 1, 2026</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">Serenity Weddings (Desiree) — Remaining Balance</div>
+            <div style="font-size:12px;color:var(--stone);">Remaining day-of coordinating balance due 10 days before the wedding. Pay via HoneyBook (credit card) or Zelle to 323-472-5660. Failure to pay by 11:59 pm the night before results in no services day-of.</div>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">$1,300.00</div>
+        </div>
+
+        <div class="pay-row" style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
+          <div class="pay-date" style="min-width:80px;flex-shrink:0;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 3, 2026</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC Deadline — Final Guest Count &amp; Table Breakdown</div>
+            <div style="font-size:12px;color:var(--stone);">Final guaranteed guest count, entrée selections, children's meals, and vendor meals due. Table breakdown (who's at each table, meals, allergies, under-21 guests) due. Final floorplan locked. 2 Wednesdays before wedding.</div>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--blue);flex-shrink:0;">Action</div>
+        </div>
+
+        <div class="pay-row" style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
+          <div class="pay-date" style="min-width:80px;flex-shrink:0;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 7, 2026</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">Lulan Studios — Final Payment</div>
+            <div style="font-size:12px;color:var(--stone);">Final balance due before digital files are released. Must be paid before the wedding. Failure to pay = all files permanently deleted.</div>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">$1,307.00</div>
+        </div>
+
+        <div class="pay-row" style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
+          <div class="pay-date" style="min-width:80px;flex-shrink:0;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 10, 2026</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC — Final TBD Balance Payment &amp; BEO Sign-off</div>
+            <div style="font-size:12px;color:var(--stone);">Final balance due to BABC the Wednesday prior to the event. Must be cashier's check or wire transfer — no personal checks, no ACH, no credit cards. Sign off on final Banquet Event Order (BEO). 1 Wednesday before wedding.</div>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">TBD</div>
+        </div>
+
+        <div class="pay-row" style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
+          <div class="pay-date" style="min-width:80px;flex-shrink:0;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 10, 2026</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">Jordan Bernardo — Overtime (if applicable)</div>
+            <div style="font-size:12px;color:var(--stone);">If venue hours are extended, DJ overtime is $300/hr in 30-min increments. Paid immediately at conclusion of event — cash or electronic transfer. Confirm method with Jordan in advance.</div>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--stone);flex-shrink:0;">If needed</div>
+        </div>
+
+        <div class="pay-row" style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;">
+          <div class="pay-date" style="min-width:80px;flex-shrink:0;">
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 20, 2026</div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">Marriage License — Return Deadline</div>
+            <div style="font-size:12px;color:var(--stone);">Kai must return the signed marriage license to the county within 10 days of the ceremony. In person: Beverly Hills Courthouse, 9355 Burton Way (Mon–Fri 8:30 am–4:30 pm). By mail: LA County Registrar-Recorder, P.O. Box 1208, Norwalk, CA 90651-1208 — use trackable mail.</div>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">Kai ⚠️</div>
+        </div>
+
+      </div>
+
+      <div style="margin-top:16px;padding:12px 16px;background:var(--blue-pale);border-radius:8px;border:1px solid var(--blue-light);">
+        <p style="font-size:12px;color:var(--stone);"><strong style="color:var(--ink);">Total outstanding as of today:</strong> Pixster ~$397.50 · Jordan $1,035 · Serenity ~$1,300 · Lulan $1,307 · BABC TBD · Valet TBD. All amounts approximate pending final confirmed totals.</p>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+
       var ext = 0;
       var bar = 'well';
       var barRates = {well: 89, premium: 101, super: 113};
@@ -1962,138 +2687,7 @@
       }
 
       update();
-    </script>
-
-    <div class="divider"><span class="divider-label">Upcoming Payment Schedule</span></div>
-
-    <div class="card">
-      <div class="card-sub">For Venus &amp; Matthew — Key Dates &amp; Amounts</div>
-      <p style="font-size:12px;color:var(--stone);margin-bottom:16px;">All outstanding payments and deadlines between now and the wedding. Sorted chronologically.</p>
-
-      <div style="display:flex;flex-direction:column;gap:0;">
-
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
-          <div style="min-width:80px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Oct 10, 2026</div>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">Pixster Photo Booth — Remaining Balance</div>
-            <div style="font-size:12px;color:var(--stone);">Remaining 50% charged automatically to card on file. No action needed — confirm card is current with Trevor.</div>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">$397.50</div>
-        </div>
-
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
-          <div style="min-width:80px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Oct 11, 2026</div>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">Endless Summer DJs (Jordan Bernardo) — Remaining Balance</div>
-            <div style="font-size:12px;color:var(--stone);">Final payment due. Pay via Venmo, Zelle, or PayPal as agreed. Invoice #230717444.</div>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">$1,035.00</div>
-        </div>
-
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
-          <div style="min-width:80px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Oct 20, 2026</div>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC Deadline — Valet Contract &amp; Vendor Info</div>
-            <div style="font-size:12px;color:var(--stone);">Signed valet contract (Quality Parking) and/or signed No Valet/Shuttle Forms due to BABC. Also: completed Vendor List and all vendor COIs and Vendor Agreements due 3 Wednesdays before wedding.</div>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--blue);flex-shrink:0;">Action</div>
-        </div>
-
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
-          <div style="min-width:80px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Oct 27, 2026</div>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC Deadline — Final Menu Due</div>
-            <div style="font-size:12px;color:var(--stone);">All food &amp; beverage selections finalized. Once submitted, items cannot be removed. Special menu requests must be submitted and priced before this date. 3 Wednesdays before the wedding.</div>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--blue);flex-shrink:0;">Action</div>
-        </div>
-
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
-          <div style="min-width:80px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 1, 2026</div>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">Serenity Weddings (Desiree) — Remaining Balance</div>
-            <div style="font-size:12px;color:var(--stone);">Remaining day-of coordinating balance due 10 days before the wedding. Pay via HoneyBook (credit card) or Zelle to 323-472-5660. Failure to pay by 11:59 pm the night before results in no services day-of.</div>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">$1,300.00</div>
-        </div>
-
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
-          <div style="min-width:80px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 3, 2026</div>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC Deadline — Final Guest Count &amp; Table Breakdown</div>
-            <div style="font-size:12px;color:var(--stone);">Final guaranteed guest count, entrée selections, children's meals, and vendor meals due. Table breakdown (who's at each table, meals, allergies, under-21 guests) due. Final floorplan locked. 2 Wednesdays before wedding.</div>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--blue);flex-shrink:0;">Action</div>
-        </div>
-
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
-          <div style="min-width:80px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 7, 2026</div>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">Lulan Studios — Final Payment</div>
-            <div style="font-size:12px;color:var(--stone);">Final balance due before digital files are released. Must be paid before the wedding. Failure to pay = all files permanently deleted.</div>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">$1,307.00</div>
-        </div>
-
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
-          <div style="min-width:80px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 10, 2026</div>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC — Final TBD Balance Payment &amp; BEO Sign-off</div>
-            <div style="font-size:12px;color:var(--stone);">Final balance due to BABC the Wednesday prior to the event. Must be cashier's check or wire transfer — no personal checks, no ACH, no credit cards. Sign off on final Banquet Event Order (BEO). 1 Wednesday before wedding.</div>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">TBD</div>
-        </div>
-
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--blue-pale);">
-          <div style="min-width:80px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 10, 2026</div>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">Jordan Bernardo — Overtime (if applicable)</div>
-            <div style="font-size:12px;color:var(--stone);">If venue hours are extended, DJ overtime is $300/hr in 30-min increments. Paid immediately at conclusion of event — cash or electronic transfer. Confirm method with Jordan in advance.</div>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--stone);flex-shrink:0;">If needed</div>
-        </div>
-
-        <div style="display:flex;align-items:flex-start;gap:12px;padding:12px 0;">
-          <div style="min-width:80px;flex-shrink:0;">
-            <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 20, 2026</div>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">Marriage License — Return Deadline</div>
-            <div style="font-size:12px;color:var(--stone);">Kai must return the signed marriage license to the county within 10 days of the ceremony. In person: Beverly Hills Courthouse, 9355 Burton Way (Mon–Fri 8:30 am–4:30 pm). By mail: LA County Registrar-Recorder, P.O. Box 1208, Norwalk, CA 90651-1208 — use trackable mail.</div>
-          </div>
-          <div style="font-size:14px;font-weight:600;color:var(--peach);flex-shrink:0;">Kai ⚠️</div>
-        </div>
-
-      </div>
-
-      <div style="margin-top:16px;padding:12px 16px;background:var(--blue-pale);border-radius:8px;border:1px solid var(--blue-light);">
-        <p style="font-size:12px;color:var(--stone);"><strong style="color:var(--ink);">Total outstanding as of today:</strong> Pixster ~$397.50 · Jordan $1,035 · Serenity ~$1,300 · Lulan $1,307 · BABC TBD · Valet TBD. All amounts approximate pending final confirmed totals.</p>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
-<script>
+    
 function switchTab(id, btn) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
