@@ -642,6 +642,7 @@
     <button class="tab-btn" onclick="switchTab('family', this)">Family</button>
     <button class="tab-btn" onclick="switchTab('reception', this)">Reception</button>
     <button class="tab-btn" onclick="switchTab('vendors', this)">Vendors &amp; Contacts</button>
+    <button class="tab-btn" onclick="openBudgetModal()" id="btn-budget" style="color:var(--gold);">&#x1F512; Budget</button>
   </div>
 </div>
 
@@ -697,7 +698,7 @@
           <div class="event-card-name">After Party</div>
         </div>
         <div class="event-card-body">
-          <p><strong>Tiny's Hi-Dive</strong>, Santa Monica<br>2am closing · walk-in</p>
+          <p><strong>Tiny's Hi-Dive</strong>, Santa Monica<br>2am closing · walk-in · Shuttle from BABC being explored — decision September</p>
         </div>
       </div>
       <div class="event-card">
@@ -735,7 +736,7 @@
       <div class="tl-item"><div class="tl-time">7:30p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Father-Daughter &amp; Mother-Son Dances</div></div></div>
       <div class="tl-item"><div class="tl-time">8:00p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Cake Cutting · Dessert</div></div></div>
       <div class="tl-item"><div class="tl-time">8:30p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Bouquet Toss · Late Night Snacks</div></div></div>
-      <div class="tl-item"><div class="tl-time">10:00p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Event concludes <span class="badge badge-gold">TBC</span></div><div class="tl-note">Base end time — 1 or 2 hour extension under consideration. Mostest returns for floral breakdown (they also arrived at 10 am for setup) · After Party at Tiny's Hi-Dive, Santa Monica</div></div></div>
+      <div class="tl-item"><div class="tl-time">10:00p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Event concludes <span class="badge badge-gold">TBC</span></div><div class="tl-note">Base end time — 1 or 2 hour extension under consideration. Mostest returns for floral breakdown (they also arrived at 10 am for setup) · After Party at Tiny's Hi-Dive, Santa Monica</div><div class="tl-note">Shuttle from BABC being explored (GTS Charter &amp; Swoop quotes — see Vendors tab). Decision September. If no shuttle, guests Uber.</div></div></div>
       <div class="tl-item"><div class="tl-time">11:15p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Vendor curfew <em style="font-style:italic;font-size:11px;color:var(--stone);">(base schedule)</em></div><div class="tl-note">Base: event ends 10 pm, vendor curfew 11:15 pm · If +1 hr: ends 11 pm, curfew 12:15 am · If +2 hrs: ends midnight, curfew 1:15 am</div></div></div>
     </div>
 
@@ -984,7 +985,7 @@
       </div>
       <p style="margin-top:12px;font-style:italic;color:var(--stone);font-size:11.5px;">Desiree leads. Groomsmen carry. Bridesmaids make sure it looks right. Mostest is not on-site — this is the wedding party's show during cocktail hour (5:00–6:00 pm) while guests are on the Patio.</p>
     </div>
-    <div class="card"><div class="card-sub">End of Night</div><p>After party at <strong>Tiny's Hi-Dive, Santa Monica</strong> — 2am closing, walk-in. Please help Venus collect any personal items at the end of the event — designate someone to sign off on cards and gifts from the wedding closet.</p></div>
+    <div class="card"><div class="card-sub">End of Night</div><p>After party at <strong>Tiny's Hi-Dive, Santa Monica</strong> — 2am closing, walk-in. A shuttle from BABC is being explored (see Vendors tab for quotes from GTS Charter &amp; Swoop). Decision in September. Please help Venus collect any personal items at the end of the event — designate someone to sign off on cards and gifts from the wedding closet.</p></div>
 
     <div class="divider"><span class="divider-label">Your Role on the Day</span></div>
 
@@ -1050,7 +1051,7 @@
       <div class="tl-item"><div class="tl-time">5:00p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Cocktail Hour</div><div class="tl-note">Justin &amp; Liz set up beer pong · Everyone mingle on the Patio</div></div></div>
       <div class="tl-item"><div class="tl-time">6:00p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Seated for dinner · Table 8</div></div></div>
       <div class="tl-item"><div class="tl-time">7:15p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Dinner Speeches</div><div class="tl-note"><strong>Justin Law</strong> — Speech 1 &nbsp;·&nbsp; <strong>Annie Morawiec</strong> — Speech 2</div></div></div>
-      <div class="tl-item"><div class="tl-time">10:30p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">After Party — Tiny's Hi-Dive, Santa Monica</div><div class="tl-note">2am closing · walk-in</div></div></div>
+      <div class="tl-item"><div class="tl-time">10:30p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">After Party — Tiny's Hi-Dive, Santa Monica</div><div class="tl-note">2am closing · walk-in. Shuttle from BABC may be arranged — decision September. Otherwise guests Uber.</div></div></div>
     </div>
 
     <div class="divider"><span class="divider-label">Ceremony Procession Order</span></div>
@@ -1352,7 +1353,7 @@
       <div class="tl-item"><div class="tl-time">7:15p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Dinner Speeches</div><div class="tl-note">Justin Law · Annie Morawiec</div></div></div>
       <div class="tl-item"><div class="tl-time">7:30p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Father-Daughter &amp; Mother-Son Dances</div><div class="tl-note"><strong>Marso</strong> dances with Venus · <strong>Hope</strong> dances with Matthew</div></div></div>
       <div class="tl-item"><div class="tl-time">8:00p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Cake Cutting · Dessert</div></div></div>
-      <div class="tl-item"><div class="tl-time">10:00p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Event concludes</div><div class="tl-note">After party at Tiny's Hi-Dive — all welcome (2am close)</div></div></div>
+      <div class="tl-item"><div class="tl-time">10:00p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Event concludes</div><div class="tl-note">After party at Tiny's Hi-Dive — all welcome (2am close) · Shuttle from BABC being explored</div></div></div>
     </div>
 
     <div class="divider"><span class="divider-label">Ceremony Altar Diagram</span></div>
@@ -1562,8 +1563,8 @@
         <div class="tl-item"><div class="tl-time">8:00p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Cake Cutting · Dessert</div></div></div>
         <div class="tl-item"><div class="tl-time">8:30p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">Bouquet Toss · Late Night Snacks · Dancing</div></div></div>
         <div class="tl-item"><div class="tl-time">8:30p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Lulan Studios coverage ends</div><div class="tl-note">Photography &amp; videography wrap at 8:30 pm sharp. Make sure all key shots are captured before this.</div></div></div>
-        <div class="tl-item"><div class="tl-time">10:00p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Reception concludes (base) <span class="badge badge-gold">Extension TBC</span></div><div class="tl-note">Photo booth closes · Mostest returns for floral breakdown · DJ overtime begins if extended.</div></div></div>
-        <div class="tl-item"><div class="tl-time">10:30p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">After Party — Tiny's Hi-Dive, Santa Monica</div><div class="tl-note">Walk-in, 2am close.</div></div></div>
+        <div class="tl-item"><div class="tl-time">10:00p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Reception concludes (base) <span class="badge badge-gold">Extension TBC</span></div><div class="tl-note">Photo booth closes · Mostest returns for floral breakdown · DJ overtime begins if extended. If shuttle booked: Quality Parking needs 30 min to retrieve all cars — valet wrap ~10:30 pm base.</div></div></div>
+        <div class="tl-item"><div class="tl-time">10:30p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">After Party — Tiny's Hi-Dive, Santa Monica</div><div class="tl-note">2am close · walk-in. If shuttle booked, departs BABC ~10:30–11:00 pm. Otherwise guests Uber individually. Decision September.</div></div></div>
       </div>
     </div>
 
@@ -1674,7 +1675,7 @@
         <div class="tl-item">
           <div class="tl-time">4:00p</div><div class="tl-dot bold"></div>
           <div class="tl-body">
-            <div class="tl-label"><span style="background:var(--blue-pale);color:var(--blue);padding:1px 6px;border-radius:4px;font-size:10px;font-weight:500;margin-right:6px;">GUESTS</span>Doors open · Guests begin arriving</div>
+            <div class="tl-label"><span style="background:var(--blue-pale);color:var(--blue);padding:1px 6px;border-radius:4px;font-size:10px;font-weight:500;margin-right:6px;">GUESTS</span>Doors open · Guests begin arriving</div><div class="tl-note">Quality Parking valet staff on-site from 3:30 pm. Rate: $21/car + 10% tax. Lot holds 35 cars max — overflow parked on streets above club. Rideshare strongly encouraged in guest communications.</div>
             <div class="tl-note">Contracted event start time. Guests not permitted on property more than 30 min prior.</div>
           </div>
         </div>
@@ -1909,17 +1910,99 @@
     </div>
 
     <div class="card" style="border-left:3px solid var(--stone,#7A6E68);">
-      <div class="card-sub">Valet Parking — Quality Parking</div>
-      <div class="card-title">Matt — Quality Parking (Exclusive BABC Vendor)</div>
+      <div class="card-sub">Valet &amp; Transportation — Quality Parking</div>
+      <div class="card-title">Matt Iravani — Quality Parking Service, Inc.</div>
       <div class="contact-row" style="padding-top:10px;">
         <div class="contact-icon">🚗</div>
-        <div class="contact-details"><div class="contact-name">(818) 254-5115</div><div class="contact-role"><a href="mailto:matt@valetparking.com">matt@valetparking.com</a></div></div>
+        <div class="contact-details"><div class="contact-name">(818) 254-5115</div><div class="contact-role">matt@valetparking.com · 22110 Clarendon St, Suite 103, Woodland Hills, CA 91367</div></div>
       </div>
-      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--blue-light);display:flex;flex-direction:column;gap:10px;">
+
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--blue-light);display:flex;flex-direction:column;gap:14px;">
+
+        <!-- Key facts -->
         <div style="display:flex;gap:10px;">
-          <div style="min-width:22px;height:22px;border-radius:50%;background:var(--blue-pale);border:1px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue);flex-shrink:0;">⚠️</div>
-          <div><div style="font-size:12.5px;font-weight:500;color:var(--ink);">Key Rules</div><div style="font-size:12px;color:var(--stone);">BABC parking lot holds only <strong style="color:var(--ink);">35 cars</strong> including vendors. Valet required if more than 35 cars expected. Exclusive BABC vendor — contracted and paid separately from the venue. Signed valet contract and/or signed No Valet/Shuttle Forms due to BABC <strong style="color:var(--peach);">3 Wednesdays before the event (Oct 20, 2026)</strong>. If shuttles over 30 passengers: lot attendant required at minimum.</div></div>
+          <div style="min-width:22px;height:22px;border-radius:50%;background:var(--blue-pale);border:1px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue);flex-shrink:0;">ℹ️</div>
+          <div>
+            <div style="font-size:12.5px;font-weight:500;color:var(--ink);">How Valet Pricing Works</div>
+            <div style="font-size:12px;color:var(--stone);line-height:1.7;"><strong style="color:var(--ink);">Rate:</strong> $21.00 per car + 10% parking tax · 7 hours of service or less<br>
+            <strong style="color:var(--ink);">Overtime:</strong> $24.00 per ½ hour per attendant<br>
+            <strong style="color:var(--ink);">Minimum:</strong> Based on 35 cars<br>
+            <strong style="color:var(--ink);">Agreement + 50% deposit:</strong> due 1 month before event = <strong style="color:var(--peach);">Oct 10, 2026</strong><br>
+            <strong style="color:var(--ink);">Balance + final car count:</strong> due 1 week before = <strong style="color:var(--peach);">Nov 3, 2026</strong><br>
+            <strong style="color:var(--ink);">Tip:</strong> Not included in $21. Options: (1) let guests tip freely, or (2) add 20% service charge in lieu of tips — "No Tipping Please, Host has prepaid" sign displayed. Decide which you prefer in the agreement.</div>
+          </div>
         </div>
+
+        <!-- Shuttle rules -->
+        <div style="display:flex;gap:10px;">
+          <div style="min-width:22px;height:22px;border-radius:50%;background:var(--blue-pale);border:1px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue);flex-shrink:0;">🚌</div>
+          <div>
+            <div style="font-size:12.5px;font-weight:500;color:var(--ink);">Shuttle Rules at BABC</div>
+            <div style="font-size:12px;color:var(--stone);line-height:1.7;">No exclusive shuttle company — use one familiar with the property. Shuttles must travel via PCH only (not Arno Way). <strong style="color:var(--ink);">25–30 passenger minibuses are ideal</strong> — they can turn around with cars in the lot. Larger buses require 40 parking spots reserved/paid for to stage. Both Swoop (38-pax) and GTS Option A (40-pax) are borderline — worth confirming with Matt that these vehicles are familiar with BABC and can maneuver the lot before booking. If fewer than 35 cars and hiring a shuttle: minimum 2 directors required ($425 for arrival + departure, 7 hrs).</div>
+          </div>
+        </div>
+
+        <!-- Matt's questions — pre-answered -->
+        <div style="background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:14px 16px;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;">Matt's Questions — Pre-Answered from Your Details</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:12px;color:var(--ink);"><strong>Ceremony start time:</strong> <span style="color:var(--stone);">4:30 pm · Staff should arrive by 3:30 pm (1 hour before)</span></div>
+            <div style="font-size:12px;color:var(--ink);"><strong>Approximate end time:</strong> <span style="color:var(--stone);">10:00 pm base (allow 30 min car retrieval = 10:30 pm). TBC if +1 or +2 hr extension confirmed.</span></div>
+            <div style="font-size:12px;color:var(--ink);"><strong>Expected guests:</strong> <span style="color:var(--stone);">~80 guests</span></div>
+            <div style="font-size:12px;color:var(--ink);"><strong>Expected cars:</strong> <span style="color:var(--stone);">TBD — most guests expected to rideshare. Vendors include: Lulan Studios, Jordan Bernardo (DJ), Pixster, Mostest (arrives 10am, departs, returns 10pm), Desiree (coordinator). Estimate ~15–20 cars total including vendors, but confirm closer to event.</span></div>
+            <div style="font-size:12px;color:var(--ink);"><strong>Shuttles:</strong> <span style="color:var(--stone);">Possibly 1 shuttle (~35–38 pax) for after-party transfer at 10:00–11:00 pm to Tiny's Hi-Dive, Santa Monica. Decision pending — revisit September 2026. If confirmed, Matt needs size &amp; scheduled time.</span></div>
+            <div style="font-size:12px;color:var(--ink);"><strong>Food trucks:</strong> <span style="color:var(--stone);">None</span></div>
+            <div style="font-size:12px;color:var(--ink);"><strong>Bride &amp; Groom:</strong> <span style="color:var(--stone);">Venus Law &amp; Matthew Morawiec</span></div>
+            <div style="font-size:12px;color:var(--ink);"><strong>Billing contact:</strong> <span style="color:var(--stone);">Venus Law · (857) 498-4715 · venus16law@gmail.com — confirm billing address when sending agreement</span></div>
+            <div style="font-size:12px;color:var(--ink);"><strong>Day-of contact:</strong> <span style="color:var(--stone);">Desiree Beimler (coordinator) · (323) 472-5660</span></div>
+          </div>
+        </div>
+
+        <!-- Decisions needed -->
+        <div style="background:#FBF5E6;border:1.5px solid #E8D09A;border-radius:8px;padding:12px 14px;">
+          <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">📌 Decisions Needed Before Sending Agreement</div>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--ink);">
+            <div>☐ <strong>Tip policy:</strong> Let guests tip freely, or pay 20% service charge for a no-tip experience?</div>
+            <div>☐ <strong>Car count estimate:</strong> Survey guests on whether they're driving or ridesharing to get an accurate number for the agreement</div>
+            <div>☐ <strong>Shuttle decision:</strong> Confirm by September whether you're hiring a shuttle — if yes, Matt needs the size and time to reserve spots and assess if directors are needed</div>
+            <div>☐ <strong>Confirm Swoop/GTS vehicles are BABC-familiar</strong> before booking either shuttle</div>
+            <div>☐ <strong>Billing address:</strong> Include with agreement response to Matt</div>
+          </div>
+        </div>
+
+        <!-- Shuttle quotes comparison -->
+        <div style="display:flex;gap:10px;">
+          <div style="min-width:22px;height:22px;border-radius:50%;background:#FBF5E6;border:1px solid #E8D09A;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--gold);flex-shrink:0;">🚌</div>
+          <div style="width:100%;">
+            <div style="font-size:12.5px;font-weight:500;color:var(--ink);margin-bottom:8px;">After Party Shuttle Quotes — BABC → Tiny's Hi-Dive · Revisit September</div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">GTS Charter (via Shirley Maldonado)</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;">
+              <div style="background:white;border:1.5px solid #E8D09A;border-radius:8px;padding:10px 14px;flex:1;min-width:140px;">
+                <div style="font-size:12px;font-weight:700;color:var(--gold);">Option A</div>
+                <div style="font-size:12px;color:var(--ink);font-weight:500;margin-top:2px;">1 × 40-passenger shuttle</div>
+                <div style="font-size:18px;font-weight:700;color:var(--ink);margin-top:4px;">$990</div>
+                <div style="font-size:11px;color:var(--stone);">Incl. tax, mileage &amp; fuel · Gratuity not incl.</div>
+              </div>
+              <div style="background:white;border:1.5px solid #E8D09A;border-radius:8px;padding:10px 14px;flex:1;min-width:140px;">
+                <div style="font-size:12px;font-weight:700;color:var(--gold);">Option B</div>
+                <div style="font-size:12px;color:var(--ink);font-weight:500;margin-top:2px;">2 × 24-passenger shuttles</div>
+                <div style="font-size:18px;font-weight:700;color:var(--ink);margin-top:4px;">$1,320</div>
+                <div style="font-size:11px;color:var(--stone);">$660 × 2 · Incl. tax, mileage &amp; fuel</div>
+              </div>
+            </div>
+            <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--stone);margin-bottom:6px;">Swoop · (323) 396-9687 · hello@swoopapp.com · Conf: GA7N-KM</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">
+              <div style="background:white;border:1.5px solid #E8D09A;border-radius:8px;padding:10px 14px;flex:1;min-width:140px;">
+                <div style="font-size:12px;font-weight:700;color:var(--gold);">38-Passenger Mini-Coach</div>
+                <div style="font-size:12px;color:var(--ink);font-weight:500;margin-top:2px;">11:00 pm pickup · 11:25 pm arrival at Tiny's</div>
+                <div style="font-size:18px;font-weight:700;color:var(--ink);margin-top:4px;">$975</div>
+                <div style="font-size:11px;color:var(--stone);">Base rate · Gratuity not incl. (15% = $146 · 18% = $176 · 20% = $195) · Card not charged until reserved</div>
+              </div>
+            </div>
+            <div style="font-size:11px;color:var(--stone);font-style:italic;">⚠️ Confirm with Matt that Swoop/GTS vehicles are familiar with BABC before booking. GTS quote valid 30 days. Swoop quote is currently unconfirmed/unreserved.</div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1936,6 +2019,177 @@
       · Rain decision for outdoor ceremony by 10:00 am day-of</p>
     </div>
 
+
+    <div class="divider"><span class="divider-label">Budget &amp; Payments</span></div>
+    <div class="card" style="border-left:3px solid var(--gold);background:#FBF5E6;">
+      <div class="card-sub">Cost Estimator &amp; Payment Schedule</div>
+      <p style="font-size:13px;color:var(--ink);">Full budget details — including the interactive cost estimator, all vendor payment deadlines, and outstanding balances — are in the <strong>Budget</strong> tab.</p>
+      <p style="font-size:12px;color:var(--stone);margin-top:6px;">&#x1F512; That tab is password-protected for Venus &amp; Matthew only.</p>
+    </div>
+<script>
+
+      var ext = 0;
+      var bar = 'well';
+      var barRates = {well: 89, premium: 101, super: 113};
+      var barLabels = {well: 'Well (6 hrs)', premium: 'Premium (6 hrs)', super: 'Super Premium (6 hrs)'};
+
+      function fmtUSD(n) { return '$' + n.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}); }
+
+      function applyTax(n) { return Math.round(n * 1.22 * 1.0975); }
+
+      function update() {
+        var guests = 80;
+        var rate = barRates[bar];
+        var barSub = guests * rate;
+        var barTaxed = applyTax(barSub);
+
+        document.getElementById('barLabel').textContent = barLabels[bar];
+        document.getElementById('barPPLabel').textContent = '$' + rate;
+        document.getElementById('barBase').textContent = fmtUSD(barSub);
+        document.getElementById('barWithTax').textContent = fmtUSD(barTaxed);
+
+        var extCostBABC = ext === 0 ? 0 : ext === 1 ? 1000 : 3000;
+        var djExt = ext === 0 ? 0 : ext === 1 ? 300 : 600;
+        var desExt = ext === 0 ? 0 : ext === 1 ? 160 : 320;
+
+        document.getElementById('extBase').textContent = fmtUSD(extCostBABC);
+        document.getElementById('extLabel').textContent = ext === 0 ? 'No extension (base 10 pm end)' : ext === 1 ? '+1 hour (ends 11 pm) — flat fee' : '+2 hours (ends midnight) — flat fee';
+
+        document.getElementById('djExtCost').textContent = fmtUSD(djExt);
+        document.getElementById('djExtLabel').textContent = ext === 0 ? 'No overtime (base 6 hrs)' : ext === 1 ? '+1 hr overtime @ $300/hr' : '+2 hrs overtime @ $300/hr';
+
+        document.getElementById('desExtCost').textContent = fmtUSD(desExt);
+        document.getElementById('desExtLabel').textContent = ext === 0 ? 'No overtime (covered through 11:59 pm)' : ext === 1 ? '+1 hr @ $160/hr (past midnight)' : '+2 hrs @ $160/hr (past midnight)';
+
+        var fixed = 27500 + 2057 + 2070 + 1800 + 795 + 2597 + 325;
+        var total = fixed + barTaxed + extCostBABC + djExt + desExt;
+        document.getElementById('grandTotal').innerHTML = '<span style="font-size:16px;font-weight:700;color:var(--gold);">' + fmtUSD(total) + '</span>';
+      }
+
+      function setExt(n) {
+        ext = n;
+        ['btn0','btn1','btn2'].forEach(function(id, i) {
+          var el = document.getElementById(id);
+          el.style.background = i === n ? 'var(--blue)' : 'transparent';
+          el.style.color = i === n ? 'white' : 'var(--blue)';
+          el.style.borderColor = i === n ? 'var(--blue)' : 'var(--blue-light)';
+        });
+        update();
+      }
+
+      function setBar(t) {
+        bar = t;
+        ['barWell','barPremium','barSuper'].forEach(function(id, i) {
+          var el = document.getElementById(id);
+          var active = (i === 0 && t === 'well') || (i === 1 && t === 'premium') || (i === 2 && t === 'super');
+          el.style.background = active ? 'var(--blue)' : 'transparent';
+          el.style.color = active ? 'white' : 'var(--blue)';
+          el.style.borderColor = active ? 'var(--blue)' : 'var(--blue-light)';
+        });
+        update();
+      }
+
+      update();
+    
+function openBudgetModal() {
+  document.getElementById('budget-modal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  if (sessionStorage.getItem('budgetUnlocked') === '1') {
+    document.getElementById('modal-lock').style.display = 'none';
+    document.getElementById('modal-content').style.display = 'block';
+    update();
+  } else {
+    document.getElementById('modal-lock').style.display = 'flex';
+    document.getElementById('modal-content').style.display = 'none';
+    setTimeout(function(){ document.getElementById('modal-pw').focus(); }, 100);
+  }
+}
+
+function closeBudgetModal() {
+  document.getElementById('budget-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function checkModalPw() {
+  var pw = document.getElementById('modal-pw').value;
+  if (pw === 'Morawiecs2026') {
+    sessionStorage.setItem('budgetUnlocked', '1');
+    document.getElementById('modal-lock').style.display = 'none';
+    document.getElementById('modal-content').style.display = 'block';
+    document.getElementById('modal-err').style.display = 'none';
+    update();
+  } else {
+    document.getElementById('modal-err').style.display = 'block';
+    document.getElementById('modal-pw').value = '';
+    document.getElementById('modal-pw').focus();
+  }
+}
+
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateCountdown() {
+  const wedding = new Date('2026-11-10T16:00:00-08:00'); // 4pm PT
+  const now = new Date();
+  const diff = wedding - now;
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = '<div style="font-family:var(--serif);font-size:22px;font-style:italic;color:var(--white);opacity:0.8;">Today is the day! 🥂</div>';
+    return;
+  }
+  const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 30000);
+</script>
+
+<!-- ═══ BUDGET MODAL ═══ -->
+<div id="budget-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;background:#EEF4F8;overflow-y:auto;">
+
+  <!-- Modal inner -->
+  <div style="max-width:960px;margin:0 auto;padding:20px 20px 80px;">
+
+    <!-- Header bar -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0 20px;border-bottom:2px solid var(--blue-light);margin-bottom:28px;">
+      <div>
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:4px;">Venus &amp; Matthew Only</div>
+        <div style="font-family:var(--serif);font-size:24px;font-weight:300;font-style:italic;color:var(--ink);">Budget &amp; Payments</div>
+      </div>
+      <button onclick="closeBudgetModal()" style="padding:8px 16px;border-radius:100px;border:1.5px solid var(--blue-light);background:white;color:var(--blue);font-size:12px;font-weight:500;cursor:pointer;font-family:var(--sans);">&#x2715; Close</button>
+    </div>
+
+    <!-- LOCK SCREEN -->
+    <div id="modal-lock" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50vh;text-align:center;padding:40px 24px;">
+      <div style="font-size:52px;margin-bottom:16px;">&#x1F512;</div>
+      <div style="font-family:var(--serif);font-size:26px;font-weight:300;font-style:italic;color:var(--ink);margin-bottom:8px;">Venus &amp; Matthew Only</div>
+      <div style="font-size:13px;color:var(--stone);margin-bottom:28px;">Enter your passcode to view budget details.</div>
+      <div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:280px;">
+        <input type="password" id="modal-pw" placeholder="Enter passcode"
+          style="padding:12px 16px;border:1.5px solid var(--blue-light);border-radius:8px;font-size:15px;font-family:var(--sans);color:var(--ink);background:white;outline:none;text-align:center;letter-spacing:0.15em;"
+          onkeydown="if(event.key==='Enter')checkModalPw()"/>
+        <button onclick="checkModalPw()"
+          style="padding:12px 16px;border-radius:8px;border:none;background:var(--blue);color:white;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--sans);">Unlock</button>
+        <div id="modal-err" style="font-size:12px;color:#C04040;display:none;margin-top:4px;">Incorrect passcode. Try again.</div>
+      </div>
+    </div>
+
+    <!-- BUDGET CONTENT (shown after unlock) -->
+    <div id="modal-content" style="display:none;">
+
+      <div class="notice" style="background:#FBF5E6;border-color:#E8D09A;">
+        <div class="notice-icon">&#x1F4B0;</div>
+        <p style="color:#5A3A00;">This tab is private. All cost estimates, payment deadlines, and financial decisions live here. Lock it again by switching to another tab.</p>
+      </div>
 
     <div class="divider"><span class="divider-label">Event Cost Estimator</span></div>
 
@@ -2044,7 +2298,7 @@
         <p style="font-size:12px;color:#7A4A30;"><strong style="color:#5A2E10;">BABC service charge note:</strong> All BABC F&amp;B items (bar, food, extras) are subject to 22% service charge + 9.75% sales tax. The venue/site fee is a flat figure. Bar estimates above show both the pre-tax subtotal and the estimated total after charges, so you can see both what you're committing to and what you'll actually pay.</p>
       </div>
       <div style="background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:12px 16px;">
-        <p style="font-size:12px;color:var(--stone);"><strong style="color:var(--ink);">Not included in estimates:</strong> Rehearsal dinner (~$2,000) · Welcome drinks at SMBW (~$1,000) · Send-off brunch supplies (~$500) · Rings ($2,000) · Valet (TBD with Quality Parking) · Lulan videography package (TBC) · Any BABC food/menu items beyond the bar (entrées, hors d'oeuvres, etc. — these are significant and selected at your Details Meeting)</p>
+        <p style="font-size:12px;color:var(--stone);"><strong style="color:var(--ink);">Not included in estimates:</strong> Rehearsal dinner (~$2,000) · Welcome drinks at SMBW (~$1,000) · Send-off brunch supplies (~$500) · Rings ($2,000) · Valet (~$21/car + 10% tax, min 35 cars · ~$804 minimum est.) · Shuttle TBD (GTS $990–1,320 or Swoop $975) · Lulan videography package (TBC) · Any BABC food/menu items beyond the bar (entrées, hors d'oeuvres, etc. — these are significant and selected at your Details Meeting)</p>
       </div>
     </div>
 
@@ -2084,8 +2338,8 @@
             <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Oct 20, 2026</div>
           </div>
           <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC Deadline — Valet Contract &amp; Vendor Info</div>
-            <div style="font-size:12px;color:var(--stone);">Signed valet contract (Quality Parking) and/or signed No Valet/Shuttle Forms due to BABC. Also: completed Vendor List and all vendor COIs and Vendor Agreements due 3 Wednesdays before wedding.</div>
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC Deadline — Valet Contract &amp; Vendor Info due · Quality Parking 50% deposit due</div>
+            <div style="font-size:12px;color:var(--stone);">Signed valet contract (Quality Parking) and all vendor COIs due to BABC. Quality Parking agreement + 50% deposit (~$367 based on 35 cars min) also due to Matt Iravani by Oct 10. Final car count + balance due Nov 3. Also: completed Vendor List and all Vendor Agreements due to BABC 3 Wednesdays before wedding.</div>
           </div>
           <div style="font-size:14px;font-weight:600;color:var(--blue);flex-shrink:0;">Action</div>
         </div>
@@ -2117,7 +2371,7 @@
             <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--stone);">Nov 3, 2026</div>
           </div>
           <div style="flex:1;">
-            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC Deadline — Final Guest Count &amp; Table Breakdown</div>
+            <div style="font-size:13px;font-weight:500;color:var(--ink);">BABC Deadline — Final Guest Count &amp; Table Breakdown · Quality Parking final car count &amp; balance due</div>
             <div style="font-size:12px;color:var(--stone);">Final guaranteed guest count, entrée selections, children's meals, and vendor meals due. Table breakdown (who's at each table, meals, allergies, under-21 guests) due. Final floorplan locked. 2 Wednesdays before wedding.</div>
           </div>
           <div style="font-size:14px;font-weight:600;color:var(--blue);flex-shrink:0;">Action</div>
@@ -2174,98 +2428,10 @@
       </div>
     </div>
 
-  </div>
 
-<script>
+    </div><!-- /modal-content -->
 
-      var ext = 0;
-      var bar = 'well';
-      var barRates = {well: 89, premium: 101, super: 113};
-      var barLabels = {well: 'Well (6 hrs)', premium: 'Premium (6 hrs)', super: 'Super Premium (6 hrs)'};
-
-      function fmtUSD(n) { return '$' + n.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}); }
-
-      function applyTax(n) { return Math.round(n * 1.22 * 1.0975); }
-
-      function update() {
-        var guests = 80;
-        var rate = barRates[bar];
-        var barSub = guests * rate;
-        var barTaxed = applyTax(barSub);
-
-        document.getElementById('barLabel').textContent = barLabels[bar];
-        document.getElementById('barPPLabel').textContent = '$' + rate;
-        document.getElementById('barBase').textContent = fmtUSD(barSub);
-        document.getElementById('barWithTax').textContent = fmtUSD(barTaxed);
-
-        var extCostBABC = ext === 0 ? 0 : ext === 1 ? 1000 : 3000;
-        var djExt = ext === 0 ? 0 : ext === 1 ? 300 : 600;
-        var desExt = ext === 0 ? 0 : ext === 1 ? 160 : 320;
-
-        document.getElementById('extBase').textContent = fmtUSD(extCostBABC);
-        document.getElementById('extLabel').textContent = ext === 0 ? 'No extension (base 10 pm end)' : ext === 1 ? '+1 hour (ends 11 pm) — flat fee' : '+2 hours (ends midnight) — flat fee';
-
-        document.getElementById('djExtCost').textContent = fmtUSD(djExt);
-        document.getElementById('djExtLabel').textContent = ext === 0 ? 'No overtime (base 6 hrs)' : ext === 1 ? '+1 hr overtime @ $300/hr' : '+2 hrs overtime @ $300/hr';
-
-        document.getElementById('desExtCost').textContent = fmtUSD(desExt);
-        document.getElementById('desExtLabel').textContent = ext === 0 ? 'No overtime (covered through 11:59 pm)' : ext === 1 ? '+1 hr @ $160/hr (past midnight)' : '+2 hrs @ $160/hr (past midnight)';
-
-        var fixed = 27500 + 2057 + 2070 + 1800 + 795 + 2597 + 325;
-        var total = fixed + barTaxed + extCostBABC + djExt + desExt;
-        document.getElementById('grandTotal').innerHTML = '<span style="font-size:16px;font-weight:700;color:var(--gold);">' + fmtUSD(total) + '</span>';
-      }
-
-      function setExt(n) {
-        ext = n;
-        ['btn0','btn1','btn2'].forEach(function(id, i) {
-          var el = document.getElementById(id);
-          el.style.background = i === n ? 'var(--blue)' : 'transparent';
-          el.style.color = i === n ? 'white' : 'var(--blue)';
-          el.style.borderColor = i === n ? 'var(--blue)' : 'var(--blue-light)';
-        });
-        update();
-      }
-
-      function setBar(t) {
-        bar = t;
-        ['barWell','barPremium','barSuper'].forEach(function(id, i) {
-          var el = document.getElementById(id);
-          var active = (i === 0 && t === 'well') || (i === 1 && t === 'premium') || (i === 2 && t === 'super');
-          el.style.background = active ? 'var(--blue)' : 'transparent';
-          el.style.color = active ? 'white' : 'var(--blue)';
-          el.style.borderColor = active ? 'var(--blue)' : 'var(--blue-light)';
-        });
-        update();
-      }
-
-      update();
-    
-function switchTab(id, btn) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('panel-' + id).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function updateCountdown() {
-  const wedding = new Date('2026-11-10T16:00:00-08:00'); // 4pm PT
-  const now = new Date();
-  const diff = wedding - now;
-  if (diff <= 0) {
-    document.getElementById('countdown').innerHTML = '<div style="font-family:var(--serif);font-size:22px;font-style:italic;color:var(--white);opacity:0.8;">Today is the day! 🥂</div>';
-    return;
-  }
-  const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  document.getElementById('cd-days').textContent  = String(days).padStart(2,'0');
-  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
-  document.getElementById('cd-mins').textContent  = String(mins).padStart(2,'0');
-}
-updateCountdown();
-setInterval(updateCountdown, 30000);
-</script>
+  </div><!-- /modal inner -->
+</div><!-- /budget-modal -->
 </body>
 </html>
