@@ -168,12 +168,13 @@
   }
   .tabs {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     max-width: 960px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     margin: 0 auto;
+    padding-left: 8px;
   }
   .tab-btn {
     padding: 15px 24px;
@@ -641,6 +642,7 @@
     <button class="tab-btn" onclick="switchTab('groomsmen', this)">Groomsmen</button>
     <button class="tab-btn" onclick="switchTab('family', this)">Family</button>
     <button class="tab-btn" onclick="switchTab('reception', this)">Reception</button>
+    <button class="tab-btn" onclick="switchTab('floral', this)">Floral Plans</button>
     <button class="tab-btn" onclick="switchTab('vendors', this)">Vendors &amp; Contacts</button>
     <button class="tab-btn" onclick="openBudgetModal()" id="btn-budget" style="color:var(--gold);">&#x1F512; Budget</button>
   </div>
@@ -985,39 +987,27 @@
           </thead>
           <tbody>
             <tr style="border-bottom:1px solid var(--blue-pale);">
-              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Gold Stand (Tall)</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--stone);">3 (2 flip)</td>
-              <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
-              <td style="padding:9px 12px;color:var(--ink);">Table 8</td>
+              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Meadow</td>
+              <td style="padding:9px 12px;text-align:center;color:var(--stone);">4</td>
+              <td style="padding:9px 12px;color:var(--stone);">Front line (2 per side)</td>
+              <td style="padding:9px 12px;color:var(--ink);">2 in front of DJ booth + 2 at Head Table ends</td>
             </tr>
             <tr style="border-bottom:1px solid var(--blue-pale);background:var(--white);">
-              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Gold Stand (Short)</td>
+              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Short Stand + Large Centerpiece</td>
               <td style="padding:9px 12px;text-align:center;color:var(--stone);">2</td>
-              <td style="padding:9px 12px;color:var(--stone);">At ceremony</td>
+              <td style="padding:9px 12px;color:var(--stone);">Front line (1 per side, outer)</td>
               <td style="padding:9px 12px;color:var(--ink);">Tables 1 &amp; 2</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--blue-pale);">
-              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Kate Large Centerpiece</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--stone);">5 (2 flip)</td>
-              <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
-              <td style="padding:9px 12px;color:var(--ink);">Tables 1, 2, 3, 5, 7</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--blue-pale);background:var(--white);">
-              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Kate Grand Centerpiece</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--stone);">3 (2 flip)</td>
-              <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
-              <td style="padding:9px 12px;color:var(--ink);">Table 8</td>
-            </tr>
             <tr>
-              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Kate Floral Meadow</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--stone);">4</td>
-              <td style="padding:9px 12px;color:var(--stone);">2x front, 2x aisle end</td>
-              <td style="padding:9px 12px;color:var(--ink);">Tables 4 &amp; 6 + 2x in front of cake table</td>
+              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Tall Stand + Grand Centerpiece</td>
+              <td style="padding:9px 12px;text-align:center;color:var(--stone);">2</td>
+              <td style="padding:9px 12px;color:var(--stone);">Front line (1 per side, inner)</td>
+              <td style="padding:9px 12px;color:var(--ink);">Tables 7 &amp; 8</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p style="margin-top:12px;font-style:italic;color:var(--stone);font-size:11.5px;">Desiree leads. Groomsmen carry. Bridesmaids make sure it looks right. Mostest is not on-site — this is the wedding party's show during cocktail hour (5:00–6:00 pm) while guests are on the Patio.</p>
+      <p style="margin-top:12px;font-style:italic;color:var(--stone);font-size:11.5px;">Desiree leads. Groomsmen carry. Bridesmaids make sure it looks right. Mostest is not on-site — this is the wedding party's show during cocktail hour (5:00–6:00 pm) while guests are on the Patio. Tables 3, 4, 5, 6, and the remaining Head Table pieces are vaseless centerpieces ordered separately — nothing to flip there.</p>
     </div>
     <div class="card"><div class="card-sub">End of Night</div><p>After party at <strong>Tiny's Hi-Dive, Santa Monica</strong> — 2am closing, walk-in. A shuttle from BABC is being explored (see Vendors tab for quotes from GTS Charter &amp; Swoop). Decision in September. Please help Venus collect any personal items at the end of the event — designate someone to sign off on cards and gifts from the wedding closet.</p></div>
 
@@ -1243,40 +1233,29 @@
             </tr>
           </thead>
           <tbody>
+          <tbody>
             <tr style="border-bottom:1px solid var(--blue-pale);">
-              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Gold Stand (Tall)</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--stone);">3 (2 flip)</td>
-              <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
-              <td style="padding:9px 12px;color:var(--ink);">Table 8</td>
+              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Meadow</td>
+              <td style="padding:9px 12px;text-align:center;color:var(--stone);">4</td>
+              <td style="padding:9px 12px;color:var(--stone);">Front line (2 per side)</td>
+              <td style="padding:9px 12px;color:var(--ink);">2 in front of DJ booth + 2 at Head Table ends</td>
             </tr>
             <tr style="border-bottom:1px solid var(--blue-pale);background:var(--white);">
-              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Gold Stand (Short)</td>
+              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Short Stand + Large Centerpiece</td>
               <td style="padding:9px 12px;text-align:center;color:var(--stone);">2</td>
-              <td style="padding:9px 12px;color:var(--stone);">At ceremony</td>
+              <td style="padding:9px 12px;color:var(--stone);">Front line (1 per side, outer)</td>
               <td style="padding:9px 12px;color:var(--ink);">Tables 1 &amp; 2</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--blue-pale);">
-              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Kate Large Centerpiece</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--stone);">5 (2 flip)</td>
-              <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
-              <td style="padding:9px 12px;color:var(--ink);">Tables 1, 2, 3, 5, 7</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--blue-pale);background:var(--white);">
-              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Kate Grand Centerpiece</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--stone);">3 (2 flip)</td>
-              <td style="padding:9px 12px;color:var(--stone);">2x at ceremony</td>
-              <td style="padding:9px 12px;color:var(--ink);">Table 8</td>
-            </tr>
             <tr>
-              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Kate Floral Meadow</td>
-              <td style="padding:9px 12px;text-align:center;color:var(--stone);">4</td>
-              <td style="padding:9px 12px;color:var(--stone);">2x front, 2x aisle end</td>
-              <td style="padding:9px 12px;color:var(--ink);">Tables 4 &amp; 6 + 2x in front of cake table</td>
+              <td style="padding:9px 12px;color:var(--ink);font-weight:500;">Tall Stand + Grand Centerpiece</td>
+              <td style="padding:9px 12px;text-align:center;color:var(--stone);">2</td>
+              <td style="padding:9px 12px;color:var(--stone);">Front line (1 per side, inner)</td>
+              <td style="padding:9px 12px;color:var(--ink);">Tables 7 &amp; 8</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p style="margin-top:12px;font-style:italic;color:var(--stone);font-size:11.5px;">Desiree leads. You carry. Bridesmaids make it look good. Mostest is not on-site during the flip — they set up in the morning and return at night for breakdown. Get it done by 6:00 pm when doors open.</p>
+      <p style="margin-top:12px;font-style:italic;color:var(--stone);font-size:11.5px;">Desiree leads. You carry. Bridesmaids make it look good. Mostest is not on-site during the flip — they set up in the morning and return at night for breakdown. Tables 3, 4, 5, 6, and the remaining Head Table pieces are vaseless centerpieces ordered separately — nothing to flip there. Get it done by 6:00 pm when doors open.</p>
     </div>
     <div class="card"><div class="card-sub">Attire</div><p>Wear a <strong>black suit</strong>. Venus has already ordered matching ties and pocket squares for all groomsmen — they'll be ready for you on the day. Dress code for guests: Formal.</p></div>
     <div class="card"><div class="card-sub">DJ — Jordan Bernard (Endless Summer DJs)</div><p>Jordan is experienced at BABC and will MC key moments — Grand Entrance, First Dance, toasts, etc. He uses his own mic and sound system. A day-of timeline walkthrough is available. Contact: <a href="mailto:jordanbernardoevents@gmail.com">jordanbernardoevents@gmail.com</a> · (312) 550-9190</p></div>
@@ -1603,6 +1582,188 @@
         <div class="tl-item"><div class="tl-time">10:00p</div><div class="tl-dot bold"></div><div class="tl-body"><div class="tl-label">Reception concludes (base) <span class="badge badge-gold">Extension TBC</span></div><div class="tl-note">Photo booth closes · Mostest returns for floral breakdown · DJ overtime begins if extended. If shuttle booked: Quality Parking needs 30 min to retrieve all cars — valet wrap ~10:30 pm base.</div></div></div>
         <div class="tl-item"><div class="tl-time">10:30p</div><div class="tl-dot"></div><div class="tl-body"><div class="tl-label">After Party — Tiny's Hi-Dive, Santa Monica</div><div class="tl-note">2am close · walk-in. If shuttle booked, departs BABC ~10:30–11:00 pm. Otherwise guests Uber individually. Decision September.</div></div></div>
       </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ FLORAL PLANS ═══ -->
+  <div id="panel-floral" class="tab-panel">
+    <div class="section-label">Floral Plans</div>
+    <div class="section-title">Ceremony &amp; dinner layouts, digitized</div>
+
+    <div class="divider"><span class="divider-label">Ceremony Floral Plan</span></div>
+    <div class="card" style="padding:20px 20px 24px;">
+      <div class="card-sub">Altar Arrangement, Aisle-Front Line &amp; Seating</div>
+      <div class="diagram-scroll"><svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" style="min-width:480px;width:100%;max-width:800px;display:block;margin:0 auto;font-family:'Cormorant Garamond',Georgia,serif;">
+        <rect width="800" height="480" fill="#EEF4F8" rx="10"/>
+
+        <text x="400" y="40" font-size="13" fill="#B8882A" text-anchor="middle" font-weight="700" letter-spacing="1">ALTAR</text>
+
+        <line x1="60" y1="90" x2="740" y2="90" stroke="#C8DDE9" stroke-width="1" stroke-dasharray="3 5"/>
+
+        <path d="M 220 190 Q 280 115 310 110 Q 360 125 400 128 Q 440 125 490 110 Q 520 115 580 190" fill="none" stroke="#C8DDE9" stroke-width="1" stroke-dasharray="2 4" opacity="0.6"/>
+
+        <rect x="242" y="140" width="6" height="26" fill="#B8882A"/>
+        <circle cx="245" cy="140" r="13" fill="#E8D09A" stroke="#B8882A" stroke-width="1.5"/>
+        <ellipse cx="231" cy="172" rx="17" ry="9" fill="#DCE9C8" stroke="#8FA868" stroke-width="1.5"/>
+        <text x="245" y="112" font-size="9" fill="#7A5A1A" text-anchor="middle">Short Stand +</text>
+        <text x="245" y="123" font-size="9" fill="#7A5A1A" text-anchor="middle">Large Centerpiece</text>
+        <text x="231" y="196" font-size="8.5" fill="#5A6A40" text-anchor="middle">Meadow</text>
+
+        <rect x="306" y="100" width="8" height="40" fill="#B8882A"/>
+        <circle cx="310" cy="100" r="17" fill="#C9567A" stroke="#9A3350" stroke-width="1.5"/>
+        <ellipse cx="294" cy="150" rx="18" ry="10" fill="#DCE9C8" stroke="#8FA868" stroke-width="1.5"/>
+        <text x="310" y="72" font-size="9" fill="#7A2A3A" text-anchor="middle">Tall Stand +</text>
+        <text x="310" y="83" font-size="9" fill="#7A2A3A" text-anchor="middle">Grand Centerpiece</text>
+        <text x="294" y="174" font-size="8.5" fill="#5A6A40" text-anchor="middle">Meadow</text>
+
+        <circle cx="400" cy="120" r="20" fill="none" stroke="#B8882A" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <text x="400" y="124" font-size="9.5" fill="#B8882A" text-anchor="middle">Kai</text>
+        <text x="400" y="160" font-size="9.5" fill="#7A8A98" text-anchor="middle" font-style="italic">Officiant stands here</text>
+
+        <rect x="486" y="100" width="8" height="40" fill="#B8882A"/>
+        <circle cx="490" cy="100" r="17" fill="#C9567A" stroke="#9A3350" stroke-width="1.5"/>
+        <ellipse cx="506" cy="150" rx="18" ry="10" fill="#DCE9C8" stroke="#8FA868" stroke-width="1.5"/>
+        <text x="490" y="72" font-size="9" fill="#7A2A3A" text-anchor="middle">Tall Stand +</text>
+        <text x="490" y="83" font-size="9" fill="#7A2A3A" text-anchor="middle">Grand Centerpiece</text>
+        <text x="506" y="174" font-size="8.5" fill="#5A6A40" text-anchor="middle">Meadow</text>
+
+        <rect x="552" y="140" width="6" height="26" fill="#B8882A"/>
+        <circle cx="555" cy="140" r="13" fill="#E8D09A" stroke="#B8882A" stroke-width="1.5"/>
+        <ellipse cx="569" cy="172" rx="17" ry="9" fill="#DCE9C8" stroke="#8FA868" stroke-width="1.5"/>
+        <text x="555" y="112" font-size="9" fill="#7A5A1A" text-anchor="middle">Short Stand +</text>
+        <text x="555" y="123" font-size="9" fill="#7A5A1A" text-anchor="middle">Large Centerpiece</text>
+        <text x="569" y="196" font-size="8.5" fill="#5A6A40" text-anchor="middle">Meadow</text>
+
+        <rect x="370" y="216" width="60" height="150" fill="#FFFFFF" stroke="#C8DDE9" stroke-width="1"/>
+        <text x="400" y="382" font-size="11" fill="#7A8A98" text-anchor="middle" font-style="italic">aisle</text>
+        <line x1="400" y1="216" x2="400" y2="362" stroke="#C8DDE9" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+        <g>
+          <text x="200" y="232" text-anchor="middle" fill="#7A8A98" font-size="10">Chair Rows — Left</text>
+          <text x="600" y="232" text-anchor="middle" fill="#7A8A98" font-size="10">Chair Rows — Right</text>
+          <g fill="white" stroke="#8AADCA" stroke-width="1.3">
+            <circle cx="130" cy="256" r="12"/><circle cx="160" cy="256" r="12"/><circle cx="190" cy="256" r="12"/><circle cx="220" cy="256" r="12"/>
+            <circle cx="130" cy="288" r="12"/><circle cx="160" cy="288" r="12"/><circle cx="190" cy="288" r="12"/><circle cx="220" cy="288" r="12"/>
+            <circle cx="130" cy="320" r="12"/><circle cx="160" cy="320" r="12"/><circle cx="190" cy="320" r="12"/><circle cx="220" cy="320" r="12"/>
+            <circle cx="130" cy="352" r="12"/><circle cx="160" cy="352" r="12"/><circle cx="190" cy="352" r="12"/><circle cx="220" cy="352" r="12"/>
+          </g>
+          <g fill="white" stroke="#8AADCA" stroke-width="1.3">
+            <circle cx="580" cy="256" r="12"/><circle cx="610" cy="256" r="12"/><circle cx="640" cy="256" r="12"/><circle cx="670" cy="256" r="12"/>
+            <circle cx="580" cy="288" r="12"/><circle cx="610" cy="288" r="12"/><circle cx="640" cy="288" r="12"/><circle cx="670" cy="288" r="12"/>
+            <circle cx="580" cy="320" r="12"/><circle cx="610" cy="320" r="12"/><circle cx="640" cy="320" r="12"/><circle cx="670" cy="320" r="12"/>
+            <circle cx="580" cy="352" r="12"/><circle cx="610" cy="352" r="12"/><circle cx="640" cy="352" r="12"/><circle cx="670" cy="352" r="12"/>
+          </g>
+        </g>
+      </svg></div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+        <div style="display:flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:8px 12px;font-size:12px;min-width:190px;flex:1;"><div style="width:20px;height:20px;border-radius:50%;background:#8FA868;flex-shrink:0;"></div><div><strong style="display:block;color:var(--ink);font-size:12.5px;">Meadow</strong><span style="color:var(--stone);font-size:11px;">4 total — one at the base/front of each stand</span></div></div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:8px 12px;font-size:12px;min-width:190px;flex:1;"><div style="width:20px;height:20px;border-radius:50%;background:#B8882A;flex-shrink:0;"></div><div><strong style="display:block;color:var(--ink);font-size:12.5px;">Short Stand + Large Centerpiece</strong><span style="color:var(--stone);font-size:11px;">1 per side, outer position</span></div></div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:8px 12px;font-size:12px;min-width:190px;flex:1;"><div style="width:20px;height:20px;border-radius:50%;background:#C9567A;flex-shrink:0;"></div><div><strong style="display:block;color:var(--ink);font-size:12.5px;">Tall Stand + Grand Centerpiece</strong><span style="color:var(--stone);font-size:11px;">1 per side, inner position closest to center</span></div></div>
+      </div>
+    </div>
+
+    <div class="divider"><span class="divider-label">Dinner Floral Plan</span></div>
+    <div class="card" style="padding:20px 20px 24px;">
+      <div class="card-sub">DJ Booth, Dance Floor &amp; Head Table in Line</div>
+      <div class="diagram-scroll"><svg viewBox="0 0 650 620" xmlns="http://www.w3.org/2000/svg" style="min-width:420px;width:100%;max-width:650px;display:block;margin:0 auto;font-family:'Cormorant Garamond',Georgia,serif;">
+        <rect width="650" height="620" fill="#EEF4F8" rx="10"/>
+
+        <rect x="70" y="255" width="50" height="110" fill="#F5D0BB" stroke="#E8A07A" stroke-width="1.5" rx="4"/>
+        <text x="95" y="304" font-size="12" fill="#7A5A1A" text-anchor="middle" font-weight="700">DJ</text>
+        <text x="95" y="382" font-size="9" fill="#7A8A98" text-anchor="middle" font-style="italic">faces dance floor</text>
+
+        <ellipse cx="144" cy="290" rx="10" ry="20" fill="#DCE9C8" stroke="#8FA868" stroke-width="1.5"/>
+        <ellipse cx="144" cy="330" rx="10" ry="20" fill="#DCE9C8" stroke="#8FA868" stroke-width="1.5"/>
+        <text x="144" y="255" font-size="9" fill="#5A6A40" text-anchor="middle">Meadow</text>
+        <text x="144" y="267" font-size="8" fill="#5A6A40" text-anchor="middle">(2x)</text>
+
+        <rect x="190" y="190" width="240" height="240" fill="#E4ECD8" stroke="#C8DDE9" stroke-width="2"/>
+        <text x="310" y="302" font-size="15" fill="#7A8A98" text-anchor="middle">Dance Floor</text>
+        <text x="310" y="322" font-size="12" fill="#7A8A98" text-anchor="middle">20' &times; 20'</text>
+
+        <rect x="470" y="190" width="70" height="240" fill="#FDF3EC" stroke="#E8A07A" stroke-width="2" rx="6"/>
+        <text x="483" y="310" font-size="13" fill="#7A5A1A" text-anchor="middle" font-weight="700" transform="rotate(-90 483 310)">Head Table</text>
+
+        <ellipse cx="505" cy="172" rx="18" ry="10" fill="#DCE9C8" stroke="#8FA868" stroke-width="1.5"/>
+        <text x="505" y="153" font-size="8.5" fill="#5A6A40" text-anchor="middle">Meadow</text>
+        <ellipse cx="505" cy="448" rx="18" ry="10" fill="#DCE9C8" stroke="#8FA868" stroke-width="1.5"/>
+        <text x="505" y="470" font-size="8.5" fill="#5A6A40" text-anchor="middle">Meadow</text>
+
+        <circle cx="505" cy="217" r="9" fill="#C8DDE9" stroke="#8AADCA" stroke-width="1.3"/>
+        <text x="524" y="221" font-size="9" fill="#2C2420">Vaseless</text>
+
+        <rect x="502" y="252" width="5" height="12" fill="#B8882A"/>
+        <circle cx="505" cy="252" r="9" fill="#E8D09A" stroke="#B8882A" stroke-width="1.3"/>
+        <text x="524" y="268" font-size="9" fill="#7A2A3A">Short Stand</text>
+
+        <circle cx="505" cy="310" r="9" fill="#C8DDE9" stroke="#8AADCA" stroke-width="1.3"/>
+        <text x="524" y="314" font-size="9" fill="#2C2420">Vaseless</text>
+
+        <rect x="502" y="356" width="5" height="12" fill="#B8882A"/>
+        <circle cx="505" cy="356" r="9" fill="#E8D09A" stroke="#B8882A" stroke-width="1.3"/>
+        <text x="524" y="372" font-size="9" fill="#7A2A3A">Short Stand</text>
+
+        <circle cx="505" cy="404" r="9" fill="#C8DDE9" stroke="#8AADCA" stroke-width="1.3"/>
+        <text x="524" y="408" font-size="9" fill="#2C2420">Vaseless</text>
+
+        <path d="M 595 210 Q 615 250 595 290 Q 615 330 595 370 Q 615 400 598 415" fill="none" stroke="#8FA868" stroke-width="5" stroke-linecap="round"/>
+        <text x="600" y="299" font-size="10.5" fill="#5A6A40" text-anchor="middle">Garland</text>
+
+        <circle cx="145" cy="145" r="44" fill="white" stroke="#E8A07A" stroke-width="2"/>
+        <rect x="141.5" y="127" width="7" height="18" fill="#B8882A"/>
+        <circle cx="145" cy="127" r="13" fill="#C9567A" stroke="#9A3350" stroke-width="1.5"/>
+        <text x="163" y="167" font-size="13" fill="#7A5A1A" text-anchor="middle" font-weight="700">7</text>
+        <text x="163" y="178" font-size="8" fill="#7A8A98" text-anchor="middle">Tall Stand</text>
+
+        <circle cx="250" cy="65" r="34" fill="white" stroke="#E8A07A" stroke-width="2"/>
+        <circle cx="250" cy="65" r="9" fill="#C8DDE9" stroke="#8AADCA" stroke-width="1.3"/>
+        <text x="264" y="82" font-size="12" fill="#7A5A1A" text-anchor="middle" font-weight="700">5</text>
+        <text x="264" y="93" font-size="8" fill="#7A8A98" text-anchor="middle">Vaseless</text>
+
+        <circle cx="330" cy="145" r="34" fill="white" stroke="#E8A07A" stroke-width="2"/>
+        <circle cx="330" cy="145" r="9" fill="#C8DDE9" stroke="#8AADCA" stroke-width="1.3"/>
+        <text x="344" y="162" font-size="12" fill="#7A5A1A" text-anchor="middle" font-weight="700">3</text>
+        <text x="344" y="173" font-size="8" fill="#7A8A98" text-anchor="middle">Vaseless</text>
+
+        <circle cx="435" cy="132" r="44" fill="white" stroke="#E8A07A" stroke-width="2"/>
+        <rect x="432" y="121" width="6" height="14" fill="#B8882A"/>
+        <circle cx="435" cy="121" r="11" fill="#E8D09A" stroke="#B8882A" stroke-width="1.5"/>
+        <text x="453" y="154" font-size="13" fill="#7A5A1A" text-anchor="middle" font-weight="700">1</text>
+        <text x="453" y="165" font-size="8" fill="#7A8A98" text-anchor="middle">Short Stand</text>
+
+        <circle cx="145" cy="475" r="44" fill="white" stroke="#E8A07A" stroke-width="2"/>
+        <rect x="141.5" y="475" width="7" height="18" fill="#B8882A"/>
+        <circle cx="145" cy="493" r="13" fill="#C9567A" stroke="#9A3350" stroke-width="1.5"/>
+        <text x="163" y="453" font-size="13" fill="#7A5A1A" text-anchor="middle" font-weight="700">8</text>
+        <text x="163" y="464" font-size="8" fill="#7A8A98" text-anchor="middle">Tall Stand</text>
+
+        <circle cx="250" cy="555" r="34" fill="white" stroke="#E8A07A" stroke-width="2"/>
+        <circle cx="250" cy="555" r="9" fill="#C8DDE9" stroke="#8AADCA" stroke-width="1.3"/>
+        <text x="264" y="538" font-size="12" fill="#7A5A1A" text-anchor="middle" font-weight="700">6</text>
+        <text x="264" y="549" font-size="8" fill="#7A8A98" text-anchor="middle">Vaseless</text>
+
+        <circle cx="330" cy="475" r="34" fill="white" stroke="#E8A07A" stroke-width="2"/>
+        <circle cx="330" cy="475" r="9" fill="#C8DDE9" stroke="#8AADCA" stroke-width="1.3"/>
+        <text x="344" y="458" font-size="12" fill="#7A5A1A" text-anchor="middle" font-weight="700">4</text>
+        <text x="344" y="469" font-size="8" fill="#7A8A98" text-anchor="middle">Vaseless</text>
+
+        <circle cx="435" cy="488" r="44" fill="white" stroke="#E8A07A" stroke-width="2"/>
+        <rect x="432" y="485" width="6" height="14" fill="#B8882A"/>
+        <circle cx="435" cy="499" r="11" fill="#E8D09A" stroke="#B8882A" stroke-width="1.5"/>
+        <text x="453" y="466" font-size="13" fill="#7A5A1A" text-anchor="middle" font-weight="700">2</text>
+        <text x="453" y="477" font-size="8" fill="#7A8A98" text-anchor="middle">Short Stand</text>
+      </svg></div>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+        <div style="display:flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:8px 12px;font-size:12px;min-width:190px;flex:1;"><div style="width:20px;height:20px;border-radius:50%;background:#C8DDE9;border:1px solid #8AADCA;flex-shrink:0;"></div><div><strong style="display:block;color:var(--ink);font-size:12.5px;">Vaseless Centerpiece</strong><span style="color:var(--stone);font-size:11px;">Tables 3, 4, 5, 6 + Head Table (3 pieces)</span></div></div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:8px 12px;font-size:12px;min-width:190px;flex:1;"><div style="width:20px;height:20px;border-radius:50%;background:#B8882A;flex-shrink:0;"></div><div><strong style="display:block;color:var(--ink);font-size:12.5px;">Short Stand + Large Centerpiece</strong><span style="color:var(--stone);font-size:11px;">Tables 1, 2 + Head Table (2 pieces)</span></div></div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:8px 12px;font-size:12px;min-width:190px;flex:1;"><div style="width:20px;height:20px;border-radius:50%;background:#C9567A;flex-shrink:0;"></div><div><strong style="display:block;color:var(--ink);font-size:12.5px;">Tall Stand + Grand Centerpiece</strong><span style="color:var(--stone);font-size:11px;">Tables 7, 8</span></div></div>
+        <div style="display:flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:8px 12px;font-size:12px;min-width:190px;flex:1;"><div style="width:20px;height:20px;border-radius:50%;background:#8FA868;flex-shrink:0;"></div><div><strong style="display:block;color:var(--ink);font-size:12.5px;">Meadow</strong><span style="color:var(--stone);font-size:11px;">DJ booth (2), Head Table (both ends, on the ground)</span></div></div>
+      </div>
+
+      <p style="font-size:12px;color:var(--stone);margin-top:16px;">See the Vendors tab for the full ceremony-to-dinner flip mapping — this is what Desiree, the groomsmen, and the bridesmaids will be working from during the flip.</p>
     </div>
 
   </div>
@@ -1952,7 +2113,7 @@
         </div>
         <div style="display:flex;gap:10px;">
           <div style="min-width:22px;height:22px;border-radius:50%;background:var(--blue-pale);border:1px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue);flex-shrink:0;">📦</div>
-          <div><div style="font-size:12.5px;font-weight:500;color:var(--ink);">Floral Flip Items</div><div style="font-size:12px;color:var(--stone);">Gold Stand Tall (2 of 3 flip → Table 8), Gold Stand Short (2 flip → Tables 1 &amp; 2), Kate Large Centerpiece (2 of 5 flip → Tables 1, 2, 3, 5, 7), Kate Grand Centerpiece (2 of 3 flip → Table 8), Kate Floral Meadow (4 pieces → Tables 4 &amp; 6 + 2 in front of cake table).</div></div>
+          <div><div style="font-size:12.5px;font-weight:500;color:var(--ink);">Floral Flip Items</div><div style="font-size:12px;color:var(--stone);"><strong style="color:var(--ink);">Meadow</strong> (4 pieces, from the ceremony's front line) → 2 in front of the DJ booth + 2 on the ground at either end of the Head Table.<br><strong style="color:var(--ink);">Short Stand + Large Centerpiece</strong> (2 pieces, from the ceremony's front line) → Tables 1 &amp; 2.<br><strong style="color:var(--ink);">Tall Stand + Grand Centerpiece</strong> (2 pieces, from the ceremony's front line) → Tables 7 &amp; 8.<br>Tables 3, 4, 5, 6 and the Head Table's remaining pieces are vaseless centerpieces, ordered separately (not part of the ceremony flip).</div></div>
         </div>
         <div style="display:flex;gap:10px;">
           <div style="min-width:22px;height:22px;border-radius:50%;background:var(--blue-pale);border:1px solid var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--blue);flex-shrink:0;">⚠️</div>
@@ -2061,6 +2222,11 @@
       var bar = 'well';
       var barRates = {well: 89, premium: 101, super: 113};
       var barLabels = {well: 'Well (6 hrs)', premium: 'Premium (6 hrs)', super: 'Super Premium (6 hrs)'};
+      var valet = false;
+      var valetTip = 'guest';
+      var shuttle = 'none';
+      var shuttleRates = {none: 0, gtsA: 990, gtsB: 1320, swoop: 975};
+      var shuttleLabels = {none: 'Not booked', gtsA: 'GTS \u2014 1 \u00d7 40-passenger shuttle', gtsB: 'GTS \u2014 2 \u00d7 24-passenger shuttles', swoop: 'Swoop \u2014 38-passenger mini-coach'};
 
       function fmtUSD(n) { return '$' + n.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}); }
 
@@ -2090,8 +2256,32 @@
         document.getElementById('desExtCost').textContent = fmtUSD(desExt);
         document.getElementById('desExtLabel').textContent = ext === 0 ? 'No overtime (covered through 11:59 pm)' : ext === 1 ? '+1 hr @ $160/hr (past midnight)' : '+2 hrs @ $160/hr (past midnight)';
 
+        // Valet
+        var valetCost = 0;
+        var valetLabel = 'Not booked';
+        if (valet) {
+          var valetBase = 35 * 21;
+          var valetWithTax = valetBase * 1.10;
+          valetCost = valetWithTax;
+          valetLabel = '35 cars min. \u00d7 $21 + 10% tax';
+          if (valetTip === 'prepaid') {
+            var serviceCharge = valetBase * 0.20;
+            valetCost += serviceCharge;
+            valetLabel += ' + 20% prepaid service charge (no guest tipping)';
+          } else {
+            valetLabel += ' \u00b7 guests tip freely (not incl. above)';
+          }
+        }
+        document.getElementById('valetCost').textContent = fmtUSD(valetCost);
+        document.getElementById('valetLabel').textContent = valetLabel;
+
+        // Shuttle
+        var shuttleCost = shuttleRates[shuttle];
+        document.getElementById('shuttleCost').textContent = fmtUSD(shuttleCost);
+        document.getElementById('shuttleLabel').textContent = shuttleLabels[shuttle] + (shuttle !== 'none' ? ' \u00b7 gratuity not incl.' : '');
+
         var fixed = 27500 + 2057 + 2070 + 1800 + 795 + 2597 + 325;
-        var total = fixed + barTaxed + extCostBABC + djExt + desExt;
+        var total = fixed + barTaxed + extCostBABC + djExt + desExt + valetCost + shuttleCost;
         document.getElementById('grandTotal').innerHTML = '<span style="font-size:16px;font-weight:700;color:var(--gold);">' + fmtUSD(total) + '</span>';
       }
 
@@ -2111,6 +2301,45 @@
         ['barWell','barPremium','barSuper'].forEach(function(id, i) {
           var el = document.getElementById(id);
           var active = (i === 0 && t === 'well') || (i === 1 && t === 'premium') || (i === 2 && t === 'super');
+          el.style.background = active ? 'var(--blue)' : 'transparent';
+          el.style.color = active ? 'white' : 'var(--blue)';
+          el.style.borderColor = active ? 'var(--blue)' : 'var(--blue-light)';
+        });
+        update();
+      }
+
+      function setValet(on) {
+        valet = on;
+        var yesBtn = document.getElementById('valetYes');
+        var noBtn = document.getElementById('valetNo');
+        yesBtn.style.background = on ? 'var(--blue)' : 'transparent';
+        yesBtn.style.color = on ? 'white' : 'var(--blue)';
+        yesBtn.style.borderColor = on ? 'var(--blue)' : 'var(--blue-light)';
+        noBtn.style.background = !on ? 'var(--blue)' : 'transparent';
+        noBtn.style.color = !on ? 'white' : 'var(--blue)';
+        noBtn.style.borderColor = !on ? 'var(--blue)' : 'var(--blue-light)';
+        document.getElementById('valetTipRow').style.display = on ? 'flex' : 'none';
+        update();
+      }
+
+      function setValetTip(mode) {
+        valetTip = mode;
+        ['valetTipGuest','valetTipPrepaid'].forEach(function(id) {
+          var el = document.getElementById(id);
+          var active = (id === 'valetTipGuest' && mode === 'guest') || (id === 'valetTipPrepaid' && mode === 'prepaid');
+          el.style.background = active ? 'var(--blue)' : 'transparent';
+          el.style.color = active ? 'white' : 'var(--blue)';
+          el.style.borderColor = active ? 'var(--blue)' : 'var(--blue-light)';
+        });
+        update();
+      }
+
+      function setShuttle(opt) {
+        shuttle = opt;
+        ['shuttleNone','shuttleGtsA','shuttleGtsB','shuttleSwoop'].forEach(function(id, i) {
+          var el = document.getElementById(id);
+          var map = {shuttleNone:'none', shuttleGtsA:'gtsA', shuttleGtsB:'gtsB', shuttleSwoop:'swoop'};
+          var active = map[id] === opt;
           el.style.background = active ? 'var(--blue)' : 'transparent';
           el.style.color = active ? 'white' : 'var(--blue)';
           el.style.borderColor = active ? 'var(--blue)' : 'var(--blue-light)';
@@ -2219,7 +2448,203 @@ setInterval(updateCountdown, 30000);
         <p style="color:#5A3A00;">This tab is private. All cost estimates, payment deadlines, and financial decisions live here. Lock it again by switching to another tab.</p>
       </div>
 
-    <div class="divider"><span class="divider-label">Event Cost Estimator</span></div>
+    <div class="divider"><span class="divider-label">Budget Wheel — Source of Truth</span></div>
+
+<div class="card" style="padding:22px 24px 28px;">
+  <div class="card-sub">Planned Budget Allocation by Category</div>
+  <p style="font-size:12px;color:var(--stone);margin-bottom:16px;">Pulled directly from your budget spreadsheet. This wheel shows how the $45,000 planned budget breaks down across categories — same view as the Excel "Budget" tab.</p>
+  <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:center;">
+    <div style="flex:0 0 auto;"><svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px;display:block;margin:0 auto;font-family:DM Sans,sans-serif;"><path d="M180.0,30.0 A150,150 0 1 1 59.8,269.8 L106.3,235.1 A92,92 0 1 0 180.0,88.0 Z" fill="#E8A07A" stroke="white" stroke-width="2"/><path d="M59.8,269.8 A150,150 0 0 1 34.9,218.1 L91.0,203.4 A92,92 0 0 0 106.3,235.1 Z" fill="#A8C060" stroke="white" stroke-width="2"/><path d="M34.9,218.1 A150,150 0 0 1 30.2,172.9 L88.1,175.6 A92,92 0 0 0 91.0,203.4 Z" fill="#8AADCA" stroke="white" stroke-width="2"/><path d="M30.2,172.9 A150,150 0 0 1 38.8,129.5 L93.4,149.0 A92,92 0 0 0 88.1,175.6 Z" fill="#D8A8D0" stroke="white" stroke-width="2"/><path d="M38.8,129.5 A150,150 0 0 1 60.6,89.2 L106.8,124.3 A92,92 0 0 0 93.4,149.0 Z" fill="#E0C068" stroke="white" stroke-width="2"/><path d="M60.6,89.2 A150,150 0 0 1 83.5,65.2 L120.8,109.6 A92,92 0 0 0 106.8,124.3 Z" fill="#B0A0D8" stroke="white" stroke-width="2"/><path d="M83.5,65.2 A150,150 0 0 1 99.6,53.4 L130.7,102.3 A92,92 0 0 0 120.8,109.6 Z" fill="#7ABFAA" stroke="white" stroke-width="2"/><path d="M99.6,53.4 A150,150 0 0 1 140.1,35.4 L155.5,91.3 A92,92 0 0 0 130.7,102.3 Z" fill="#E88090" stroke="white" stroke-width="2"/><path d="M140.1,35.4 A150,150 0 0 1 161.7,31.1 L168.8,88.7 A92,92 0 0 0 155.5,91.3 Z" fill="#88C8D8" stroke="white" stroke-width="2"/><path d="M161.7,31.1 A150,150 0 0 1 168.9,30.4 L173.2,88.3 A92,92 0 0 0 168.8,88.7 Z" fill="#D8B888" stroke="white" stroke-width="2"/><path d="M168.9,30.4 A150,150 0 0 1 180.0,30.0 L180.0,88.0 A92,92 0 0 0 173.2,88.3 Z" fill="#C0A878" stroke="white" stroke-width="2"/><text x="180" y="172" font-size="22" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="DM Sans,sans-serif" style="fill:#2C3A42;">$42,445</text><text x="180" y="194" font-size="10" fill="#7A8A98" text-anchor="middle" font-family="DM Sans,sans-serif">Total Planned Budget</text></svg></div>
+    <div style="flex:1;min-width:220px;"><div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><div style="width:12px;height:12px;border-radius:3px;background:#E8A07A;flex-shrink:0;"></div><div style="flex:1;font-size:12.5px;color:var(--ink);">Ceremony / Venue</div><div style="font-size:12px;color:var(--stone);">64.8%</div><div style="font-size:12.5px;font-weight:600;color:var(--ink);min-width:70px;text-align:right;">$27,500</div></div><div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><div style="width:12px;height:12px;border-radius:3px;background:#A8C060;flex-shrink:0;"></div><div style="flex:1;font-size:12.5px;color:var(--ink);">Flowers</div><div style="font-size:12px;color:var(--stone);">6.1%</div><div style="font-size:12.5px;font-weight:600;color:var(--ink);min-width:70px;text-align:right;">$2,597</div></div><div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><div style="width:12px;height:12px;border-radius:3px;background:#8AADCA;flex-shrink:0;"></div><div style="flex:1;font-size:12.5px;color:var(--ink);">Photo / Video</div><div style="font-size:12px;color:var(--stone);">4.8%</div><div style="font-size:12.5px;font-weight:600;color:var(--ink);min-width:70px;text-align:right;">$2,057</div></div><div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><div style="width:12px;height:12px;border-radius:3px;background:#D8A8D0;flex-shrink:0;"></div><div style="flex:1;font-size:12.5px;color:var(--ink);">Rings</div><div style="font-size:12px;color:var(--stone);">4.7%</div><div style="font-size:12.5px;font-weight:600;color:var(--ink);min-width:70px;text-align:right;">$2,000</div></div><div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><div style="width:12px;height:12px;border-radius:3px;background:#E0C068;flex-shrink:0;"></div><div style="flex:1;font-size:12.5px;color:var(--ink);">DJ</div><div style="font-size:12px;color:var(--stone);">4.9%</div><div style="font-size:12.5px;font-weight:600;color:var(--ink);min-width:70px;text-align:right;">$2,070</div></div><div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><div style="width:12px;height:12px;border-radius:3px;background:#B0A0D8;flex-shrink:0;"></div><div style="flex:1;font-size:12.5px;color:var(--ink);">Day-of Coordinator</div><div style="font-size:12px;color:var(--stone);">3.5%</div><div style="font-size:12.5px;font-weight:600;color:var(--ink);min-width:70px;text-align:right;">$1,500</div></div><div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><div style="width:12px;height:12px;border-radius:3px;background:#7ABFAA;flex-shrink:0;"></div><div style="flex:1;font-size:12.5px;color:var(--ink);">Photo Booth</div><div style="font-size:12px;color:var(--stone);">2.1%</div><div style="font-size:12.5px;font-weight:600;color:var(--ink);min-width:70px;text-align:right;">$900</div></div><div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><div style="width:12px;height:12px;border-radius:3px;background:#E88090;flex-shrink:0;"></div><div style="flex:1;font-size:12.5px;color:var(--ink);">Rehearsal Dinner</div><div style="font-size:12px;color:var(--stone);">4.7%</div><div style="font-size:12.5px;font-weight:600;color:var(--ink);min-width:70px;text-align:right;">$2,000</div></div><div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><div style="width:12px;height:12px;border-radius:3px;background:#88C8D8;flex-shrink:0;"></div><div style="flex:1;font-size:12.5px;color:var(--ink);">Welcome Drinks</div><div style="font-size:12px;color:var(--stone);">2.3%</div><div style="font-size:12.5px;font-weight:600;color:var(--ink);min-width:70px;text-align:right;">$996</div></div><div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><div style="width:12px;height:12px;border-radius:3px;background:#D8B888;flex-shrink:0;"></div><div style="flex:1;font-size:12.5px;color:var(--ink);">Cake</div><div style="font-size:12px;color:var(--stone);">0.8%</div><div style="font-size:12.5px;font-weight:600;color:var(--ink);min-width:70px;text-align:right;">$325</div></div><div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);"><div style="width:12px;height:12px;border-radius:3px;background:#C0A878;flex-shrink:0;"></div><div style="flex:1;font-size:12.5px;color:var(--ink);">Send Off Brunch</div><div style="font-size:12px;color:var(--stone);">1.2%</div><div style="font-size:12.5px;font-weight:600;color:var(--ink);min-width:70px;text-align:right;">$500</div></div></div>
+  </div>
+</div>
+
+<div class="divider"><span class="divider-label">Paid vs. Owed — At a Glance</span></div>
+
+<div class="card" style="padding:22px 24px 28px;">
+  <div class="card-sub">Where Things Stand Today</div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;">
+  <div style="flex:1;min-width:130px;background:#E8F0E0;border:1.5px solid #A8C060;border-radius:8px;padding:14px 16px;text-align:center;">
+    <div style="font-size:22px;font-weight:700;color:#4A7A20;font-family:var(--serif);line-height:1;">$17,288</div>
+    <div style="font-size:10.5px;font-weight:600;color:#4A7A20;margin-top:4px;">Paid to Date</div>
+  </div>
+  <div style="flex:1;min-width:130px;background:#FDECEA;border:1.5px solid #E8A0A0;border-radius:8px;padding:14px 16px;text-align:center;">
+    <div style="font-size:22px;font-weight:700;color:#B01010;font-family:var(--serif);line-height:1;">$22,077</div>
+    <div style="font-size:10.5px;font-weight:600;color:#B01010;margin-top:4px;">Due — Matthew</div>
+  </div>
+  <div style="flex:1;min-width:130px;background:#F0F0F0;border:1.5px solid #C8C8C8;border-radius:8px;padding:14px 16px;text-align:center;">
+    <div style="font-size:22px;font-weight:700;color:#7A7A7A;font-family:var(--serif);line-height:1;">$2,825</div>
+    <div style="font-size:10.5px;font-weight:600;color:#7A7A7A;margin-top:4px;">TBD — Payer Not Set</div>
+  </div>
+</div>
+<div style="background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:12px 16px;margin-bottom:24px;">
+  <p style="font-size:12px;color:var(--stone);"><strong style="color:var(--ink);">Total (confirmed vendor contracts):</strong> $42,189.86 of the $45,000 planned budget — about $2,810 of headroom left before decisions (valet, shuttle, venue extension) below.</p>
+</div>
+</div>
+
+<div class="divider"><span class="divider-label">Payment Ledger — Every Vendor, Line by Line</span></div>
+
+<p style="font-size:12px;color:var(--stone);margin:-8px 0 16px;">Sourced from your Detailed Budget tab. Green = paid. Red = confirmed due (with date and payer). Gray = amount not yet assigned to a payer.</p>
+
+<div class="card">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <div class="card-sub" style="margin-bottom:0;">Ceremony / Venue (BABC)</div>
+        <div style="font-size:12px;color:var(--stone);">$27,500.00 total</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Down Payment 1</div><div style="font-size:11.5px;color:var(--stone);">Paid by Venus</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$5,000.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#E8F0E0;color:#4A7A20;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">PAID — Venus</span></div>
+</div><div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Down Payment 2</div><div style="font-size:11.5px;color:var(--stone);">Paid by Venus (was due May 7, 2026)</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$5,000.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#E8F0E0;color:#4A7A20;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">PAID — Venus</span></div>
+</div><div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Final Payment</div><div style="font-size:11.5px;color:var(--stone);">Due Nov 4, 2026 — Matthew. Cashier's check or wire only.</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$17,500.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#FDECEA;color:#B01010;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">DUE — Matthew</span></div>
+</div>
+    </div>
+<div class="card">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <div class="card-sub" style="margin-bottom:0;">Flowers (Mostest + Something Borrowed Blooms)</div>
+        <div style="font-size:12px;color:var(--stone);">$2,597.06 total</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Mostest White Glove</div><div style="font-size:11.5px;color:var(--stone);">Fully refundable service deposit</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$922.80</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#E8F0E0;color:#4A7A20;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">PAID</span></div>
+</div><div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Something Borrowed Blooms — Deposit (50%)</div><div style="font-size:11.5px;color:var(--stone);">Paid by Venus</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$837.03</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#E8F0E0;color:#4A7A20;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">PAID — Venus</span></div>
+</div><div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Something Borrowed Blooms — Balance</div><div style="font-size:11.5px;color:var(--stone);">Due Oct 30, 2026 — Matthew</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$837.03</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#FDECEA;color:#B01010;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">DUE — Matthew</span></div>
+</div>
+    </div>
+<div class="card">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <div class="card-sub" style="margin-bottom:0;">Photo / Video (Lulan Studios)</div>
+        <div style="font-size:12px;color:var(--stone);">$2,057.00 total</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">1st Payment — Retainer</div><div style="font-size:11.5px;color:var(--stone);">Paid by Venus</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$750.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#E8F0E0;color:#4A7A20;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">PAID — Venus</span></div>
+</div><div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">2nd Payment — Remaining Balance</div><div style="font-size:11.5px;color:var(--stone);">Due Nov 7, 2026 — Matthew. Files withheld until paid.</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$1,307.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#FDECEA;color:#B01010;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">DUE — Matthew</span></div>
+</div>
+    </div>
+<div class="card">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <div class="card-sub" style="margin-bottom:0;">Rings</div>
+        <div style="font-size:12px;color:var(--stone);">$1,850.00 total</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Custom Rings — HK</div><div style="font-size:11.5px;color:var(--stone);">Paid in full</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$1,850.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#E8F0E0;color:#4A7A20;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">PAID</span></div>
+</div>
+    </div>
+<div class="card">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <div class="card-sub" style="margin-bottom:0;">DJ (Endless Summer — Jordan Bernardo)</div>
+        <div style="font-size:12px;color:var(--stone);">$2,070.00 total</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">1st Payment — Retainer</div><div style="font-size:11.5px;color:var(--stone);">Paid by Venus</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$1,035.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#E8F0E0;color:#4A7A20;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">PAID — Venus</span></div>
+</div><div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">2nd Payment — Remaining Balance</div><div style="font-size:11.5px;color:var(--stone);">Due ~Oct 11, 2026 (30 days before) — Matthew</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$1,035.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#FDECEA;color:#B01010;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">DUE — Matthew</span></div>
+</div>
+    </div>
+<div class="card">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <div class="card-sub" style="margin-bottom:0;">Day-of Coordinator (Serenity — Desiree)</div>
+        <div style="font-size:12px;color:var(--stone);">$1,500.00 total</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Retainer</div><div style="font-size:11.5px;color:var(--stone);">Paid by Venus</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$500.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#E8F0E0;color:#4A7A20;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">PAID — Venus</span></div>
+</div><div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Remainder</div><div style="font-size:11.5px;color:var(--stone);">Due Nov 1, 2026 (10 days before) — Matthew</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$1,000.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#FDECEA;color:#B01010;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">DUE — Matthew</span></div>
+</div>
+    </div>
+<div class="card">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <div class="card-sub" style="margin-bottom:0;">Photo Booth (Pixster)</div>
+        <div style="font-size:12px;color:var(--stone);">$795.00 total</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">50% Down</div><div style="font-size:11.5px;color:var(--stone);">Paid by Venus</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$397.50</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#E8F0E0;color:#4A7A20;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">PAID — Venus</span></div>
+</div><div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Remaining Balance</div><div style="font-size:11.5px;color:var(--stone);">Due Oct 10, 2026 — Matthew. Auto-charged to card on file.</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$397.50</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#FDECEA;color:#B01010;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">DUE — Matthew</span></div>
+</div>
+    </div>
+<div class="card">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <div class="card-sub" style="margin-bottom:0;">Rehearsal Dinner</div>
+        <div style="font-size:12px;color:var(--stone);">$2,000.00 total</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">~20 guests × $100pp</div><div style="font-size:11.5px;color:var(--stone);">Payer not yet assigned</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$2,000.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#F0F0F0;color:#7A7A7A;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">TBD</span></div>
+</div>
+    </div>
+<div class="card">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <div class="card-sub" style="margin-bottom:0;">Welcome Drinks (SMBW)</div>
+        <div style="font-size:12px;color:var(--stone);">$996.00 total</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Reservation for 60 people</div><div style="font-size:11.5px;color:var(--stone);">Paid in full</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$996.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#E8F0E0;color:#4A7A20;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">PAID</span></div>
+</div>
+    </div>
+<div class="card">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <div class="card-sub" style="margin-bottom:0;">Cake</div>
+        <div style="font-size:12px;color:var(--stone);">$325.00 total</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Sheet Cake (to serve)</div><div style="font-size:11.5px;color:var(--stone);">Payer not yet assigned</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$250.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#F0F0F0;color:#7A7A7A;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">TBD</span></div>
+</div><div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Dummy Cake (to cut)</div><div style="font-size:11.5px;color:var(--stone);">Payer not yet assigned</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$75.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#F0F0F0;color:#7A7A7A;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">TBD</span></div>
+</div>
+    </div>
+<div class="card">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <div class="card-sub" style="margin-bottom:0;">Send Off Brunch</div>
+        <div style="font-size:12px;color:var(--stone);">$500.00 total</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--blue-pale);">
+  <div style="flex:1;"><div style="font-size:13px;font-weight:500;color:var(--ink);">Brunch supplies</div><div style="font-size:11.5px;color:var(--stone);">Estimate only — no vendor booked yet, payer TBD</div></div>
+  <div style="font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;min-width:70px;text-align:right;">$500.00</div>
+  <div style="flex-shrink:0;min-width:100px;text-align:right;"><span style="display:inline-block;background:#F0F0F0;color:#7A7A7A;border-radius:5px;padding:2px 8px;font-size:10.5px;font-weight:600;">TBD</span></div>
+</div>
+    </div>
+
+<div class="divider"><span class="divider-label">Event Cost Estimator</span></div>
 
     <div class="card" style="padding:22px 24px 28px;">
       <div class="card-sub">For Venus &amp; Matthew — Full Event Cost Breakdown</div>
@@ -2239,6 +2664,30 @@ setInterval(updateCountdown, 30000);
           <button onclick="setBar('well')" id="barWell" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue);background:var(--blue);color:white;font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">Well — $89/pp</button>
           <button onclick="setBar('premium')" id="barPremium" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue-light);background:transparent;color:var(--blue);font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">Premium — $101/pp</button>
           <button onclick="setBar('super')" id="barSuper" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue-light);background:transparent;color:var(--blue);font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">Super Premium — $113/pp</button>
+        </div>
+      </div>
+
+      <!-- Valet decision toggle -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Decision Needed — Valet Service</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
+          <button onclick="setValet(true)" id="valetYes" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue-light);background:transparent;color:var(--blue);font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">Book Valet</button>
+          <button onclick="setValet(false)" id="valetNo" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue);background:var(--blue);color:white;font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">No Valet</button>
+        </div>
+        <div id="valetTipRow" style="display:none;gap:8px;flex-wrap:wrap;">
+          <button onclick="setValetTip('guest')" id="valetTipGuest" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue);background:var(--blue);color:white;font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">Guests Tip Freely</button>
+          <button onclick="setValetTip('prepaid')" id="valetTipPrepaid" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue-light);background:transparent;color:var(--blue);font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">Prepay 20% Service Charge</button>
+        </div>
+      </div>
+
+      <!-- Shuttle decision toggle -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;">Decision Needed — After-Party Shuttle</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button onclick="setShuttle('none')" id="shuttleNone" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue);background:var(--blue);color:white;font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">Not Booked</button>
+          <button onclick="setShuttle('gtsA')" id="shuttleGtsA" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue-light);background:transparent;color:var(--blue);font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">GTS — 1 Shuttle ($990)</button>
+          <button onclick="setShuttle('gtsB')" id="shuttleGtsB" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue-light);background:transparent;color:var(--blue);font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">GTS — 2 Shuttles ($1,320)</button>
+          <button onclick="setShuttle('swoop')" id="shuttleSwoop" style="padding:6px 14px;border-radius:100px;border:1.5px solid var(--blue-light);background:transparent;color:var(--blue);font-size:11.5px;font-weight:500;cursor:pointer;font-family:var(--sans);">Swoop ($975)</button>
         </div>
       </div>
 
@@ -2276,6 +2725,16 @@ setInterval(updateCountdown, 30000);
           <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Desiree Overtime</div><div style="font-size:11px;color:var(--stone);" id="desExtLabel">No overtime (covered through 11:59 pm)</div></div>
           <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);" id="desExtCost">$0</div>
           <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">$160/hr</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">Quality Parking — Valet</div><div style="font-size:11px;color:var(--stone);" id="valetLabel">Not booked</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);" id="valetCost">$0</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Decision</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;border-bottom:1px solid var(--blue-pale);">
+          <div style="flex:1;"><div style="font-size:12.5px;color:var(--ink);font-weight:500;">After-Party Shuttle</div><div style="font-size:11px;color:var(--stone);" id="shuttleLabel">Not booked</div></div>
+          <div style="width:90px;text-align:right;font-size:12.5px;color:var(--ink);" id="shuttleCost">$0</div>
+          <div class="est-hide-mobile" style="width:90px;text-align:right;font-size:12.5px;color:var(--stone);font-style:italic;">Decision</div>
         </div>
 
         <!-- Separator -->
@@ -2326,7 +2785,7 @@ setInterval(updateCountdown, 30000);
         <p style="font-size:12px;color:#7A4A30;"><strong style="color:#5A2E10;">BABC service charge note:</strong> All BABC F&amp;B items (bar, food, extras) are subject to 22% service charge + 9.75% sales tax. The venue/site fee is a flat figure. Bar estimates above show both the pre-tax subtotal and the estimated total after charges, so you can see both what you're committing to and what you'll actually pay.</p>
       </div>
       <div style="background:var(--blue-pale);border:1px solid var(--blue-light);border-radius:8px;padding:12px 16px;">
-        <p style="font-size:12px;color:var(--stone);"><strong style="color:var(--ink);">Not included in estimates:</strong> Rehearsal dinner (~$2,000) · Welcome drinks at SMBW (~$1,000) · Send-off brunch supplies (~$500) · Rings ($2,000) · Valet (~$21/car + 10% tax, min 35 cars · ~$804 minimum est.) · Shuttle TBD (GTS $990–1,320 or Swoop $975) · Lulan videography package (TBC) · Any BABC food/menu items beyond the bar (entrées, hors d'oeuvres, etc. — these are significant and selected at your Details Meeting)</p>
+        <p style="font-size:12px;color:var(--stone);"><strong style="color:var(--ink);">Not included in estimates:</strong> Rehearsal dinner (~$2,000) · Welcome drinks at SMBW (~$1,000) · Send-off brunch supplies (~$500) · Rings ($1,850, already paid) · Lulan videography package (TBC) · Any BABC food/menu items beyond the bar (entrées, hors d'oeuvres, etc. — these are significant and selected at your Details Meeting). Valet and shuttle are now toggled into the total above based on your decisions.</p>
       </div>
     </div>
 
