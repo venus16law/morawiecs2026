@@ -607,6 +607,100 @@
       font-size: 11px;
     }
   }
+
+  /* ── ASK A QUESTION ── */
+  .ask-section {
+    background: linear-gradient(180deg, var(--blue-pale) 0%, #FFFFFF 100%);
+    border-bottom: 2px solid var(--blue-light);
+    padding: 28px 20px 32px;
+  }
+  .ask-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+  .ask-eyebrow {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--peach); margin-bottom: 6px;
+  }
+  .ask-heading {
+    font-family: var(--serif); font-size: 27px; font-style: italic;
+    font-weight: 400; color: var(--ink); margin-bottom: 7px; line-height: 1.15;
+  }
+  .ask-sub {
+    font-size: 14.5px; color: var(--stone); line-height: 1.55;
+    margin: 0 auto 18px; max-width: 460px;
+  }
+  .ask-sub em { font-style: italic; color: var(--ink); }
+  .ask-box {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--white); border: 2px solid var(--blue);
+    border-radius: 100px; padding: 5px 5px 5px 20px;
+    box-shadow: 0 4px 20px rgba(138,173,202,0.25);
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .ask-box:focus-within {
+    border-color: var(--peach);
+    box-shadow: 0 4px 24px rgba(232,160,122,0.30);
+  }
+  .ask-input {
+    flex: 1; min-width: 0; border: none; outline: none; background: none;
+    font-family: var(--sans); font-size: 16px; /* 16px keeps iOS from zooming on focus */
+    color: var(--ink); padding: 13px 0;
+  }
+  .ask-input::placeholder { color: #A89E98; }
+  .ask-btn {
+    flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%;
+    border: none; background: var(--blue); color: var(--white);
+    font-size: 22px; line-height: 1; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .15s, transform .1s;
+  }
+  .ask-btn:hover { background: var(--peach); }
+  .ask-btn:active { transform: scale(0.94); }
+  .ask-chips {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 8px; margin-top: 14px;
+  }
+  .ask-chip {
+    background: var(--white); border: 1px solid var(--blue-light);
+    border-radius: 100px; padding: 9px 16px;
+    font-family: var(--sans); font-size: 13px; color: var(--blue);
+    cursor: pointer; white-space: nowrap;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  .ask-chip:hover, .ask-chip:active {
+    background: var(--blue); color: var(--white); border-color: var(--blue);
+  }
+  .ask-answer {
+    display: none; margin-top: 18px; text-align: left;
+    background: var(--white); border: 1px solid var(--blue-light);
+    border-left: 4px solid var(--peach); border-radius: 12px;
+    padding: 18px 20px; box-shadow: 0 4px 16px rgba(138,173,202,0.15);
+  }
+  .ask-answer.show { display: block; animation: askFade .25s ease; }
+  @keyframes askFade {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .ask-answer-q { font-size: 12.5px; color: var(--stone); margin-bottom: 9px; }
+  .ask-answer-q strong { color: var(--ink); font-weight: 500; }
+  .ask-answer-a { font-size: 15.5px; color: var(--ink); line-height: 1.65; }
+  .ask-answer-a strong { color: var(--ink); font-weight: 600; }
+  .ask-answer-a a { color: var(--blue); text-decoration: underline; }
+  .ask-answer-more {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 13px;
+    background: var(--blue-pale); border: 1px solid var(--blue-light);
+    border-radius: 100px; padding: 9px 17px;
+    font-family: var(--sans); font-size: 13px; font-weight: 500;
+    color: var(--blue); cursor: pointer;
+    transition: background .15s;
+  }
+  .ask-answer-more:hover { background: var(--blue-light); }
+
+  @media (max-width: 640px) {
+    .ask-section { padding: 22px 14px 26px; }
+    .ask-heading { font-size: 22px; }
+    .ask-sub { font-size: 13.5px; }
+    .ask-chip { font-size: 12.5px; padding: 9px 15px; }
+    .ask-answer-a { font-size: 15px; }
+  }
 </style>
 </head>
 <body>
@@ -631,6 +725,29 @@
     <div class="pill"><span class="pill-dot"></span>Ceremony 4:30 pm</div>
     <div class="pill"><span class="pill-dot"></span>~80 Guests</div>
     <div class="pill"><span class="pill-dot"></span>Dress Code: Formal</div>
+  </div>
+</div>
+
+<!-- ASK A QUESTION -->
+<div class="ask-section">
+  <div class="ask-inner">
+    <div class="ask-eyebrow">Quick Answers</div>
+    <div class="ask-heading">Have a question? Just ask.</div>
+    <div class="ask-sub">Type your question below — like <em>&ldquo;What time does it start?&rdquo;</em> or <em>&ldquo;Where do I park?&rdquo;</em> — and we'll take you straight to the answer.</div>
+    <form class="ask-box" onsubmit="askSubmit(event)">
+      <input class="ask-input" id="askInput" type="text" autocomplete="off" enterkeyhint="search"
+             placeholder="Ask about times, parking, what to wear…"
+             aria-label="Ask a question about the wedding">
+      <button class="ask-btn" type="submit" aria-label="Get the answer">&#x2192;</button>
+    </form>
+    <div class="ask-chips">
+      <button type="button" class="ask-chip" onclick="askQuick('What time is the ceremony?')">&#128340; What time?</button>
+      <button type="button" class="ask-chip" onclick="askQuick('Where is the wedding?')">&#128205; Where is it?</button>
+      <button type="button" class="ask-chip" onclick="askQuick('Where do I park?')">&#128663; Parking</button>
+      <button type="button" class="ask-chip" onclick="askQuick('What is the dress code?')">&#128087; What to wear</button>
+      <button type="button" class="ask-chip" onclick="askQuick('Is there an after party?')">&#127881; After party</button>
+    </div>
+    <div class="ask-answer" id="askAnswer" role="status" aria-live="polite"></div>
   </div>
 </div>
 
@@ -2389,6 +2506,223 @@ function switchTab(id, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('panel-' + id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ASK A QUESTION — client-side Q&A over the wedding details.
+   No server or API needed: it matches a guest's question against
+   a small knowledge base built from the details on this page, and
+   falls back to a search of the tab contents. Works offline and is
+   instant on older phones.
+   ───────────────────────────────────────────────────────────── */
+
+var GMAPS = 'https://maps.google.com/?q=Bel-Air+Bay+Club+16801+Pacific+Coast+Hwy+Pacific+Palisades+CA+90272';
+
+var ASK_KB = [
+  {
+    keywords: ['when','date','day','what day','which day','november','nov','2026','10th'],
+    q: 'When is the wedding?',
+    a: 'The wedding is <strong>Tuesday, November 10, 2026</strong>. The ceremony begins at <strong>4:30 pm</strong> — please plan to arrive by <strong>4:00 pm</strong>.',
+    tab: 'overview'
+  },
+  {
+    keywords: ['time','start','starts','begin','begins','ceremony','arrive','arrival','early','oclock',"o'clock",'when start'],
+    q: 'What time does it start?',
+    a: 'The <strong>ceremony starts at 4:30 pm</strong> on Tuesday, Nov 10. Doors open at <strong>4:00 pm</strong>, so please aim to arrive then. (Guests can’t come onto the property more than 30 minutes early.)',
+    tab: 'overview'
+  },
+  {
+    keywords: ['where','location','venue','place','address','held','held at','bel-air','bel air','bay club','babc','palisades'],
+    q: 'Where is the wedding?',
+    a: 'The wedding is at the <strong>Bel-Air Bay Club</strong> — 16801 Pacific Coast Hwy, Pacific Palisades, CA 90272. The ceremony is on the Lawn overlooking the ocean. <a href="' + GMAPS + '" target="_blank" rel="noopener">Open in Maps ↗</a>',
+    tab: 'overview'
+  },
+  {
+    keywords: ['directions','map','maps','gps','navigate','how to get','get there','driving'],
+    q: 'How do I get there?',
+    a: 'The venue is the <strong>Bel-Air Bay Club</strong>, 16801 Pacific Coast Hwy, Pacific Palisades, CA 90272 — right on PCH. <a href="' + GMAPS + '" target="_blank" rel="noopener">Open directions in Maps ↗</a>',
+    tab: 'overview'
+  },
+  {
+    keywords: ['park','parking','valet','car','drive','lot'],
+    q: 'Where do I park?',
+    a: 'There’s <strong>valet parking</strong> at the Bel-Air Bay Club through Quality Parking. The lot is small (about 35 cars), so carpooling or a rideshare is a great idea. Valet contact: Matt, <a href="tel:8182545115">(818) 254-5115</a>.',
+    tab: 'overview'
+  },
+  {
+    keywords: ['dress','dress code','wear','attire','formal','outfit','tuxedo','tux','suit','gown','tie','clothes','what to wear'],
+    q: 'What is the dress code?',
+    a: 'The wedding dress code is <strong>Formal</strong>. For the Monday welcome events it’s <strong>California Cocktail Chic</strong>, and the Wednesday send-off brunch is casual — sweatpants encouraged! 🥂',
+    tab: 'overview'
+  },
+  {
+    keywords: ['after','afterparty','after party','late night','after-party','tiny','hi-dive','hidive','nightcap'],
+    q: 'Is there an after party?',
+    a: 'Yes! There’s an after-party at <strong>Tiny’s Hi-Dive in Santa Monica</strong> starting around <strong>10:30 pm</strong> (open until 2 am), walk-in. A shuttle from the venue is being explored — otherwise it’s a short rideshare away.',
+    tab: 'overview'
+  },
+  {
+    keywords: ['welcome','welcome drinks','drinks','brew works','monday','night before','9th'],
+    q: 'What about the welcome drinks?',
+    a: 'Welcome Drinks are <strong>Monday, Nov 9 at 7:30 pm</strong> at <strong>Santa Monica Brew Works</strong> (1920 Colorado Ave). All guests are welcome — dress is California Cocktail Chic.',
+    tab: 'overview'
+  },
+  {
+    keywords: ['rehearsal','rehearsal dinner','sogno','toscano'],
+    q: 'When is the rehearsal dinner?',
+    a: 'The rehearsal dinner is <strong>Monday, Nov 9 at 5:00 pm</strong> at Sogno Toscano in Santa Monica — for the <strong>wedding party only</strong>.',
+    tab: 'overview'
+  },
+  {
+    keywords: ['brunch','send-off','sendoff','send off','wednesday','morning after','clover','11th','day after'],
+    q: 'Is there a send-off brunch?',
+    a: 'Yes — the send-off brunch is <strong>Wednesday, Nov 11 at 11:00 am</strong> at <strong>Clover Park</strong> in Santa Monica. Nice and casual: sweatpants encouraged! 🥂',
+    tab: 'overview'
+  },
+  {
+    keywords: ['hotel','hotels','stay','staying','accommodation','accommodations','room','rooms','sleep','lodging','where to stay'],
+    q: 'Where should I stay?',
+    a: 'For guest rooms at the Bel-Air Bay Club, call <a href="tel:3102304700">(310) 230-4700</a> or email <a href="mailto:ucfrontdesk@belairbayclub.com">ucfrontdesk@belairbayclub.com</a>. Santa Monica (about 15–20 minutes away, near the welcome events) also has plenty of hotels.',
+    tab: 'overview'
+  },
+  {
+    keywords: ['rain','weather','cold','chilly','jacket','coat','outdoor','outdoors','outside','warm'],
+    q: 'What if it rains / is it cold?',
+    a: 'The ceremony is <strong>outdoors on the Lawn</strong>. If it rains, it moves indoors to the Living Room (decided the morning of). November evenings by the ocean can be cool, so a wrap or light jacket is a smart idea.',
+    tab: 'overview'
+  },
+  {
+    keywords: ['shuttle','transport','transportation','bus','uber','lyft','rideshare','ride','taxi','cab'],
+    q: 'Is there a shuttle / transportation?',
+    a: 'A shuttle to the after-party is being explored (decision in September). If there’s no shuttle, a rideshare (Uber/Lyft) is easy. <strong>Valet parking</strong> is available at the venue.',
+    tab: 'overview'
+  },
+  {
+    keywords: ['rsvp','respond','coming','attending','confirm'],
+    q: 'How do I RSVP?',
+    a: 'RSVPs are handled through The Knot invitation. If you need to update yours, please reach out to Venus &amp; Matthew directly.',
+    tab: 'overview'
+  },
+  {
+    keywords: ['registry','register','gift','gifts','present','presents'],
+    q: 'Is there a registry?',
+    a: 'Registry details aren’t listed here — please check your invitation or reach out to <strong>Venus &amp; Matthew</strong> directly. Your presence is the gift! 💛',
+    tab: 'overview'
+  },
+  {
+    keywords: ['kids','kid','children','child','baby','babies','family friendly','bring my kids'],
+    q: 'Are kids welcome?',
+    a: 'That detail isn’t listed here — please reach out to <strong>Venus &amp; Matthew</strong> directly to confirm whether little ones are included in your invitation.',
+    tab: 'overview'
+  },
+  {
+    keywords: ['contact','help','coordinator','who','phone','call','reach','question','ask someone','desiree'],
+    q: 'Who can I contact with questions?',
+    a: 'Desiree, the day-of coordinator, will be on-site. For anything not answered here, reach out to Venus &amp; Matthew directly, or browse the <strong>Vendors &amp; Contacts</strong> tab.',
+    tab: 'vendors'
+  }
+];
+
+var ASK_TAB_NAMES = {
+  overview: 'Overview', bridesmaids: 'Bridesmaids', groomsmen: 'Groomsmen',
+  family: 'Family', reception: 'Reception', floral: 'Floral Plans', vendors: 'Vendors & Contacts'
+};
+
+/* Generic question words appear in many questions ("where do I park",
+   "where is it"), so a match on one counts less than a distinctive
+   keyword like "park" or "dress". This keeps the specific topic winning. */
+var ASK_GENERIC = {where:1,when:1,what:1,who:1,how:1,which:1,is:1,are:1,do:1,does:1,my:1,to:1,of:1,'we':1,will:1,there:1,this:1,that:1,it:1,any:1,about:1};
+
+function askFindEntry(raw) {
+  var lower = raw.toLowerCase();
+  var q = ' ' + lower.replace(/[^a-z0-9\s']/g, ' ').replace(/\s+/g, ' ') + ' ';
+  var words = q.trim().split(' ').filter(function (w) { return w.length > 1; });
+  var best = null, bestScore = 0;
+  ASK_KB.forEach(function (item) {
+    var score = 0;
+    item.keywords.forEach(function (kw) {
+      if (kw.indexOf(' ') > -1) {
+        if (q.indexOf(' ' + kw + ' ') > -1 || lower.indexOf(kw) > -1) score += 3;
+      } else if (words.indexOf(kw) > -1) {
+        score += ASK_GENERIC[kw] ? 1 : 2;
+      } else if (q.indexOf(kw) > -1) {
+        score += 1;
+      }
+    });
+    if (score > bestScore) { bestScore = score; best = item; }
+  });
+  return bestScore > 0 ? best : null;
+}
+
+var ASK_STOP = {the:1,a:1,an:1,is:1,are:1,do:1,does:1,i:1,my:1,to:1,of:1,for:1,at:1,in:1,on:1,and:1,what:1,when:1,where:1,how:1,'we':1,you:1,it:1,there:1,'?':1};
+
+function askSearchTabs(raw) {
+  var words = raw.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/)
+    .filter(function (w) { return w.length > 2 && !ASK_STOP[w]; });
+  if (!words.length) return null;
+  var best = null, bestScore = 0;
+  Object.keys(ASK_TAB_NAMES).forEach(function (id) {
+    var panel = document.getElementById('panel-' + id);
+    if (!panel) return;
+    var text = (panel.textContent || '').toLowerCase();
+    var score = 0;
+    words.forEach(function (w) { if (text.indexOf(w) > -1) score++; });
+    if (score > bestScore) { bestScore = score; best = id; }
+  });
+  return bestScore > 0 ? best : null;
+}
+
+function askRender(question, entry, tabId) {
+  var box = document.getElementById('askAnswer');
+  var html = '<div class="ask-answer-q">You asked: <strong>' +
+    question.replace(/</g, '&lt;') + '</strong></div>';
+  if (entry) {
+    html += '<div class="ask-answer-a">' + entry.a + '</div>';
+    if (entry.tab && entry.tab !== 'overview') {
+      html += '<button type="button" class="ask-answer-more" onclick="askGoTab(\'' + entry.tab +
+        '\')">See the ' + ASK_TAB_NAMES[entry.tab] + ' tab →</button>';
+    }
+  } else if (tabId) {
+    html += '<div class="ask-answer-a">I couldn’t find a direct answer, but there are related details on the <strong>' +
+      ASK_TAB_NAMES[tabId] + '</strong> tab.</div>' +
+      '<button type="button" class="ask-answer-more" onclick="askGoTab(\'' + tabId +
+      '\')">Go to ' + ASK_TAB_NAMES[tabId] + ' →</button>';
+  } else {
+    html += '<div class="ask-answer-a">I don’t have an answer to that one on hand. Please reach out to <strong>Venus &amp; Matthew</strong> directly, or try one of the quick questions above.</div>';
+  }
+  box.innerHTML = html;
+  box.classList.add('show');
+}
+
+function askAnswer(question) {
+  question = (question || '').trim();
+  if (!question) return;
+  var entry = askFindEntry(question);
+  var tabId = entry ? null : askSearchTabs(question);
+  askRender(question, entry, tabId);
+}
+
+function askSubmit(e) {
+  e.preventDefault();
+  askAnswer(document.getElementById('askInput').value);
+  document.getElementById('askInput').blur();
+}
+
+function askQuick(text) {
+  document.getElementById('askInput').value = text;
+  askAnswer(text);
+}
+
+function askGoTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.remove('active'); });
+  var btn = Array.prototype.slice.call(document.querySelectorAll('.tab-btn')).find(function (b) {
+    return (b.getAttribute('onclick') || '').indexOf("'" + id + "'") > -1;
+  });
+  if (btn) btn.classList.add('active');
+  var panel = document.getElementById('panel-' + id);
+  if (panel) panel.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
