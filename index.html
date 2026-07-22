@@ -30,7 +30,11 @@
   html {
     background: #EEF4F8 !important;
     color-scheme: light !important;
+    -webkit-text-size-adjust: 100%;  /* keep our sizes; stop iOS auto-inflating some text */
+    text-size-adjust: 100%;
   }
+  /* Snappier taps on phones: removes the 300ms delay and double-tap zoom on controls */
+  a, button, .tab-btn, .pill { touch-action: manipulation; -webkit-tap-highlight-color: rgba(138,173,202,0.25); }
   body {
     font-family: var(--sans);
     background: #EEF4F8 !important;
@@ -606,6 +610,48 @@
     [id="djExtCost"], [id="desExtCost"], [id="grandTotal"] {
       font-size: 11px;
     }
+  }
+
+  /* ── MOBILE READABILITY & TAP TARGETS (tuned for older guests on iPhones) ── */
+  @media (max-width: 640px) {
+    /* Bump up the smallest body text so it's comfortable to read */
+    .card p            { font-size: 14px; line-height: 1.7; }
+    .event-card-body p { font-size: 13.5px; line-height: 1.7; }
+    .tl-note           { font-size: 12.5px; }
+    .tl-label          { font-size: 13px; }
+    .contact-role      { font-size: 12px; }
+    .contact-name      { font-size: 14px; }
+    .pill              { font-size: 11px; }
+
+    /* Bigger, easier-to-hit tabs (min ~46px tall) with a clearer active state */
+    .tab-btn {
+      padding: 15px 15px;
+      font-size: 11px;
+      min-height: 46px;
+    }
+    .tab-btn.active { border-bottom-width: 3px; }
+
+    /* Hint that the tab row scrolls sideways — a soft fade on the right edge */
+    .tabs-wrapper { position: relative; }
+    .tabs-wrapper::after {
+      content: '';
+      position: absolute; top: 0; right: 0; bottom: 0;
+      width: 34px; pointer-events: none;
+      background: linear-gradient(to right, rgba(255,255,255,0), #FFFFFF 75%);
+    }
+
+    /* Make phone / email links easy to tap without breaking the text flow */
+    .card a[href^="tel:"], .card a[href^="mailto:"] {
+      display: inline-block;
+      padding: 3px 2px;
+      font-weight: 500;
+    }
+    .contact-link {
+      display: inline-flex; align-items: center;
+      min-height: 40px; padding: 4px 0;
+      font-size: 13px;
+    }
+    .contact-icon { width: 40px; height: 40px; font-size: 17px; }
   }
 </style>
 </head>
