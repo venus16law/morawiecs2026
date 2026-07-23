@@ -14,9 +14,12 @@ const ALLOWED_ORIGIN = 'https://venus16law.github.io';
 const MODEL = 'claude-haiku-4-5';
 
 // ── Rate-limiting guardrails (tune freely) ──────────────────────────────
-const PER_IP_PER_MIN = 6;    // one person, per minute
-const PER_IP_PER_DAY = 40;   // one person, per day
-const GLOBAL_PER_DAY = 500;  // hard ceiling on total questions/day (cost cap)
+// Claude answers every question, so these are sized for a full wedding's
+// traffic with plenty of headroom. At the global ceiling the day costs
+// roughly $2–3 of Haiku usage, so it can never run away.
+const PER_IP_PER_MIN = 8;     // one person, per minute (stops key-mashing)
+const PER_IP_PER_DAY = 60;    // one person, per day
+const GLOBAL_PER_DAY = 2000;  // hard ceiling on total questions/day (cost cap)
 
 // ── The only facts Claude is allowed to answer from ─────────────────────
 const WEDDING_FACTS = `

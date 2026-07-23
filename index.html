@@ -2569,14 +2569,15 @@ function switchTab(id, btn) {
    falls back to a search of the tab contents. Works offline and is
    instant on older phones.
 
-   Optional AI fallback: when the quick knowledge base can't answer,
-   the question is sent to a small Cloudflare Worker that asks Claude
-   Haiku (see the /worker folder). Set ASK_AI_ENDPOINT to the Worker
-   URL to turn it on. Left blank, the site behaves exactly as before —
-   instant offline answers only, no network calls.
+   When ASK_AI_ENDPOINT is set, Claude Haiku answers every question via a
+   small Cloudflare Worker (see the /worker folder), and the knowledge base
+   below becomes the safety net — used only if that call fails, so a guest
+   with poor signal still gets a useful answer. Left blank, the site runs
+   fully offline on the built-in answers alone.
    ───────────────────────────────────────────────────────────── */
 
-var ASK_AI_ENDPOINT = ''; // set to your Cloudflare Worker URL to enable AI answers
+// Your Cloudflare Worker URL. Blank = offline answers only (see /worker/README.md).
+var ASK_AI_ENDPOINT = '';
 
 var GMAPS = 'https://maps.google.com/?q=Bel-Air+Bay+Club+16801+Pacific+Coast+Hwy+Pacific+Palisades+CA+90272';
 
@@ -2759,12 +2760,17 @@ function askRender(question, entry, tabId) {
 function askAnswer(question) {
   question = (question || '').trim();
   if (!question) return;
-  var entry = askFindEntry(question);
-  if (entry) { askRender(question, entry, null); return; }
-  // No quick match. If the AI helper is configured, ask it; otherwise fall
-  // back to the tab search / contact card as before.
+  // Claude answers every question when the helper is configured. The built-in
+  // answers below are the safety net: they run if the endpoint isn't set yet,
+  // or if the network call fails (spotty venue signal on the day).
   if (ASK_AI_ENDPOINT) { askAiAnswer(question); return; }
-  askRender(question, null, askSearchTabs(question));
+  askOfflineAnswer(question);
+}
+
+// Instant, offline answer from the built-in knowledge base.
+function askOfflineAnswer(question) {
+  var entry = askFindEntry(question);
+  askRender(question, entry, entry ? null : askSearchTabs(question));
 }
 
 function askEscape(s) {
@@ -2792,8 +2798,9 @@ function askAiAnswer(question) {
         '<div class="ask-ai-note">&#10024; Answered from the wedding details on this page. For anything important, please confirm with Venus &amp; Matthew.</div>';
     })
     .catch(function () {
-      // Network hiccup or the helper is offline — fall back gracefully.
-      askRender(question, null, askSearchTabs(question));
+      // Network hiccup or the helper is offline — fall back to the built-in
+      // answers so a guest with bad signal still gets something useful.
+      askOfflineAnswer(question);
     });
 }
 
