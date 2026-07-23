@@ -1,0 +1,16 @@
+# Cloudflare Worker config for the wedding site's AI answer helper.
+# See README.md in this folder for step-by-step deploy instructions.
+
+name = "morawiecs-ask"
+main = "worker.js"
+compatibility_date = "2026-07-22"
+
+# Workers KV namespace used for rate-limit counters.
+# Created with:  wrangler kv namespace create RATE_LIMIT
+# (This is an account-scoped identifier, not a credential — safe to commit.)
+kv_namespaces = [
+  { binding = "RATE_LIMIT", id = "b06b351176754470aae32c6f192e6a91" }
+]
+
+# ANTHROPIC_API_KEY is NOT stored here. It is set as an encrypted secret:
+#   wrangler secret put ANTHROPIC_API_KEY
