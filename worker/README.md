@@ -1,8 +1,21 @@
 # AI answer helper (Cloudflare Worker)
 
 This Worker answers **every** question guests type into the wedding site. It holds
-the Anthropic API key, enforces rate limits, and asks **Claude Haiku** to answer
-using only the wedding details baked into `worker.js`.
+the Anthropic API key, enforces rate limits, and asks **Claude Haiku** to answer.
+
+**Claude reads the live site.** The Worker fetches the published page, strips it to
+readable text, and passes that in as context — so every tab (Bridesmaids, Groomsmen,
+Family, Reception, Floral Plans, Vendors) is fair game, and edits to the site show up
+in the answers automatically. There is no separate list of facts to maintain.
+
+The page is re-read at most **once an hour** (cached in KV), so a content change can
+take up to an hour to reach the answers. To push it through immediately, redeploy
+with `wrangler deploy` after bumping `SITE_CACHE_KEY` in `worker.js`.
+
+> ⚠️ **The passcode-gated Planning/budget section is deliberately excluded** (the
+> `#budget-modal` element). Vendor costs, payment schedules, and totals are never
+> given to Claude, and it's additionally instructed to refuse budget questions.
+> If you add another private section, add its selector to `EXCLUDE` in `worker.js`.
 
 The website stays on GitHub Pages. This is the one small hosted piece that a static
 site can't do on its own (a public site can't safely hold an API key, and rate
@@ -12,9 +25,10 @@ If this Worker is ever unreachable — or before you've deployed it — the site
 back to a set of built-in offline answers, so guests always get something useful.
 
 **Cost:** Claude Haiku is about $1 per million input tokens / $5 per million output.
-Each question is a few hundred tokens, so realistic wedding traffic costs a couple
-of dollars at most. The `GLOBAL_PER_DAY` cap in `worker.js` is a hard ceiling — at
-2,000 questions/day the spend is roughly $2–3, and it stops there.
+The site content is ~12k tokens, so the request is sent with **prompt caching** on
+that block — the first question writes the cache, and subsequent ones re-read it at
+about a tenth of the price. Realistic wedding traffic lands in the low single-digit
+dollars. `GLOBAL_PER_DAY` in `worker.js` is a hard ceiling regardless.
 
 ---
 
