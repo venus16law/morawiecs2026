@@ -2519,10 +2519,21 @@
       }
 
     
+/* ─────────────────────────────────────────────────────────────
+   PRIVATE PLANNING SECTION
+   The budget content is stored in this page as AES-256-GCM
+   ciphertext (see tools/lock-budget.mjs). The passphrase is never
+   in the source — it derives the key in the browser via PBKDF2 and
+   decrypts on unlock. Without it the page holds only random bytes,
+   so vendor costs and payment dates can't be read from the source.
+   ───────────────────────────────────────────────────────────── */
+
+var budgetUnlocked = false;
+
 function openBudgetModal() {
   document.getElementById('budget-modal').style.display = 'block';
   document.body.style.overflow = 'hidden';
-  if (sessionStorage.getItem('budgetUnlocked') === '1') {
+  if (budgetUnlocked) {
     document.getElementById('modal-lock').style.display = 'none';
     document.getElementById('modal-content').style.display = 'block';
     update();
@@ -2538,19 +2549,66 @@ function closeBudgetModal() {
   document.body.style.overflow = '';
 }
 
+function b64ToBytes(s) {
+  var bin = atob(s), out = new Uint8Array(bin.length);
+  for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
+}
+
+function budgetError(msg) {
+  var el = document.getElementById('modal-err');
+  el.textContent = msg;
+  el.style.display = 'block';
+  var pw = document.getElementById('modal-pw');
+  pw.value = '';
+  pw.disabled = false;
+  pw.focus();
+}
+
 function checkModalPw() {
-  var pw = document.getElementById('modal-pw').value;
-  if (pw === 'Morawiecs2026') {
-    sessionStorage.setItem('budgetUnlocked', '1');
-    document.getElementById('modal-lock').style.display = 'none';
-    document.getElementById('modal-content').style.display = 'block';
-    document.getElementById('modal-err').style.display = 'none';
-    update();
-  } else {
-    document.getElementById('modal-err').style.display = 'block';
-    document.getElementById('modal-pw').value = '';
-    document.getElementById('modal-pw').focus();
-  }
+  var pwEl = document.getElementById('modal-pw');
+  var pass = pwEl.value;
+  if (!pass) return;
+
+  var node = document.getElementById('budget-payload');
+  if (!node) { budgetError('Planning content is missing from this page.'); return; }
+
+  var payload;
+  try { payload = JSON.parse(node.textContent); }
+  catch (e) { budgetError('Planning content could not be read.'); return; }
+
+  pwEl.disabled = true;
+  document.getElementById('modal-err').style.display = 'none';
+
+  var subtle = window.crypto && window.crypto.subtle;
+  if (!subtle) { budgetError('This browser can’t unlock the planning section.'); return; }
+
+  subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey'])
+    .then(function (material) {
+      return subtle.deriveKey(
+        { name: 'PBKDF2', salt: b64ToBytes(payload.salt), iterations: payload.iters, hash: 'SHA-256' },
+        material, { name: 'AES-GCM', length: 256 }, false, ['decrypt']
+      );
+    })
+    .then(function (key) {
+      return subtle.decrypt(
+        { name: 'AES-GCM', iv: b64ToBytes(payload.iv) }, key, b64ToBytes(payload.ct)
+      );
+    })
+    .then(function (plain) {
+      var content = document.getElementById('modal-content');
+      content.innerHTML = new TextDecoder().decode(plain);
+      budgetUnlocked = true;
+      pwEl.value = '';
+      pwEl.disabled = false;
+      document.getElementById('modal-lock').style.display = 'none';
+      content.style.display = 'block';
+      update();
+    })
+    .catch(function () {
+      // AES-GCM authentication failed — wrong passphrase.
+      budgetError('Incorrect passcode. Try again.');
+    });
 }
 
 
