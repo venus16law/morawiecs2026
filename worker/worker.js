@@ -34,14 +34,14 @@ WEDDING DAY — Tuesday, November 10, 2026, at the Bel-Air Bay Club,
   morning of).
 - Reception follows and ends at 10:00 pm.
 - Dress code: Formal.
-- About 80 guests.
+- 83 guests (final).
 - Parking: valet through Quality Parking. The lot is small (~35 cars), so
   carpooling or a rideshare is encouraged. Valet contact: Matt, (818) 254-5115.
 - November evenings by the ocean can be cool — a wrap or light jacket is smart.
 
 AFTER PARTY — Tuesday, Nov 10, ~10:30 pm at Tiny's Hi-Dive in Santa Monica
-(open until 2 am, walk-in). A shuttle from the venue is being explored (decision
-in September); otherwise it's a short rideshare.
+(open until 2 am, walk-in). Shuttle from BABC confirmed — GTS Charter,
+40-passenger, confirmation #41953; otherwise it's a short rideshare.
 
 WELCOME DRINKS — Monday, Nov 9, 7:30 pm at Santa Monica Brew Works,
 1920 Colorado Ave, Santa Monica. All guests welcome. Dress: California Cocktail Chic.
